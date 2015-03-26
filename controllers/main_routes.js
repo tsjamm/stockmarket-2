@@ -1,11 +1,11 @@
 
 var route = function(app) {
 	app.get('/',function(req,res) {
-		res.render(__dirname + './../views/index', {layout: __dirname + './../views/layout'});
+		res.render(__dirname + './../views/index');
 	});
 
 	app.get('*', function(req,res) {
-		res.render('error');
+		res.render(__dirname + './../views/error');
 	});
 }
 
