@@ -6,7 +6,7 @@ var
 
 	app.set('view engine', 'ejs');
 	app.set('views', __dirname + '/views');
-
+	app.use(express.static(__dirname + '/'));
 	app.listen(3000);
 
 	routes(app);
