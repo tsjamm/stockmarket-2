@@ -1,15 +1,77 @@
 <aside>
 	<div id="search">
 		<form method="POST" action="/home">
-			<input type="text">
-			<input type="text">
-			<input type="text">
-			<input type="submit" value="Search">
+			<div class="form-group">
+				<select name="tableSearch">
+					<option value="AAPL">Apple</option>
+					<option value="AMZN">Amazon.com, Inc.</option>
+					<option value="APA">Apache Corporation</option>
+					<option value="AXP">American Express Company</option>
+					<option value="CL">Colgate-Palmolive Company</option>
+					<option value="CRM">Salesforce.com Inc</option>
+					<option value="CSCO">Cisco Systems, Inc.</option>
+					<option value="DIS">Walt Disney Company</option>
+					<option value="EBAY">eBay Inc.</option>
+					<option value="HAS">Hasbro, Inc.</option>
+					<option value="FB">Facebook, Inc.</option>
+					<option value="GAS">AGL Resources, Inc.</option>
+					<option value="HOG">Harley-Davidson, Inc.</option>
+					<option value="INTC">Intel Corporation</option>
+					<option value="KO">Coca-Cola Company (The)</option>
+					<option value="RL">Ralph Lauren Corporation</option>
+					<option value="TRIP">TripAdvisor, Inc.</option>
+					<option value="MON">Monsanto Company</option>
+					<option value="MA">Mastercard Incorporated</option>
+					<option value="A">Agilent Technologies, Inc.</option>
+					<option value="MAT">Mattel, Inc.</option>
+					<option value="MSFT">Microsoft Corporation</option>
+					<option value="PFE">Pfizer, Inc.</option>
+					<option value="SBUX">Starbucks Corporation</option>
+					<option value="STX">Seagate Technology.</option>
+					<option value="V">Visa Inc.</option>
+					<option value="XRX">Xerox Corporation</option>
+					<option value="YHOO">Yahoo! Inc.</option>
+				</select>
+			</div>
+			<div class="form-group">
+				<select name="orderSearch">
+					<option value="asc">Ascendent</option>
+					<option value="desc">Descendent</option>
+				</select>
+			</div>
 
+			<div class="form-group">
+				<div class="input-group">
+				  <span class="input-group-addon" id="basic-addon1">Start date</span>
+				  <input type="date" name="trim_startSearch"/>
+				</div>
+
+				<div class="input-group">
+				  <span class="input-group-addon" id="basic-addon1">End date</span>
+				  <input type="date" name="trim_endSearch"/>
+				</div>
+			</div>
+
+			
+			
+			<select name="collapseSearch">
+				<option value="none">None </option>
+				<option value="daily">Daily </option>
+				<option value="weekly">Weekly</option>
+				<option value="monthly">Monthly</option>
+				<option value="quarterly">Quarterly </option>
+				<option value="annual">Annual</option>
+			</select>
+			<input type="submit" value="Search" name="sendSearch">
 		</form>
 	</div>
 
 	<div id="tags">
-
+		<div><span class="label label-default">Default</span></div>
+		<div><span class="label label-default">Default</span></div>
+		<div><span class="label label-default">Default</span></div>
+		<div><span class="label label-default">Default</span></div>
+		<div><span class="label label-default">Default</span></div>
+		<div><span class="label label-default">Default</span></div>
 	</div>
 </aside>
