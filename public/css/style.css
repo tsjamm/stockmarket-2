@@ -1,0 +1,59 @@
+aside {
+	display:inline-block;
+	vertical-align: top;
+	padding-top:2%;
+	width:20%;
+}
+
+body {
+	background: #690000;
+	margin: 0 auto;
+}
+
+footer {
+	background: orange;
+	width:100%;
+}
+
+footer ul {
+	list-style:none;
+}
+
+#loginForm {
+	background:yellow;
+	display:inline-block;
+	padding:1em 2em;
+}
+
+#loginForm div {
+	margin:0.7em;
+}
+
+#loginForm div input {
+	width:20em;
+}
+
+
+main {
+	background: white;
+	display:inline-block;
+	width:79%;
+}
+
+
+nav ul {
+	list-style: none;
+	text-align: center;
+	padding-left:0;
+}
+
+nav ul li {
+	display:inline-block;
+	padding:0;
+	width:14%;
+}
+
+nav ul li a {
+	color:white;
+	text-decoration: none;
+}

@@ -1,0 +1,69 @@
+<%- include templates/partialHead.ejs %>
+<body>
+	<%- include templates/partialNav.ejs %>
+	<%- include templates/partialAside.ejs %>
+	<main>
+			<div id="tabla"> </div>		
+			<div id="linealChart"></div>
+	</main>
+
+	<%- include templates/partialFooter.ejs %>
+	
+
+
+	<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+
+	<script type="text/javascript">
+		var info = <%- JSON.stringify(data) %>;
+		google.load('visualization','1.0',{'packages':['line']});
+		google.setOnLoadCallback(drawChart);
+
+		function drawChart() {
+			var data = new google.visualization.DataTable();
+			data.addColumn('string','Day');
+			data.addColumn('number','Closing value');
+			var rows = [];
+			for(var i=0; i<info.data.length; i++){
+				rows.push([info.data[i][0],info.data[i][4]]);
+			}
+
+			data.addRows(rows);
+
+			var options = {
+				chart: { title: 'Closing stock values', subtitle: 'Subtitulo'},
+				width: 900,
+				height: 400
+			};
+
+			var chart = new google.charts.Line(document.getElementById('linealChart'));
+			chart.draw(data,options);
+
+		}
+
+	</script>
+
+	<script type="text/javascript">
+		drawTable();
+
+		function drawTable() {
+			var html = '<table> <thead> <tr>';
+			for(var i=0; i<info.column_names.length; i++)
+				html += '<th>' + info.column_names[i] + '</th>';
+			html +='</tr></thead><tbody>';
+			
+			for(var i=0; i<info.data.length; i++){
+				html +='<tr>';
+				for(var j=0; j<info.data[i].length; j++)
+					html += '<td>' + info.data[i][j] + '</td>';	
+				html +='</tr>';
+			}
+
+			html += '</tbody></table>';
+
+			document.getElementById('tabla').innerHTML = html;
+		}
+	</script>
+</body>
+</html>
+
+
