@@ -1,57 +1,11 @@
-var getData = require('./../public/js/getData');
+var dataManager = require('./../public/js/stockData');
+var async = require('async');
 var request = require('request');
 
 var route = function(app) {
 	app.get('/',function(req,res) {
-		res.render(__dirname + './../views/home',{ data:''});
-	});
-
-	app.post('/home', function(req,res) {
-		function getData(cb) {
-			var data = '';
-			var table = req.body.tableSearch;
-			var data_format = '.json';
-			var sort_order = req.body.orderSearch;
-			var trim_start = req.body.trim_startSearch;
-			var trim_end = req.body.trim_endSearch;
-			var collapse = req.body.collapseSearch;
-
-
-			var url = 'http://www.quandl.com/api/v1/datasets/WIKI/' + table + data_format + '?sort_order='+sort_order+'&trim_start='+trim_start+'&trim_end='+trim_end+'&collapse='+collapse;
-
-
-			request({url: url, json: true}, function(err,response,body) {
-				console.log(body);
-				data+= '<table class="table"> <tr>';
-				for(var column in body.column_names){
-					data += '<td>' + body.column_names[column]+ '</td>';
-					if(body.column_names[column]=='Volume')
-						break;
-				}
-
-				data+='</tr>';
-
-				for(var row in body.data) {
-					data +='<tr>';
-					for(var i=0; i<6; i++){
-						if(body.column_names[i]=='Date')
-							data +='<td>'+ body.data[row][i] + '</td>';
-						else
-							data +='<td>'+ Number(body.data[row][i]).toFixed(2) + '</td>';
-					}
-					data +='</tr>';
-				
-				}
-
-				data +='</table>';
-				cb(data);
-			});	
-		}
-
-		getData(function(data) {
-			res.render(__dirname + './../views/home', { data: data } );
-		});
-	});
+		res.render(__dirname + './../views/index');
+	});	
 
 	app.get('/about',function(req,res) {
 		res.render(__dirname + './../views/about');
@@ -61,8 +15,36 @@ var route = function(app) {
 		res.render(__dirname + './../views/explore');
 	});
 
+	app.post('/result', function(req,res) {
+		var filters = {
+			table: req.body.tableSearch,
+			order: req.body.orderSearch,
+			trim_start: req.body.trim_startSearch,
+			trim_end: req.body.trim_endSearch,
+			colapse: req.body.collapseSearch
+		};
+
+		var data = {result: ''};
+		dataManager.getData(filters,function(data) {
+			res.render(__dirname + './../views/result' , { data : data});
+		});
+
+		 
+	});
+
 	app.get('/help',function(req,res) {
 		res.render(__dirname + './../views/help');
+	});
+
+	app.post('/index',function(req,res) {
+		var email = req.body.email;
+		var password = req.body.password;
+		if(email=='antonio@gmail.com' && password=='123') {
+			res.render(__dirname + './../views/home');
+		}
+		else {
+			res.render(__dirname+ './../views/index');
+		}
 	});
 
 	app.get('/my_favourites',function(req,res) {
