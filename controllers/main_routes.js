@@ -17,22 +17,6 @@ var route = function(app) {
 		res.render(__dirname + './../views/explore');
 	});
 
-	app.post('/result', function(req,res) {
-		var filters = {
-			table: req.body.tableSearch,
-			order: req.body.orderSearch,
-			trim_start: req.body.trim_startSearch,
-			trim_end: req.body.trim_endSearch,
-			colapse: req.body.collapseSearch
-		};
-
-		var data = {result: ''};
-		dataManager.getData(filters,function(data) {
-			res.render(__dirname + './../views/result' , { data : data});
-		});
-
-	});
-
 	app.get('/help',function(req,res) {
 		res.render(__dirname + './../views/help');
 	});
@@ -45,11 +29,19 @@ var route = function(app) {
 			if(isCorrect) {
 				session = req.session;
 				session.email = email;
-				res.render(__dirname + './../views/home', {email: session.email});
+				res.render(__dirname + './../views/home', {email: session.emailUPDu});
 			}
 			else
 				res.render(__dirname + './../views/index');
 		});
+	});
+
+	app.get('/logout', function(req,res) {
+		req.session.destroy(function(err) {
+			if(err)
+				return console.log('Error while closing session. Error: ' + err);
+			res.redirect('/');
+		})
 	});
 
 	app.get('/my_favourites',function(req,res) {
@@ -88,6 +80,22 @@ var route = function(app) {
 			res.render(__dirname + './../views/message', { message: 'Your account has been successfully created. Please, <a href="/"> log in</a>'})
 
 		});
+	});
+
+	app.post('/result', function(req,res) {
+		var filters = {
+			table: req.body.tableSearch,
+			order: req.body.orderSearch,
+			trim_start: req.body.trim_startSearch,
+			trim_end: req.body.trim_endSearch,
+			colapse: req.body.collapseSearch
+		};
+
+		var data = {result: ''};
+		dataManager.getData(filters,function(data) {
+			res.render(__dirname + './../views/result' , { data : data});
+		});
+
 	});
 
 	app.get('*', function(req,res) {
