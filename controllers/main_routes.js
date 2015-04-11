@@ -1,4 +1,5 @@
 var dataManager = require('./../public/js/stockData');
+var User = require('./../models/UserSchema');
 var request = require('request');
 
 var route = function(app) {
@@ -28,7 +29,6 @@ var route = function(app) {
 			res.render(__dirname + './../views/result' , { data : data});
 		});
 
-		 
 	});
 
 	app.get('/help',function(req,res) {
@@ -63,11 +63,29 @@ var route = function(app) {
 	});
 
 	app.post('/register', function(req,res) {
-		res.end('REGISTRO RECIBIDO');
+		var userData = {
+			email :req.body.email,
+			password : req.body.password,
+			name : req.body.name,
+			lastname : req.body.lastname,
+			avatarURL :req.body.avatarURL,
+			lastLogin :new Date(),
+		}
+		
+		var user = new User(userData);
+
+		user.save(function(err) {
+			if(err) {
+				return console.log('An error ocurred while trying to create the user. Error: ' + err);
+			}
+
+			res.render(__dirname + './../views/message', { message: 'Your account has been successfully created. Please, <a href="/"> log in</a>'})
+
+		});
 	});
 
 	app.get('*', function(req,res) {
-		res.render(__dirname + './../views/error');
+		res.render(__dirname + './../views/message', { message: '<h3> This page does not exist, but...You can check the rest of our pages!!!</h3> '});
 	});
 
 }
