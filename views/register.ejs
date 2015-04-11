@@ -1,0 +1,24 @@
+<%- include templates/partialHead.ejs %>
+<body>
+	
+	<%- include templates/partialHeader.ejs %>
+	<main>
+
+		<form method="POST" action="/register">
+			<label for="email">Email</label>
+			<input type="email" name="email" placeholder="account@account.com"/>
+			<label for="password">Password</label>
+			<input type="password" name="password"/>
+			<label for="name">Name</label>
+			<input type="text" name="name" placeholder="Name"/>
+			<label for="lastname">Lastname</label>
+			<input type="text" name="lastname" placeholder="Lastname"/>
+			<input type="submit" name="register" value="Register"/>
+		</form>
+
+	</main>
+	
+</body>
+</html>
+
+

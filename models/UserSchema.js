@@ -1,5 +1,6 @@
-var 
-	Schema = require('mongoose').Schema;
+var mongoose = require('mongoose');
+var Schema = mongoose.Schema; //Para crear una instancia de Schema
+var db = mongoose.connect('mongodb://localhost/stockmarket'); //Para conectar a la base de datos
 
 var UserSchema = new Schema({
 	email: {type: String, required: true},
@@ -10,5 +11,15 @@ var UserSchema = new Schema({
 	lastLogin: { type: Date},
 });
 
+//Añadiendo un método al esquema mediante nombreEsquema.method('nombreMetodo',metodo);
+UserSchema.method('findByEmail',function(email,cb) {
+	User.find({email: email}, function(err,docs) {
+		if(err)
+			throw err;
+		cb(docs);
+	});
+});
 
-exports = module.exports = UserSchema;
+//Devolviendo una instancia del esquema
+var User = mongoose.model('User', UserSchema)
+exports = module.exports = User;

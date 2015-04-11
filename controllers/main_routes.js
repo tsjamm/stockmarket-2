@@ -1,5 +1,4 @@
 var dataManager = require('./../public/js/stockData');
-var async = require('async');
 var request = require('request');
 
 var route = function(app) {
@@ -59,9 +58,18 @@ var route = function(app) {
 		res.render(__dirname + './../views/profile');
 	});
 
+	app.get('/register',function(req,res) {
+		res.render(__dirname + './../views/register');
+	});
+
+	app.post('/register', function(req,res) {
+		res.end('REGISTRO RECIBIDO');
+	});
+
 	app.get('*', function(req,res) {
 		res.render(__dirname + './../views/error');
 	});
+
 }
 
 module.exports = route;
