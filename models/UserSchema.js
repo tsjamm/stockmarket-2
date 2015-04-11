@@ -20,6 +20,17 @@ UserSchema.method('findByEmail',function(email,cb) {
 	});
 });
 
+UserSchema.method('checkLogin',function(email,password,cb){
+	User.find({email: email, password: password}, function(err,docs) {
+		if(err)
+			throw err;
+		if(docs.length>0)
+			console.log('Encontrados ' + docs.length);
+		else
+			console.log('No encontrado');
+	})
+});
+
 //Devolviendo una instancia del esquema
 var User = mongoose.model('User', UserSchema)
 exports = module.exports = User;
