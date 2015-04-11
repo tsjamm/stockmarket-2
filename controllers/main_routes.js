@@ -6,19 +6,31 @@ var session;
 
 var route = function(app) {
 	app.get('/',function(req,res) {
-		res.render(__dirname + './../views/index');
+		if(session && session.email)
+			res.render(__dirname + './../views/home', {email: session.email});
+		else
+			res.render(__dirname + './../views/index');
 	});	
 
 	app.get('/about',function(req,res) {
-		res.render(__dirname + './../views/about');
+		if(session && session.email)
+			res.render(__dirname + './../views/about', {email: session.email});
+		else
+			res.redirect('/');
 	});
 
 	app.get('/explore',function(req,res) {
-		res.render(__dirname + './../views/explore');
+		if(session && session.email)
+			res.render(__dirname + './../views/explore', {email: session.email});
+		else
+			res.redirect('/');
 	});
 
 	app.get('/help',function(req,res) {
-		res.render(__dirname + './../views/help');
+		if(session && session.email)
+			res.render(__dirname + './../views/help', {email: session.email});
+		else
+			res.redirect('/');
 	});
 
 	app.post('/index',function(req,res) {
@@ -29,7 +41,7 @@ var route = function(app) {
 			if(isCorrect) {
 				session = req.session;
 				session.email = email;
-				res.render(__dirname + './../views/home', {email: session.emailUPDu});
+				res.render(__dirname + './../views/home', {email: session.email});
 			}
 			else
 				res.render(__dirname + './../views/index');
@@ -37,23 +49,36 @@ var route = function(app) {
 	});
 
 	app.get('/logout', function(req,res) {
-		req.session.destroy(function(err) {
-			if(err)
-				return console.log('Error while closing session. Error: ' + err);
+		if(session && session.email)
+			req.session.destroy(function(err) {
+				session = {};
+				if(err)
+					return console.log('Error while closing session. Error: ' + err);
+				res.redirect('/');
+			});
+		else
 			res.redirect('/');
-		})
 	});
 
 	app.get('/my_favourites',function(req,res) {
-		res.render(__dirname + './../views/my_favourites');
+		if(session && session.email)
+			res.render(__dirname + './../views/my_favourites', {email: session.email});
+		else
+			res.redirect('/');
 	});
 
 	app.get('/my_finances',function(req,res) {
-		res.render(__dirname + './../views/my_finances');
+		if(session && session.email)
+			res.render(__dirname + './../views/my_finances', {email: session.email});
+		else
+			res.redirect('/');
 	});
 
 	app.get('/profile',function(req,res) {
-		res.render(__dirname + './../views/profile');
+		if(session && session.email)
+			res.render(__dirname + './../views/profile', {email: session.email});
+		else
+			res.redirect('/');
 	});
 
 	app.get('/register',function(req,res) {
@@ -83,18 +108,22 @@ var route = function(app) {
 	});
 
 	app.post('/result', function(req,res) {
-		var filters = {
-			table: req.body.tableSearch,
-			order: req.body.orderSearch,
-			trim_start: req.body.trim_startSearch,
-			trim_end: req.body.trim_endSearch,
-			colapse: req.body.collapseSearch
-		};
+		if(session && session.email) {
+			var filters = {
+				table: req.body.tableSearch,
+				order: req.body.orderSearch,
+				trim_start: req.body.trim_startSearch,
+				trim_end: req.body.trim_endSearch,
+				colapse: req.body.collapseSearch
+			};
 
-		var data = {result: ''};
-		dataManager.getData(filters,function(data) {
-			res.render(__dirname + './../views/result' , { data : data});
-		});
+			var data = {result: ''};
+			dataManager.getData(filters,function(data) {
+				res.render(__dirname + './../views/result' , { data : data, email: session.email});
+			});
+		}
+		else
+			res.redirect('/');
 
 	});
 
