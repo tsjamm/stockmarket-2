@@ -2,6 +2,7 @@ var dataManager = require('./../public/js/stockData');
 var UserSchema = require('./../models/UserSchema');
 var User = new UserSchema();
 var request = require('request');
+var session;
 
 var route = function(app) {
 	app.get('/',function(req,res) {
@@ -40,8 +41,14 @@ var route = function(app) {
 		var email = req.body.email;
 		var password = req.body.password;
 
-		User.checkLogin(email,password, function() {
-			res.render(__dirname + './../views/home');
+		User.checkLogin(email,password, function(isCorrect) {
+			if(isCorrect) {
+				session = req.session;
+				session.email = email;
+				res.render(__dirname + './../views/home', {email: session.email});
+			}
+			else
+				res.render(__dirname + './../views/index');
 		});
 	});
 

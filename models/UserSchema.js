@@ -25,11 +25,9 @@ UserSchema.method('checkLogin',function(email,password,cb){
 		if(err)
 			throw err;
 		if(docs.length>0)
-			console.log('Encontrados ' + docs.length);
+			cb(true);
 		else
-			console.log('No encontrado');
-
-		cb();
+			cb(false);
 	})
 });
 

@@ -3,13 +3,19 @@ var
 	app = express(),
 	consolidate = require('consolidate'),
 	routes = require('./controllers/routes'),
-	bodyParser = require('body-parser');
+	bodyParser = require('body-parser'),
+	expressSession = require('express-session');
 
 	app.set('view engine', 'ejs');
 	app.set('views', __dirname + '/views');
 	app.use(express.static(__dirname + '/'));
 	app.use(bodyParser.json());
 	app.use(bodyParser.urlencoded({ extended: true }));
+	app.use(expressSession({
+		secret:'abcdefghijklmnopqrstuvwxyz',
+		resave: false,
+		saveUninitialized:false
+	}));
 	app.listen(3000);
 
 	routes(app);
