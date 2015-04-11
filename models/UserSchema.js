@@ -28,6 +28,8 @@ UserSchema.method('checkLogin',function(email,password,cb){
 			console.log('Encontrados ' + docs.length);
 		else
 			console.log('No encontrado');
+
+		cb();
 	})
 });
 
