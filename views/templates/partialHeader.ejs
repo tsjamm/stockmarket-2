@@ -1,5 +1,8 @@
 	<header>
 		<div>
 			<p>HEADER</p>
+			<% if(typeof errorMessage!='undefined') { %>
+				<%= errorMessage %>
+			<% } %>
 		</div>
 	</header>

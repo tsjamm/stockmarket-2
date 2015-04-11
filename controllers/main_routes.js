@@ -2,36 +2,42 @@ var dataManager = require('./../public/js/stockData');
 var UserSchema = require('./../models/UserSchema');
 var User = new UserSchema();
 var request = require('request');
-var session;
 
 var route = function(app) {
 	app.get('/',function(req,res) {
-		if(session && session.email)
-			res.render(__dirname + './../views/home', {email: session.email});
+		if(req.session && req.session.email)
+			res.render(__dirname + './../views/home', {email: req.session.email});
 		else
 			res.render(__dirname + './../views/index');
 	});	
 
 	app.get('/about',function(req,res) {
-		if(session && session.email)
-			res.render(__dirname + './../views/about', {email: session.email});
+		if(req.session && req.session.email)
+			res.render(__dirname + './../views/about', {email: req.session.email});
 		else
 			res.redirect('/');
 	});
 
 	app.get('/explore',function(req,res) {
-		if(session && session.email)
-			res.render(__dirname + './../views/explore', {email: session.email});
+		if(req.session && req.session.email)
+			res.render(__dirname + './../views/explore', {email: req.session.email});
 		else
 			res.redirect('/');
 	});
 
 	app.get('/help',function(req,res) {
-		if(session && session.email)
-			res.render(__dirname + './../views/help', {email: session.email});
+		if(req.session && req.session.email)
+			res.render(__dirname + './../views/help', {email: req.session.email});
 		else
 			res.redirect('/');
 	});
+
+	app.get('/index',function(req,res) {
+		if(req.session && req.session.email)
+			res.render(__dirname + './../views/home', {email: req.session.email});
+		else
+			res.render(__dirname + './../views/index');
+	})
 
 	app.post('/index',function(req,res) {
 		var email = req.body.email;
@@ -39,19 +45,17 @@ var route = function(app) {
 
 		User.checkLogin(email,password, function(isCorrect) {
 			if(isCorrect) {
-				session = req.session;
-				session.email = email;
-				res.render(__dirname + './../views/home', {email: session.email});
+				req.session.email = email;
+				res.render(__dirname + './../views/home', {email: req.session.email});
 			}
 			else
-				res.render(__dirname + './../views/index');
+				res.render(__dirname + './../views/index', { errorMessage: 'This account does not exist or the password is wrong. Please, check it'});
 		});
 	});
 
 	app.get('/logout', function(req,res) {
-		if(session && session.email)
+		if(req.session && req.session.email)
 			req.session.destroy(function(err) {
-				session = {};
 				if(err)
 					return console.log('Error while closing session. Error: ' + err);
 				res.redirect('/');
@@ -61,22 +65,22 @@ var route = function(app) {
 	});
 
 	app.get('/my_favourites',function(req,res) {
-		if(session && session.email)
-			res.render(__dirname + './../views/my_favourites', {email: session.email});
+		if(req.session && req.session.email)
+			res.render(__dirname + './../views/my_favourites', {email: req.session.email});
 		else
 			res.redirect('/');
 	});
 
 	app.get('/my_finances',function(req,res) {
-		if(session && session.email)
-			res.render(__dirname + './../views/my_finances', {email: session.email});
+		if(req.session && req.session.email)
+			res.render(__dirname + './../views/my_finances', {email: req.session.email});
 		else
 			res.redirect('/');
 	});
 
 	app.get('/profile',function(req,res) {
-		if(session && session.email)
-			res.render(__dirname + './../views/profile', {email: session.email});
+		if(req.session && req.session.email)
+			res.render(__dirname + './../views/profile', {email: req.session.email});
 		else
 			res.redirect('/');
 	});
@@ -108,7 +112,7 @@ var route = function(app) {
 	});
 
 	app.post('/result', function(req,res) {
-		if(session && session.email) {
+		if(req.session && req.session.email) {
 			var filters = {
 				table: req.body.tableSearch,
 				order: req.body.orderSearch,
@@ -119,7 +123,7 @@ var route = function(app) {
 
 			var data = {result: ''};
 			dataManager.getData(filters,function(data) {
-				res.render(__dirname + './../views/result' , { data : data, email: session.email});
+				res.render(__dirname + './../views/result' , { data : data, email: req.session.email});
 			});
 		}
 		else
