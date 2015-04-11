@@ -32,5 +32,4 @@ UserSchema.method('checkLogin',function(email,password,cb){
 });
 
 //Devolviendo una instancia del esquema
-var User = mongoose.model('User', UserSchema)
-exports = module.exports = User;
+exports = module.exports = User = mongoose.model('User', UserSchema);

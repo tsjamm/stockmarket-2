@@ -96,10 +96,11 @@ var route = function(app) {
 			name : req.body.name,
 			lastname : req.body.lastname,
 			avatarURL :req.body.avatarURL,
-			lastLogin :new Date(),
-		}
+			lastLogin :new Date()
+		};
+
 		
-		var user = new User(userData);
+		var user = new UserSchema(userData);
 
 		user.save(function(err) {
 			if(err) {
