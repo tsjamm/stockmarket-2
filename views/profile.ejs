@@ -6,6 +6,12 @@
 	</aside>
 	<main>
 		<form action="/profile" method="POST">
+			<img src=<% if (user.avatarURL)  { %>
+				<%= user.avatarURL %>
+				<% } else { %>
+				"/public/img/defaultAvatar.svg" 
+				<% } %>
+			id="userAvatar"/>
 			<label for="name">Name </label>
 			<input type="text" value="<%= user.name %>" name="name"/>
 			<label for="lastname">Lastname </label>
