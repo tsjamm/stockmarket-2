@@ -15,8 +15,8 @@ var UserSchema = new Schema({
 UserSchema.method('findByEmail',function(email,cb) {
 	User.find({email: email}, function(err,docs) {
 		if(err)
-			throw err;
-		cb(docs);
+			cb(err,null);
+		cb(null,docs[0]);
 	});
 });
 

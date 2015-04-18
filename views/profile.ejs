@@ -5,7 +5,21 @@
 
 	</aside>
 	<main>
-		MAIN PROFILE
+		<form action="/profile" method="POST">
+			<label for="name">Name </label>
+			<input type="text" value="<%= user.name %>" name="name"/>
+			<label for="lastname">Lastname </label>
+			<input type="text" value="<%= user.lastname %>" name="lastname"/>
+			<label for="email">Email </label>
+			<input type="email" value="<%= user.email %>" name="email"/>
+			<label for="password">Current password </label>
+			<input type="password" value="<%= user.password %>" name="password"/>
+			<label for="newPassword1">New password </label>
+			<input type="password" name="newPassword1" id="newPassword1"/>
+			<label for="newPassword2">Repeat the new password </label>
+			<input type="password" name="newPassword2" id="newPassword2"/>
+			<input type="submit" value="Update" name="updateProfile"/>
+		</form>
 	</main>
 
 	<%- include templates/partialFooter.ejs %>
@@ -13,4 +27,14 @@
 </body>
 </html>
 
+<script type="text/javascript">
+	document.getElementById("newPassword2").addEventListener("blur", function() {
+		if(this.value!=document.getElementById("newPassword1").value)
+			alert('Values are differents');
+		else
+			alert('Values are equal');
+	});
+	
+
+</script>
 
