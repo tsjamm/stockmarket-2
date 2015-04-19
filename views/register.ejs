@@ -4,7 +4,7 @@
 	<%- include templates/partialHeader.ejs %>
 	<main>
 
-		<form method="POST" action="/register">
+		<form method="POST" action="/register" enctype="multipart/form-data">
 			<label for="email">Email</label>
 			<input type="email" name="email" placeholder="account@account.com"/>
 			<label for="password">Password</label>
@@ -14,7 +14,7 @@
 			<label for="lastname">Lastname</label>
 			<input type="text" name="lastname" placeholder="Lastname"/>
 			<label for="avatarURL">avatarURL</label>
-			<input type="text" name="avatarURL" placeholder="avatarURL"/>
+			<input type="file" name="avatarURL" placeholder="avatarURL"/>
 			<input type="submit" name="register" value="Register"/>
 		</form>
 

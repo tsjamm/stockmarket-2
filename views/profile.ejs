@@ -7,7 +7,7 @@
 	<main>
 		<form action="/profile" method="POST">
 			<img src=<% if (user.avatarURL)  { %>
-				<%= user.avatarURL %>
+				"<%= 'users/avatars/'.concat(user.avatarURL) %>.png"
 				<% } else { %>
 				"/public/img/defaultAvatar.svg" 
 				<% } %>

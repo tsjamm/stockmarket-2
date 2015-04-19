@@ -2,8 +2,26 @@ var dataManager = require('./../public/js/stockData');
 var UserSchema = require('./../models/UserSchema');
 var User = new UserSchema();
 var request = require('request');
+var multer = require('multer'); 
 
 var route = function(app) {
+
+
+	app.use( multer( {
+		dest : './users/avatars',
+		rename : function(fieldname,filename,req) {
+			return req.body.email+'Avatar';
+		},
+		onFileUploadStart : function(file) {
+			if(file.extension!='png')
+				return false;
+		},
+		onFileUploadComplete : function(file) {
+			console.log('Subida completada');
+		}
+	}));
+
+
 	app.get('/',function(req,res) {
 		if(req.session && req.session.email)
 			res.render(__dirname + './../views/home', {email: req.session.email});
@@ -135,7 +153,7 @@ var route = function(app) {
 			password : req.body.password,
 			name : req.body.name,
 			lastname : req.body.lastname,
-			avatarURL :req.body.avatarURL,
+			avatarURL : req.files.avatarURL ? req.body.email + 'Avatar' : '',
 			lastLogin :new Date()
 		};
 
