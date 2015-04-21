@@ -1,5 +1,6 @@
 <aside>
 	<div id="search">
+		<h2> Companies </h2>
 		<form method="POST" action="/result">
 			
 				<select name="tableSearch">
@@ -56,6 +57,29 @@
 				<option value="annual">Annual</option>
 			</select>
 			<input type="submit" value="Search" name="sendSearch">
+		</form>
+	</div>
+
+	<h2> National markets </h2>
+	<div>
+		<form action="POST" method="/result">
+			<select name="nationalMarket">
+				<option value="bovespa">Bovespa</option>
+				<option value="cac40">CAC-40</option>
+				<option value="dax">DAX</option>
+				<option value="dow_jones">Dow Jones</option>
+				<option value="ftse100">FTSE 100</option>
+				<option value="ftse_mib">FTSE MIB</option>
+				<option value="ibex35">Ibex 35</option>
+				<option value="jakarta">Jakarta Composite</option>
+				<option value="kospi">Kospi Composite</option>
+				<option value="merval">Merval</option>
+				<option value="mexbol_ipc">Mexbol IPC</option>
+				<option value="nikkei225">Nikkei 225</option>
+				<option value="rtsi">RTSI</option>
+				<option value="tsx">TSX Composite</option>
+				<option value="shangai">Shangai Composite</option>
+			</select>
 		</form>
 	</div>
 
