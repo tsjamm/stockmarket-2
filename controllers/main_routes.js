@@ -38,7 +38,7 @@ var route = function(app) {
 
 	app.get('/explore',function(req,res) {
 		if(req.session && req.session.email)
-			res.render(__dirname + './../views/explore', {email: req.session.email});
+			res.render(__dirname + './../views/explore', {email: req.session.email,data:null});
 		else
 			res.redirect('/');
 	});
@@ -170,7 +170,7 @@ var route = function(app) {
 		});
 	});
 
-	app.post('/result', function(req,res) {
+	app.post('/explore', function(req,res) {
 		if(req.session && req.session.email) {
 			var table;
 			var db;
@@ -197,7 +197,7 @@ var route = function(app) {
 			var data = {result: ''};
 			
 			dataManager.getData(db,filters,function(data) {
-				res.render(__dirname + './../views/result' , { data : data, email: req.session.email});
+				res.render(__dirname + './../views/explore' , { data : data, email: req.session.email});
 			});
 		}
 		else

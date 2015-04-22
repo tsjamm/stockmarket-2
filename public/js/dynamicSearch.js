@@ -1,6 +1,6 @@
 $(function() {
-	$('#companiesRadio').on('click',function() { hideAll(); showOne('companies')})
-	$('#nationalMarketsRadio').on('click',function() { hideAll(); showOne('nationalMarkets')})
+	$('#companiesRadio').on('click',function() { showSearchForm(); hideAll(); showOne('companies')})
+	$('#nationalMarketsRadio').on('click',function() { showSearchForm(); hideAll(); showOne('nationalMarkets')})
 });
 
 function hideAll() {
@@ -10,4 +10,9 @@ function hideAll() {
 function showOne(name) {
 	$('#'+name).css('display','block');
 	$('#target').val(name);
+}
+
+
+function showSearchForm() {
+	$("#searchForm").css('display','block');
 }

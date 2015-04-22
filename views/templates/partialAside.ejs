@@ -1,15 +1,14 @@
 <aside>
 	<div id="search">
 		<div id="selectTarget">
-			<input type="radio" id="nationalMarketsRadio" name="selectSearch">National Markets</input>
-			<input type="radio" id="companiesRadio" name="selectSearch">Companies</input>
-		</div>
-
-		<div id="selectChart">
+			<h2>Data family</h2>
+			<input type="radio" id="nationalMarketsRadio" name="selectSearch" class="selectSearch">National Markets</input>
+			<input type="radio" id="companiesRadio" name="selectSearch" class="selectSearch">Companies</input>
 		</div>
 
 		<div>
-			<form method="POST" action="/result" id="searchForm">
+			<h2>Filters</h2>
+			<form method="POST" action="/explore" id="searchForm">
 				<input type="text" name="target" id="target" hidden/>
 				<div id="nationalMarkets">
 					<label for="nationalMarketTable">National market</label>
@@ -89,6 +88,12 @@
 		</div>
 
 			
+		<div id="selectGraphic">
+			<h2>Graphic type</h2>
+			<button id="chooseTable">Table</button>
+			<button id="chooseChart">Chart</button>
+		</div>
+
 	<div id="tags">
 		
 	</div>

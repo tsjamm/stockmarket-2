@@ -3,7 +3,7 @@
 	<%- include templates/partialNav.ejs %>
 	<%- include templates/partialAside.ejs %>
 	<main>
-		
+		<div id="result"> </div>		
 	</main>
 
 	<%- include templates/partialFooter.ejs %>
@@ -12,4 +12,25 @@
 </html>
 
 
-<script type="text/javascript" src="../public/js/dynamicSearch.js"></script>
+	<script type="text/javascript" src="./public/js/dynamicSearch.js"></script>
+
+	<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+
+	<script type="text/javascript" src="./public/js/draw.js"></script>
+
+	<script type="text/javascript">
+		<% if(data!=null) { %>
+			var info = <%- JSON.stringify(data) %>;
+			$("#chooseTable").on('click',function() { drawTable(info); });
+
+			google.load('visualization','1.0',{'packages':['line']});
+			google.setOnLoadCallback(function() {
+				$("#chooseChart").on('click',function() { drawChart(info); });
+			});
+			$("selectSearch").on('click',function() { $("#searchForm").css('display','block'); });
+		<%}%>
+	
+	</script>
+
+
+
