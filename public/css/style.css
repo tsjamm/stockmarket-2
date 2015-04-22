@@ -57,3 +57,5 @@ nav ul li a {
 	color:white;
 	text-decoration: none;
 }
+
+#searchForm > div { display:none;}

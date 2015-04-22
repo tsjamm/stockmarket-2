@@ -1,88 +1,94 @@
 <aside>
 	<div id="search">
-		<h2> Companies </h2>
-		<form method="POST" action="/result">
-			
-				<select name="tableSearch">
-					<option value="AAPL">Apple</option>
-					<option value="AMZN">Amazon.com, Inc.</option>
-					<option value="APA">Apache Corporation</option>
-					<option value="AXP">American Express Company</option>
-					<option value="CL">Colgate-Palmolive Company</option>
-					<option value="CRM">Salesforce.com Inc</option>
-					<option value="CSCO">Cisco Systems, Inc.</option>
-					<option value="DIS">Walt Disney Company</option>
-					<option value="EBAY">eBay Inc.</option>
-					<option value="HAS">Hasbro, Inc.</option>
-					<option value="FB">Facebook, Inc.</option>
-					<option value="GAS">AGL Resources, Inc.</option>
-					<option value="HOG">Harley-Davidson, Inc.</option>
-					<option value="INTC">Intel Corporation</option>
-					<option value="KO">Coca-Cola Company (The)</option>
-					<option value="RL">Ralph Lauren Corporation</option>
-					<option value="TRIP">TripAdvisor, Inc.</option>
-					<option value="MON">Monsanto Company</option>
-					<option value="MA">Mastercard Incorporated</option>
-					<option value="A">Agilent Technologies, Inc.</option>
-					<option value="MAT">Mattel, Inc.</option>
-					<option value="MSFT">Microsoft Corporation</option>
-					<option value="PFE">Pfizer, Inc.</option>
-					<option value="SBUX">Starbucks Corporation</option>
-					<option value="STX">Seagate Technology.</option>
-					<option value="V">Visa Inc.</option>
-					<option value="XRX">Xerox Corporation</option>
-					<option value="YHOO">Yahoo! Inc.</option>
-				</select>
-			
+		<div id="selectTarget">
+			<input type="radio" id="nationalMarketsRadio" name="selectSearch">National Markets</input>
+			<input type="radio" id="companiesRadio" name="selectSearch">Companies</input>
+		</div>
+
+		<div id="selectChart">
+		</div>
+
+		<div>
+			<form method="POST" action="/result" id="searchForm">
+				<input type="text" name="target" id="target" hidden/>
+				<div id="nationalMarkets">
+					<label for="nationalMarketTable">National market</label>
+					<select name="nationalMarketTable">
+						<option value="INDEX_FCHI">CAC-40</option>
+						<option value="INDEX_GDAXI">DAX</option>
+						<option value="INDEX_GSPC">S&P 500</option>
+						<option value="INDEX_RUI">Russell 1000</option>
+						<option value="INDEX_FTSE">FTSE 100</option>
+						<option value="INDEX_FTSEMIB_MI">FTSE MIB</option>
+						<option value="INDEX_IBEX">Ibex 35</option>
+						<option value="INDEX_JKSE">Jakarta Composite</option>
+						<option value="INDEX_KS11">Kospi Composite</option>
+						<option value="INDEX_MERV">Merval</option>
+						<option value="INDEX_MXX">Mexbol IPC</option>
+						<option value="NIKKEI/INDEX">Nikkei 225</option>
+						<option value="INDEX_RTS_RS">RTSI</option>
+						<option value="INDEX_GSPTSE">TSX Composite</option>
+						<option value="INDEX_SSEC">Shangai Composite</option>
+					</select>
+				</div>
+
+				<div id="companies">
+					<label for="companyTable"> Company</label>
+					<select name="companyTable">
+						<option value="AAPL">Apple</option>
+						<option value="AMZN">Amazon.com, Inc.</option>
+						<option value="APA">Apache Corporation</option>
+						<option value="AXP">American Express Company</option>
+						<option value="CL">Colgate-Palmolive Company</option>
+						<option value="CRM">Salesforce.com Inc</option>
+						<option value="CSCO">Cisco Systems, Inc.</option>
+						<option value="DIS">Walt Disney Company</option>
+						<option value="EBAY">eBay Inc.</option>
+						<option value="HAS">Hasbro, Inc.</option>
+						<option value="FB">Facebook, Inc.</option>
+						<option value="GAS">AGL Resources, Inc.</option>
+						<option value="HOG">Harley-Davidson, Inc.</option>
+						<option value="INTC">Intel Corporation</option>
+						<option value="KO">Coca-Cola Company (The)</option>
+						<option value="RL">Ralph Lauren Corporation</option>
+						<option value="TRIP">TripAdvisor, Inc.</option>
+						<option value="MON">Monsanto Company</option>
+						<option value="MA">Mastercard Incorporated</option>
+						<option value="A">Agilent Technologies, Inc.</option>
+						<option value="MAT">Mattel, Inc.</option>
+						<option value="MSFT">Microsoft Corporation</option>
+						<option value="PFE">Pfizer, Inc.</option>
+						<option value="SBUX">Starbucks Corporation</option>
+						<option value="STX">Seagate Technology.</option>
+						<option value="V">Visa Inc.</option>
+						<option value="XRX">Xerox Corporation</option>
+						<option value="YHOO">Yahoo! Inc.</option>
+					</select>
+				</div>
+
 				<select name="orderSearch">
-					<option value="asc">Ascendent</option>
-					<option value="desc">Descendent</option>
-				</select>
-			</div>
-
-			
+						<option value="asc">Ascendent</option>
+						<option value="desc">Descendent</option>
+					</select>
+					
+					<input type="date" name="trim_startSearch"/>
+					
+					<input type="date" name="trim_endSearch"/>
 				
-				  <input type="date" name="trim_startSearch"/>
-				
-				  <input type="date" name="trim_endSearch"/>
-			
-			
-			
-			<select name="collapseSearch">
-				<option value="none">None </option>
-				<option value="daily">Daily </option>
-				<option value="weekly">Weekly</option>
-				<option value="monthly">Monthly</option>
-				<option value="quarterly">Quarterly </option>
-				<option value="annual">Annual</option>
-			</select>
-			<input type="submit" value="Search" name="sendSearch">
-		</form>
-	</div>
+					<select name="collapseSearch">
+						<option value="none">None </option>
+						<option value="daily">Daily </option>
+						<option value="weekly">Weekly</option>
+						<option value="monthly">Monthly</option>
+						<option value="quarterly">Quarterly </option>
+						<option value="annual">Annual</option>
+					</select>
 
-	<h2> National markets </h2>
-	<div>
-		<form action="POST" method="/result">
-			<select name="nationalMarket">
-				<option value="bovespa">Bovespa</option>
-				<option value="cac40">CAC-40</option>
-				<option value="dax">DAX</option>
-				<option value="dow_jones">Dow Jones</option>
-				<option value="ftse100">FTSE 100</option>
-				<option value="ftse_mib">FTSE MIB</option>
-				<option value="ibex35">Ibex 35</option>
-				<option value="jakarta">Jakarta Composite</option>
-				<option value="kospi">Kospi Composite</option>
-				<option value="merval">Merval</option>
-				<option value="mexbol_ipc">Mexbol IPC</option>
-				<option value="nikkei225">Nikkei 225</option>
-				<option value="rtsi">RTSI</option>
-				<option value="tsx">TSX Composite</option>
-				<option value="shangai">Shangai Composite</option>
-			</select>
-		</form>
-	</div>
+				<input type="submit" value="Search" name="sendSearch">
+			</form>
+		</div>
 
+			
 	<div id="tags">
 		
 	</div>

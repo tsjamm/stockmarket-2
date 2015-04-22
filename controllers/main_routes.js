@@ -172,8 +172,22 @@ var route = function(app) {
 
 	app.post('/result', function(req,res) {
 		if(req.session && req.session.email) {
+			var table;
+			var db;
+
+
+			switch(req.body.target) {
+				case 'companies': 
+					table=req.body.companyTable; 
+					db='WIKI';
+					break;
+				case 'nationalMarkets': 
+					table=req.body.nationalMarketTable;
+					db='YAHOO';
+			}
+
 			var filters = {
-				table: req.body.tableSearch,
+				table: table,
 				order: req.body.orderSearch,
 				trim_start: req.body.trim_startSearch,
 				trim_end: req.body.trim_endSearch,
@@ -181,17 +195,14 @@ var route = function(app) {
 			};
 
 			var data = {result: ''};
-			dataManager.getData(filters,function(data) {
+			
+			dataManager.getData(db,filters,function(data) {
 				res.render(__dirname + './../views/result' , { data : data, email: req.session.email});
 			});
 		}
 		else
 			res.redirect('/');
 
-	});
-
-	app.get('*', function(req,res) {
-		res.render(__dirname + './../views/message', { message: '<h3> This page does not exist, but...You can check the rest of our pages!!!</h3> '});
 	});
 
 }
