@@ -208,11 +208,12 @@ var route = function(app) {
 	});
 
 
-	app.post('/my_favourites', function(req,res) {
+	app.post('/my_finances', function(req,res) {
 		if(req.session && req.session.email) {
 			User.findByEmail(req.session.email,function(err,doc){
 				var data = {
-					invest_starting_date: new Date(req.body.invest_starting_date),
+					ownerId:doc._id,
+					dateBought: new Date(req.body.dateBought),
 					amount : req.body.amount,
 					company : req.body.company
 				};
