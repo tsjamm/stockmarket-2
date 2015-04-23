@@ -1,6 +1,8 @@
 var dataManager = require('./../public/js/stockData');
 var UserSchema = require('./../models/UserSchema');
 var User = new UserSchema();
+var StockSchema = require('./../models/StockSchema');
+var Stock = new StockSchema();
 var request = require('request');
 var multer = require('multer'); 
 
@@ -67,7 +69,7 @@ var route = function(app) {
 				res.render(__dirname + './../views/home', {email: req.session.email});
 			}
 			else
-				res.render(__dirname + './../views/index', { errorMessage: 'This account does not exist or the password is wrong. Please, check it'});
+				res.render(__dirname + './../views/message', { message: 'This account does not exist or the password is wrong. Please, check it'});
 		});
 	});
 
@@ -101,7 +103,7 @@ var route = function(app) {
 			User.findByEmail(req.session.email,function(err,user){
 				if(err) {
 					console.log('An error ocurred while trying to access to user profile. Error: ' + err);
-					return res.render(__dirname + './../views/home', {email: req.session.email, errorMessage: 'Your profile could not be loaded'});
+					return res.render(__dirname + './../views/message', {email: req.session.email, message: 'Your profile could not be loaded'});
 				}
 				else
 					res.render(__dirname + './../views/profile', {email: req.session.email, user: user});
@@ -116,7 +118,7 @@ var route = function(app) {
 			User.findByEmail(req.session.email,function(err,user) {
 				if(err) {
 					console.log('An error ocurred while trying update your profile. Error: ' + err);
-					return res.render(__dirname + './../views/home', {email: req.session.email, errorMessage: 'Your profile could not be updated'});
+					return res.render(__dirname + './../views/message', {email: req.session.email, message: 'Your profile could not be updated'});
 				}
 				else
 				{	
@@ -130,7 +132,7 @@ var route = function(app) {
 					user.save(function(err) {
 						if(err) {
 							console.log('Error while saving updated profile');
-							return res.render(__dirname + './../views/home', {email: req.session.email, errorMessage: 'Your profile could not be updated'});
+							return res.render(__dirname + './../views/message', {email: req.session.email, message: 'Your profile could not be updated'});
 						}
 						else {
 							res.render(__dirname + './../views/home', {email: req.session.email});	
@@ -158,9 +160,9 @@ var route = function(app) {
 		};
 
 		
-		var user = new UserSchema(userData);
+		var newUser = new UserSchema(userData);
 
-		user.save(function(err) {
+		newUser.save(function(err) {
 			if(err) {
 				return console.log('An error ocurred while trying to create the user. Error: ' + err);
 			}
@@ -205,6 +207,28 @@ var route = function(app) {
 
 	});
 
-}
+
+	app.post('/my_favourites', function(req,res) {
+		if(req.session && req.session.email) {
+			User.findByEmail(req.session.email,function(err,doc){
+				var data = {
+					invest_starting_date: new Date(req.body.invest_starting_date),
+					amount : req.body.amount,
+					company : req.body.company
+				};
+				var newStock = new StockSchema(data);
+
+				newStock.save(function(err) {
+					if(err) {
+						console.log('ERROR : ' + err);
+						res.render(__dirname + './../views/message',{message:'Your stock could not be saved, please try again'});
+					}
+					else
+						res.render(__dirname + './../views/my_favourites', {email: req.session.email});
+				});
+			});
+		} else res.redirect('/');
+	});
+};
 
 module.exports = route;

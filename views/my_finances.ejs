@@ -5,7 +5,55 @@
 
 	</aside>
 	<main>
-		MAIN DE MY FINANCES
+		<div id="saveNewUserStock">
+			<h2>Insert new stock data</h2>
+			<form action="/my_finances" method="POST">
+				<label for="amount">How many stock?</label>
+				<input type="number" name="amount" id="amount" placeholder="0"/>
+				<label for="invest_starting_date">When did you buy it?
+				<input type="date" name="invest_starting_date" id="invest_starting_date"/>
+				<select name="company" id="company">
+					<option value="AAPL">Apple</option>
+					<option value="AMZN">Amazon.com, Inc.</option>
+					<option value="APA">Apache Corporation</option>
+					<option value="AXP">American Express Company</option>
+					<option value="CL">Colgate-Palmolive Company</option>
+					<option value="CRM">Salesforce.com Inc</option>
+					<option value="CSCO">Cisco Systems, Inc.</option>
+					<option value="DIS">Walt Disney Company</option>
+					<option value="EBAY">eBay Inc.</option>
+					<option value="HAS">Hasbro, Inc.</option>
+					<option value="FB">Facebook, Inc.</option>
+					<option value="GAS">AGL Resources, Inc.</option>
+					<option value="HOG">Harley-Davidson, Inc.</option>
+					<option value="INTC">Intel Corporation</option>
+					<option value="KO">Coca-Cola Company (The)</option>
+					<option value="RL">Ralph Lauren Corporation</option>
+					<option value="TRIP">TripAdvisor, Inc.</option>
+					<option value="MON">Monsanto Company</option>
+					<option value="MA">Mastercard Incorporated</option>
+					<option value="A">Agilent Technologies, Inc.</option>
+					<option value="MAT">Mattel, Inc.</option>
+					<option value="MSFT">Microsoft Corporation</option>
+					<option value="PFE">Pfizer, Inc.</option>
+					<option value="SBUX">Starbucks Corporation</option>
+					<option value="STX">Seagate Technology.</option>
+					<option value="V">Visa Inc.</option>
+					<option value="XRX">Xerox Corporation</option>
+					<option value="YHOO">Yahoo! Inc.</option>
+				</select>
+				<input type="submit" name="save" value="Save"/>
+			</form>
+		</div>
+
+		<div id="userStocks">
+			<h2>Your stocks</h2>
+			<% if(typeof stocks!='undefined') {%>
+				<%= stocks %>
+			<%} else {%>
+				<h3>You haven't saved any stock data yet. Let's insert it!</h3>
+			<%}%>
+		</div>
 	</main>
 
 	<%- include templates/partialFooter.ejs %>
