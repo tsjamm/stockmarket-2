@@ -92,8 +92,15 @@ var route = function(app) {
 	});
 
 	app.get('/my_finances',function(req,res) {
-		if(req.session && req.session.email)
-			res.render(__dirname + './../views/my_finances', {email: req.session.email});
+		if(req.session && req.session.email) {
+			StockSchema.find({},function(err,stocks) {
+				if(err)
+					return res.render(__dirname + './../views/message', { message: 'An error ocurred while trying to retrieve your stocks'});
+
+				res.render(__dirname + './../views/my_finances', {email: req.session.email, stocks: stocks});
+			});
+			
+		}
 		else
 			res.redirect('/');
 	});
@@ -225,7 +232,7 @@ var route = function(app) {
 						res.render(__dirname + './../views/message',{message:'Your stock could not be saved, please try again'});
 					}
 					else
-						res.render(__dirname + './../views/my_favourites', {email: req.session.email});
+						res.render(__dirname + './../views/my_finances', {email: req.session.email});
 				});
 			});
 		} else res.redirect('/');
