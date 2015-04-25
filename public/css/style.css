@@ -1,3 +1,5 @@
+
+
 aside {
 	display:inline-block;
 	vertical-align: top;
@@ -6,9 +8,21 @@ aside {
 }
 
 body {
-	background: #690000;
 	margin: 0 auto;
 }
+
+.background {
+	background: url('../img/city.jpg') no-repeat;
+	background-size: cover;
+}
+
+.errorMessage {
+	background:rgba(255,255,255,0.7);
+	color:red;
+	text-align: center;
+	font-family:'Open-sans', sans-serif;
+	font-weight: 700;
+}	
 
 footer {
 	background: orange;
@@ -19,43 +33,26 @@ footer ul {
 	list-style:none;
 }
 
-#loginForm {
-	background:yellow;
-	display:inline-block;
-	padding:1em 2em;
-}
-
-#loginForm div {
-	margin:0.7em;
-}
-
-#loginForm div input {
-	width:20em;
-}
-
-
-main {
-	background: white;
-	display:inline-block;
-	width:79%;
-}
-
-
-nav ul {
-	list-style: none;
+.infoMessage {
+	color:black;
+	background:rgba(27, 153, 78,0.8);
 	text-align: center;
-	padding-left:0;
+	font-family:'Open-sans', sans-serif;
+	font-weight: 700;
 }
 
-nav ul li {
-	display:inline-block;
-	padding:0;
-	width:12%;
+.loginForm {
+	border: solid orange 1px;
+	opacity:0.9;
+	margin-top:10%;
 }
 
-nav ul li a {
-	color:white;
-	text-decoration: none;
+#navigator{ 
+	background:#272522;
+}
+
+nav .container .navbar-nav>li>a:hover{
+	color:orange;
 }
 
 #searchForm { display:none;}

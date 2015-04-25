@@ -27,7 +27,7 @@ var route = function(app) {
 				res.render(__dirname + './../views/home', {email: req.session.email});
 			}
 			else
-				res.render(__dirname + './../views/message', { message: 'This account does not exist or the password is wrong. Please, check it'});
+				res.render(__dirname + './../views/index', { errorMessage: 'This account does not exist or the password is wrong'});
 		});
 	});
 

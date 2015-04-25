@@ -18,10 +18,6 @@ var route = function(app){
 		}
 	}));
 
-	app.get('/register',function(req,res) {
-		res.render(__dirname + './../views/register');
-	});
-
 	app.post('/register', function(req,res) {
 		var userData = {
 			email :req.body.email,
@@ -32,16 +28,14 @@ var route = function(app){
 			lastLogin :new Date()
 		};
 
-		
 		var newUser = new UserSchema(userData);
 
 		newUser.save(function(err) {
-			if(err) return console.log('An error ocurred while trying to create the user. Error: ' + err);
-
-			res.render(__dirname + './../views/message', { 
-				message: 'Your account has been successfully created. Please, <a href="/"> log in</a>'
-			});
-
+			if(err) {
+				console.log('An error ocurred while trying to create the user. Error: ' + err);
+				return res.redirect('/index', { errorMessage: "The account could not be created"});
+			}
+			res.redirect('/index', { infoMessage: 'Your account has been successfully created'});
 		});
 	});
 };
