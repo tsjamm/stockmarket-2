@@ -5,9 +5,9 @@
 		<div class="container-fluid">
 			<div class="row">
 				<div class="well col-lg-10 col-lg-offset-1" >
-					<h2 class="text-center">Edit profile</h2>
-					<form action="/profile" method="POST">
-						<div id="user-avatar-container">
+
+					<div class="row">
+						<div class="col-lg-2 col-lg-offset-5">
 							<img src=<% if (user.avatarURL)  { %>
 								"<%= 'users/avatars/'.concat(user.avatarURL) %>.png"
 								<% } else { %>
@@ -15,37 +15,48 @@
 								<% } %>
 							id="userAvatar" class="img-circle"/>
 						</div>
+					</div>
 
-						<div class="form-group">
-							<label for="email">Email</label>
-							<input type="email" class="form-control" name="email" value="<%= user.email %>" required/>
-						</div>
+					<form action="/profile" method="POST">
+						<div class="row">
+							<div class="col-lg-6">
 
-						<div class="form-group">
-							<label for="password">Current password</label>
-							<input type="password" class="form-control" name="password" value="<%= user.password %>" required/>
-						</div>
+								<div class="form-group">
+									<label for="email">Email</label>
+									<input type="email" class="form-control" name="email" value="<%= user.email %>" required/>
+								</div>
 
-						<div class="form-group">
-							<label for="newPassword1">New password</label>
-							<input type="password" class="form-control" name="newPassword1" id="newPassword1"/>
-						</div>
+								<div class="form-group">
+									<label for="password">Current password</label>
+									<input type="password" class="form-control" name="password" value="<%= user.password %>" required/>
+								</div>
 
-						<div class="form-group">
-							<label for="newPassword2">Repeat the new password</label>
-							<input type="password" class="form-control" name="newPassword2" id="newPassword2"/>
-						</div>
-						
-						<div class="form-group">
-							<label for="name">Name</label>
-							<input type="text" class="form-control" name="name" value="<%= user.name %>" required/>
-						</div>
-						<div class="form-group">
-							<label for="lastname">Lastname</label>
-							<input type="text" class="form-control" name="lastname" value="<%= user.lastname %>" required/>
-						</div>
-						<div class="text-right">
-							<input type="submit" class="btn btn-info" value="Update" name="updateProfile"/>
+								<div class="form-group">
+									<label for="newPassword1">New password</label>
+									<input type="password" class="form-control" name="newPassword1" id="newPassword1"/>
+								</div>
+								
+							</div>
+
+							<div class="col-lg-6">
+								<div class="form-group">
+									<label for="name">Name</label>
+									<input type="text" class="form-control" name="name" value="<%= user.name %>" required/>
+								</div>
+								<div class="form-group">
+									<label for="lastname">Lastname</label>
+									<input type="text" class="form-control" name="lastname" value="<%= user.lastname %>" required/>
+								</div>
+
+								<div class="form-group">
+									<label for="newPassword2">Repeat the new password</label>
+									<input type="password" class="form-control" name="newPassword2" id="newPassword2"/>
+								</div>
+
+								<div class="text-right">
+									<input type="submit" class="btn btn-info" value="Update" name="updateProfile"/>
+								</div>
+							</div>
 						</div>
 					</form>
 				</div>
