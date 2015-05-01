@@ -4,7 +4,7 @@
 	<main>
 		<div class="container-fluid">
 			<div class="row">
-				<div class="well col-lg-10 col-lg-offset-1" >
+				<div class="well col-lg-8 col-lg-offset-2" >
 
 					<div class="row">
 						<div class="col-lg-2 col-lg-offset-5">
@@ -23,17 +23,17 @@
 
 								<div class="form-group">
 									<label for="email">Email</label>
-									<input type="email" class="form-control" name="email" value="<%= user.email %>" required/>
+									<input type="email" class="form-control" name="email" value="<%= user.email %>" required tabindex="1"/>
 								</div>
 
 								<div class="form-group">
-									<label for="password">Current password</label>
-									<input type="password" class="form-control" name="password" value="<%= user.password %>" required/>
+									<label for="lastname">Lastname</label>
+									<input type="text" class="form-control" name="lastname" value="<%= user.lastname %>" required tabindex="3"/>
 								</div>
 
 								<div class="form-group">
 									<label for="newPassword1">New password</label>
-									<input type="password" class="form-control" name="newPassword1" id="newPassword1"/>
+									<input type="password" class="form-control" name="newPassword1" id="newPassword1" tabindex="4"/>
 								</div>
 								
 							</div>
@@ -41,16 +41,17 @@
 							<div class="col-lg-6">
 								<div class="form-group">
 									<label for="name">Name</label>
-									<input type="text" class="form-control" name="name" value="<%= user.name %>" required/>
+									<input type="text" class="form-control" name="name" value="<%= user.name %>" required tabindex="2"/>
 								</div>
+
 								<div class="form-group">
-									<label for="lastname">Lastname</label>
-									<input type="text" class="form-control" name="lastname" value="<%= user.lastname %>" required/>
+									<label for="password">Current password</label>
+									<input type="password" class="form-control" name="password" value="<%= user.password %>" readonly disabled/>
 								</div>
 
 								<div class="form-group">
 									<label for="newPassword2">Repeat the new password</label>
-									<input type="password" class="form-control" name="newPassword2" id="newPassword2"/>
+									<input type="password" class="form-control" name="newPassword2" id="newPassword2" tabindex="5"/>
 								</div>
 
 								<div class="text-right">
@@ -67,16 +68,6 @@
 	<%- include templates/partialFooter.ejs %>
 	
 </body>
+<script src="../public/js/profileControl.js"></script>
+
 </html>
-
-<script type="text/javascript">
-	document.getElementById("newPassword2").addEventListener("blur", function() {
-		if(this.value!=document.getElementById("newPassword1").value)
-			alert('Values are differents');
-		else
-			alert('Values are equal');
-	});
-	
-
-</script>
-

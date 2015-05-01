@@ -30,7 +30,7 @@ var route = function(app){
 					user.lastname = req.body.lastname;
 
 					if(req.body.newPassword1)
-						if(req.body.newPassword1==req.body.newPassword2)
+						if(req.body.newPassword1===req.body.newPassword2)
 							user.password = req.body.newPassword1;
 
 					user.save(function(err) {
