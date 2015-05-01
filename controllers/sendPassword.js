@@ -22,7 +22,7 @@ var route = function(app) {
 
 			var mailInfo = {
 				from:'quickeconomy@gmail.com',
-				to: 'antonio.leon.alcaide@gmail.com',
+				to: req.body.email,
 				subject: 'QuickEconomy. Your account password',
 				html: 'Hi, your account password is: ' + doc.password,
 			};
