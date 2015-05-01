@@ -17,6 +17,7 @@ var route = function(app){
 	});
 
 	app.post('/profile',function(req,res) {
+
 		if(req.session && req.session.email) {
 			User.findByEmail(req.session.email,function(err,user) {
 				if(err) {
@@ -27,6 +28,7 @@ var route = function(app){
 					user.email = req.body.email;
 					user.name = req.body.name;
 					user.lastname = req.body.lastname;
+
 					if(req.body.newPassword1)
 						if(req.body.newPassword1==req.body.newPassword2)
 							user.password = req.body.newPassword1;

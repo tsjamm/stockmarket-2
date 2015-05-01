@@ -1,4 +1,20 @@
+var multer = require('multer');
+
 var route = function(app){
+	app.use( multer( {
+		dest : './users/avatars',
+		rename : function(fieldname,filename,req) {
+			return req.body.email+req.body.name+req.body.lastname+'Avatar';
+		},
+		onFileUploadStart : function(file) {
+			if(file.extension!='png')
+				return false;
+		},
+		onFileUploadComplete : function(file) {
+			console.log('Subida completada');
+		}
+	}));
+
 	require('./about.js')(app);
 	require('./explore.js')(app);
 	require('./homeBoxes.js')(app);
