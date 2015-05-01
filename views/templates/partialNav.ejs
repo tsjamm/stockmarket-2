@@ -1,17 +1,29 @@
 <nav class="navbar navbar-default navbar-static-top" id="navigator">
-  <div class="container">
-	<ul class="nav navbar-nav">
-		<li> <a href="/">EasyFinances</a></li>
-		<li><a href="/explore">Explore</a></li>
-		<li><a href="/my_favourites">My favourites</a></li>
-		<li><a href="/my_finances">My finances</a></li>
-		<li><a href="/about">About</a></li>
-		<li><a href="/profile">Profile</a></li>
-		<li><a href="/logout">Logout</a></li>
-	</ul>
-
-		Logged as <%=email %>
+  <div class="container-fluid">
+	<div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#menu-elements">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">EasyFinances</a>
+    </div>
+	
+	<div class="collapse navbar-collapse" id="menu-elements">
+		<ul class="nav navbar-nav">
+			<li><a href="/explore">Explore</a></li>
+			<li><a href="/my_favourites">My favourites</a></li>
+			<li><a href="/my_finances">My finances</a></li>
+			<li class="dropdown" id="profile-menu">
+					<a href="#" class=" dropdown-toggle" data-toggle="dropdown" id="icon-dropdown"><%= username %> <span class="caret"></span></a>
+					<ul class="dropdown-menu" role="menu" aria-labelledby="icon-dropdown">
+						<li role="presentation"><a href="/profile" role="menuitem">Profile</a></li>
+						<li role="presentation"><a href="/logout" role="menuitem">Logout</a></li>
+						<li role="presentation"><a href="/about" role="menuitem">About</a></li>
+					</ul>
+			</li>
+		</ul>
+	</div>
 	</div>
 </nav> 
-
-

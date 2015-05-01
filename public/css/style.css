@@ -1,5 +1,4 @@
 
-
 aside {
 	display:inline-block;
 	vertical-align: top;
@@ -9,6 +8,7 @@ aside {
 
 body {
 	margin: 0 auto;
+
 }
 
 .background {
@@ -22,15 +22,13 @@ body {
 	text-align: center;
 	font-family:'Open-sans', sans-serif;
 	font-weight: 700;
-}	
-
-footer {
-	background: orange;
-	width:100%;
 }
 
-footer ul {
-	list-style:none;
+
+.horizontal-list li{
+	display:inline;
+	vertical-align: middle;
+	padding-left:20%;
 }
 
 .infoMessage {
@@ -43,18 +41,36 @@ footer ul {
 
 .loginForm {
 	border: solid orange 1px;
+	box-shadow:0px 0px 10px grey;
 	opacity:0.9;
-	margin-top:10%;
+	margin-top:30%;
 }
 
 #navigator{ 
 	background:#272522;
 }
 
-nav .container .navbar-nav>li>a:hover{
-	color:orange;
-}
+.navbar-default .navbar-nav>li>a:hover { color: #f0ad3f;}
+
+#profile-menu { position:absolute; right:4em;}
 
 #searchForm { display:none;}
 
 #searchForm > div { display:none;}
+
+#userAvatar  { border: solid black 1px;}
+#user-avatar-container { width:2.5em;}
+
+
+/*********** HOME *********/
+
+.currency {
+	font-size:3em;
+}
+
+.panel-currency {
+	display:inline-block;
+	height:19em;
+	margin-left:4%;
+	width:20%;
+}

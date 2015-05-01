@@ -28,7 +28,7 @@ UserSchema.method('checkLogin',function(email,password,cb){
 			cb(true);
 		else
 			cb(false);
-	})
+	});
 });
 
 //Devolviendo una instancia del esquema

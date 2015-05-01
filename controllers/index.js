@@ -5,14 +5,14 @@ var route = function(app) {
 
 	app.get('/',function(req,res) {
 		if(req.session && req.session.email)
-			res.render(__dirname + './../views/home', {email: req.session.email});
+			res.render(__dirname + './../views/home', {username: req.session.username});
 		else
 			res.render(__dirname + './../views/index');
 	});	
 
 	app.get('/index',function(req,res) {
 		if(req.session && req.session.email)
-			res.render(__dirname + './../views/home', {email: req.session.email});
+			res.render(__dirname + './../views/home', {username: req.session.username});
 		else
 			res.render(__dirname + './../views/index');
 	});
@@ -24,7 +24,15 @@ var route = function(app) {
 		User.checkLogin(email,password, function(isCorrect) {
 			if(isCorrect) {
 				req.session.email = email;
-				res.render(__dirname + './../views/home', {email: req.session.email});
+
+				User.findByEmail(email, function(err,doc){
+					if(err)
+						return res.render(__dirname + './../views/home',{username: 'Me'});
+
+					req.session.username = doc.name;
+					res.render(__dirname + './../views/home',{username: req.session.username});
+				} );
+				
 			}
 			else
 				res.render(__dirname + './../views/index', { errorMessage: 'This account does not exist or the password is wrong'});

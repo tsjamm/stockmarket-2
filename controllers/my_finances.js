@@ -10,7 +10,7 @@ var route = function(app) {
 				if(err)
 					return res.render(__dirname + './../views/message', { message: 'An error ocurred while trying to retrieve your stocks'});
 
-				res.render(__dirname + './../views/my_finances', {email: req.session.email, stocks: stocks});
+				res.render(__dirname + './../views/my_finances', {username: req.session.username, stocks: stocks});
 			});
 			
 		}
@@ -35,7 +35,7 @@ var route = function(app) {
 						res.render(__dirname + './../views/message',{message:'Your stock could not be saved, please try again'});
 					}
 					else
-						res.render(__dirname + './../views/my_finances', {email: req.session.email});
+						res.render(__dirname + './../views/my_finances', {username: req.session.username});
 				});
 			});
 		} else res.redirect('/');

@@ -1,10 +1,8 @@
 <%- include templates/partialHead.ejs %>
 <body>
 	<%- include templates/partialNav.ejs %>
-	<aside>
-
-	</aside>
-	<main>
+	
+	<main class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
 		<div id="saveNewUserStock">
 			<h2>Insert new stock data</h2>
 			<form action="/my_finances" method="POST">
@@ -55,6 +53,7 @@
 			<%}%>
 		</div>
 	</main>
+	<%- include templates/partialAside.ejs %>
 
 	<%- include templates/partialFooter.ejs %>
 	

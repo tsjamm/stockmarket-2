@@ -1,14 +1,95 @@
 <%- include templates/partialHead.ejs %>
 <body>
 	<%- include templates/partialNav.ejs %>
-	<aside>
-
-	</aside>
-	<main>
+	
+	<main class="col-lg-9 col-md-9">
 		
-		
+		<div class="container-fluid">
 
+			<div class="panel panel-default">
+			<div class="panel-heading"> <h3 class="text-center">Currency exchange <small>Daily comparison</small></h3> </div>
+			<div class="panel-body">
+				<div class="panel panel-default panel-currency">
+					<div class="panel-body"> 
+						<p class="text-center currency" id="usdincrement">
+							<i class="fa fa-usd" data-toggle="tooltip" data-original-title="Yesterday value"></i><i class="fa fa-spinner"> </i> 
+						</p>
+						<table class="table">
+							<thead>
+								<tr> <th> Dollar</th> <th>Exchange</th></tr>
+							</thead>
+							<tbody>
+								<tr><td>1.0 <i class="fa fa-usd"></i> </td> <td> <span id="usdtoeuro"><i class="fa fa-spinner"> </i> </span> <i class="fa fa-euro"></i></td></tr>
+
+								<tr><td>1.0 <i class="fa fa-usd"></i></td> <td> <span id="usdtogbp"> <i class="fa fa-spinner"> </i></span> <i class="fa fa-gbp"></i></td> </td></tr>
+
+								<tr><td>1.0 <i class="fa fa-usd"></i> </td> <td> <span id="usdtoyen"> <i class="fa fa-spinner"> </i></span> <i class="fa fa-jpy"></i> </td></tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+
+				<div class="panel panel-default panel-currency" id="euroBox">
+					<div class="panel-body"> 
+						<p class="text-center currency" id="euroincrement">
+							<i class="fa fa-euro" data-toggle="tooltip" data-original-title="Yesterday value"></i><i class="fa fa-spinner"> </i> 
+						</p>
+						<table class="table">
+							<thead>
+								<tr> <th> Currency</th> <th>Change</th></tr>
+							</thead>
+							<tbody>
+								<tr> <td>1.0 <i class="fa fa-euro"></i> </td> <td><span id="eurotousd"><i class="fa fa-spinner"> </i></span> <i class="fa fa-usd"> </i></td></tr>
+
+								<tr> <td>1.0 <i class="fa fa-euro"></i> </td> <td><span id="eurotogbp"><i class="fa fa-spinner"> </i></span>  <i class="fa fa-gbp"></i> </td></tr>
+
+								<tr> <td>1.0 <i class="fa fa-euro"></i> </td> <td><span id="eurotoyen"><i class="fa fa-spinner"> </i></span>  <i class="fa fa-jpy"></i> </td></tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+
+				<div class="panel panel-default panel-currency" id="gbpBox">
+					<div class="panel-body">
+						<p class="text-center currency" id="gbpincrement">
+							<i class="fa fa-euro" data-toggle="tooltip" data-original-title="Yesterday value"></i><i class="fa fa-spinner"> </i> 
+						</p>
+						<table class="table">
+							<thead>
+								<tr> <th> Currency</th> <th>Change</th></tr>
+							</thead>
+							<tbody>
+								<tr><td> 1.0 <i class="fa fa-gbp"></i></td> <td> <span id="gbptousd"><i class="fa fa-spinner"> </i></span> <i class="fa fa-usd"></i> </td></tr>
+
+								<tr> <td>1.0 <i class="fa fa-gbp"></i> </td> <td> <span id="gbptoeuro"><i class="fa fa-spinner"> </i></span> <i class="fa fa-euro"></i></td></tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+
+				<div class="panel panel-default panel-currency" id="yenBox">
+					<div class="panel-body">
+						<p class="text-center currency" id="yenincrement">
+							<i class="fa fa-euro" data-toggle="tooltip" data-original-title="Yesterday value"></i><i class="fa fa-spinner"> </i> 
+						</p>
+						<table class="table">
+							<thead>
+								<tr> <th> Currency</th> <th>Change</th></tr>
+							</thead>
+							<tbody>
+								<tr><td> 1.0 <i class="fa fa-jpy"></i> </td> <td> <span id="yentousd" > <i class="fa fa-spinner"> </i> </span> <i class="fa fa-usd"></i> </td></tr>
+
+								<tr><td> 1.0 <i class="fa fa-jpy"></i> </td> <td> <span id="yentoeuro" > <i class="fa fa-spinner"> </i> </span>  <i class="fa fa-euro"></i></td></tr>
+
+							</tbody>
+						</table>
+					</div>
+				</div>
+				</div>
+			</div>		
+		</div>
 	</main>
+	<%- include templates/partialAside.ejs %>
 
 	<%- include templates/partialFooter.ejs %>
 	

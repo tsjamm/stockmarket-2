@@ -1,10 +1,10 @@
-var dataManager = require('./../public/js/stockData');
+var dataManager = require('./../public/lib/stockData');
 
 var route = function(app) {
 	
 	app.get('/explore',function(req,res) {
 		if(req.session && req.session.email)
-			res.render(__dirname + './../views/explore', {email: req.session.email,data:null});
+			res.render(__dirname + './../views/explore', {username: req.session.username,data:null});
 		else
 			res.redirect('/');
 	});
@@ -35,8 +35,8 @@ var route = function(app) {
 
 			var data = {result: ''};
 			
-			dataManager.getData(db,filters,function(data) {
-				res.render(__dirname + './../views/explore' , { data : data, email: req.session.email});
+			dataManager.getTableData(db,filters,function(data) {
+				res.render(__dirname + './../views/explore' , { data : data, username: req.session.username});
 			});
 		}
 		else

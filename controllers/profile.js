@@ -8,9 +8,9 @@ var route = function(app){
 			User.findByEmail(req.session.email,function(err,user){
 				if(err) {
 					console.log('An error ocurred while trying to access to user profile. Error: ' + err);
-					return res.render(__dirname + './../views/message', {email: req.session.email, message: 'Your profile could not be loaded'});
+					return res.render(__dirname + './../views/message', {username: req.session.username, message: 'Your profile could not be loaded'});
 				}
-				else res.render(__dirname + './../views/profile', {email: req.session.email, user: user});
+				else res.render(__dirname + './../views/profile', {username: req.session.username, user: user});
 			});
 		}
 		else res.redirect('/');
@@ -21,7 +21,7 @@ var route = function(app){
 			User.findByEmail(req.session.email,function(err,user) {
 				if(err) {
 					console.log('An error ocurred while trying update your profile. Error: ' + err);
-					return res.render(__dirname + './../views/message', {email: req.session.email, message: 'Your profile could not be updated'});
+					return res.render(__dirname + './../views/message', {username: req.session.username, message: 'Your profile could not be updated'});
 				}
 				else {	
 					user.email = req.body.email;
@@ -34,9 +34,9 @@ var route = function(app){
 					user.save(function(err) {
 						if(err) {
 							console.log('Error while saving updated profile');
-							return res.render(__dirname + './../views/message', {email: req.session.email, message: 'Your profile could not be updated'});
+							return res.render(__dirname + './../views/message', {username: req.session.username, message: 'Your profile could not be updated'});
 						}
-						else res.render(__dirname + './../views/home', {email: req.session.email});	
+						else res.render(__dirname + './../views/home', {username: req.session.username});	
 					});
 				}
 			});
