@@ -2,7 +2,6 @@
 aside {
 	display:inline-block;
 	vertical-align: top;
-	padding-top:2%;
 	width:20%;
 }
 
@@ -39,11 +38,16 @@ body {
 	font-weight: 700;
 }
 
+
 .loginForm {
 	border: solid orange 1px;
 	box-shadow:0px 0px 10px grey;
 	opacity:0.9;
 	margin-top:30%;
+}
+
+nav .fa  {
+	color:#f0ad3f;
 }
 
 #navigator{ 
