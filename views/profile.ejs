@@ -3,65 +3,96 @@
 	<%- include templates/partialNav.ejs %>
 	<main>
 		<div class="container-fluid">
-			<div class="row">
-				<div class="well col-lg-8 col-lg-offset-2" >
-
-					<div class="row">
-						<div class="col-lg-2 col-lg-offset-5">
-							<img src=<% if (user.avatarURL)  { %>
-								"<%= 'users/avatars/'.concat(user.avatarURL) %>.png"
-								<% } else { %>
-								"/public/img/defaultAvatar.svg" 
-								<% } %>
-							id="userAvatar" class="img-circle"/>
-						</div>
-					</div>
-
-					<form action="/profile" method="POST">
+			<form action="/profile" method="POST">
+				<div class="row">
+					<div class="well col-lg-8 col-lg-offset-2" >
+						<h1>Basic information</h1>
 						<div class="row">
-							<div class="col-lg-6">
-
-								<div class="form-group">
-									<label for="email">Email</label>
-									<input type="email" class="form-control" name="email" value="<%= user.email %>" required tabindex="1"/>
-								</div>
-
-								<div class="form-group">
-									<label for="lastname">Lastname</label>
-									<input type="text" class="form-control" name="lastname" value="<%= user.lastname %>" required tabindex="3"/>
-								</div>
-
-								<div class="form-group">
-									<label for="newPassword1">New password</label>
-									<input type="password" class="form-control" name="newPassword1" id="newPassword1" tabindex="4"/>
-								</div>
-								
+							<div class="col-lg-2 col-lg-offset-5">
+								<img src=<% if (user.avatarURL)  { %>
+									"<%= 'users/avatars/'.concat(user.avatarURL) %>.png"
+									<% } else { %>
+									"/public/img/defaultAvatar.svg" 
+									<% } %>
+								id="userAvatar" class="img-circle"/>
 							</div>
+						</div>
 
-							<div class="col-lg-6">
-								<div class="form-group">
-									<label for="name">Name</label>
-									<input type="text" class="form-control" name="name" value="<%= user.name %>" required tabindex="2"/>
+							<div class="row">
+								<div class="col-lg-6">
+
+									<div class="form-group">
+										<label for="email">Email</label>
+										<input type="email" class="form-control" name="email" value="<%= user.email %>" required tabindex="1"/>
+									</div>
+
+									<div class="form-group">
+										<label for="lastname">Lastname</label>
+										<input type="text" class="form-control" name="lastname" value="<%= user.lastname %>" required tabindex="3"/>
+									</div>
+
+									<div class="form-group">
+										<label for="newPassword1">New password</label>
+										<input type="password" class="form-control" name="newPassword1" id="newPassword1" tabindex="4"/>
+									</div>
+									
 								</div>
 
-								<div class="form-group">
-									<label for="password">Current password</label>
-									<input type="password" class="form-control" name="password" value="<%= user.password %>" readonly disabled/>
+								<div class="col-lg-6">
+									<div class="form-group">
+										<label for="name">Name</label>
+										<input type="text" class="form-control" name="name" value="<%= user.name %>" required tabindex="2"/>
+									</div>
+
+									<div class="form-group">
+										<label for="password">Current password</label>
+										<input type="password" class="form-control" name="password" value="<%= user.password %>" readonly disabled/>
+									</div>
+
+									<div class="form-group">
+										<label for="newPassword2">Repeat the new password</label>
+										<input type="password" class="form-control" name="newPassword2" id="newPassword2" tabindex="5"/>
+									</div>
+
+									<div class="text-right">
+										<input type="submit" class="btn btn-info" value="Update" name="updateProfile"/>
+									</div>
+								</div>
+							</div>
+						
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="well col-lg-8 col-lg-offset-2" >
+						<h1> Twitter preferences </h1>
+						<form action="/profile" method="POST">
+							<div class="row">
+								<div class="col-lg-6">
+									<div class="form-group">
+										<label for="defaultTwitterWidget1">Default Twitter Widget 1</label>
+										<select class="form-control" name="defaultTwitterWidget1">
+										</select>
+									</div>
 								</div>
 
-								<div class="form-group">
-									<label for="newPassword2">Repeat the new password</label>
-									<input type="password" class="form-control" name="newPassword2" id="newPassword2" tabindex="5"/>
+								<div class="col-lg-6">
+									<div class="form-group">
+										<label for="defaultTwitterWidget2">Default Twitter Widget 2</label>
+										<select class="form-control" name="defaultTwitterWidget2">
+										</select>
+									</div>
 								</div>
 
 								<div class="text-right">
 									<input type="submit" class="btn btn-info" value="Update" name="updateProfile"/>
 								</div>
 							</div>
-						</div>
-					</form>
+					</div>
 				</div>
-			</div>
+
+			</form>
+
 		</div>
 	</main>
 
