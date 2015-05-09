@@ -1,3 +1,4 @@
+var TwitterWidget = require('./../models/TwitterWidgetSchema');
 var UserSchema = require('./../models/UserSchema');
 var User = new UserSchema();
 
@@ -5,13 +6,26 @@ var route = function(app){
 
 	app.get('/profile',function(req,res) {
 		if(req.session && req.session.email) {
-			User.findByEmail(req.session.email,function(err,user){
-				if(err) {
-					console.log('An error ocurred while trying to access to user profile. Error: ' + err);
-					return res.render(__dirname + './../views/message', {username: req.session.username, message: 'Your profile could not be loaded'});
-				}
-				else res.render(__dirname + './../views/profile', {username: req.session.username, user: user});
+
+			TwitterWidget.find({}, function(err,tws) {
+				if(err) console.log('Error while searching twitter widgets : ' + err);
+
+				User.findByEmail(req.session.email,function(err,user){
+					if(err) {
+						console.log('An error ocurred while trying to access to user profile. Error: ' + err);
+						return res.render(__dirname + './../views/message', {
+							username: req.session.username, 
+							message: 'Your profile could not be loaded'
+						});
+					}
+					else res.render(__dirname + './../views/profile', {
+						username: req.session.username,
+						user: user,
+						twitterWidgets : tws
+					});
+				});
 			});
+
 		}
 		else res.redirect('/');
 	});

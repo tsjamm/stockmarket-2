@@ -72,6 +72,9 @@
 									<div class="form-group">
 										<label for="defaultTwitterWidget1">Default Twitter Widget 1</label>
 										<select class="form-control" name="defaultTwitterWidget1">
+											<% for (var i=0; i<twitterWidgets.length; i++) { %>
+												<option value="<%= twitterWidgets[i].dataWidgetId %>"> <%= twitterWidgets[i].dataWidgetId %> </option>
+											<%}%>
 										</select>
 									</div>
 								</div>
@@ -80,6 +83,9 @@
 									<div class="form-group">
 										<label for="defaultTwitterWidget2">Default Twitter Widget 2</label>
 										<select class="form-control" name="defaultTwitterWidget2">
+											<% for (var i=0; i<twitterWidgets.length; i++) { %>
+												<option value="<%= twitterWidgets[i].dataWidgetId %>"> <%= twitterWidgets[i].dataWidgetId %> </option>
+											<%}%>
 										</select>
 									</div>
 								</div>
