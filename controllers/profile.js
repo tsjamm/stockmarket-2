@@ -30,7 +30,7 @@ var route = function(app){
 		else res.redirect('/');
 	});
 
-	app.post('/profile',function(req,res) {
+	app.post('/profileBasic',function(req,res) {
 
 		if(req.session && req.session.email) {
 			User.findByEmail(req.session.email,function(err,user) {
@@ -52,12 +52,37 @@ var route = function(app){
 							console.log('Error while saving updated profile');
 							return res.render(__dirname + './../views/message', {username: req.session.username, message: 'Your profile could not be updated'});
 						}
-						else res.render(__dirname + './../views/home', {username: req.session.username});	
+						else res.render(__dirname + './../views/home', {
+							username: req.session.username,
+							twitterWidget1: user.session.twitterWidget1,
+							twitterWidget2: user.twitterWidget2
+						});	
 					});
 				}
 			});
-		}
-		else res.redirect('/');
+		} else res.redirect('/');
+	});
+
+	app.post('/profileTwitterWidget', function(req,res) {
+		if(req.session && req.session.email) {
+			User.findByEmail(req.session.email,function(err,user) {
+				user.twitterWidget1= req.body.defaultTwitterWidget1,
+				user.twitterWidget2= req.body.defaultTwitterWidget2
+				
+				user.save(function(err) {
+					if(err) {
+							console.log('Error while saving updated profile');
+							return res.render(__dirname + './../views/message', {username: req.session.username, message: 'Your profile could not be updated'});
+						}
+						else res.render(__dirname + './../views/home', {
+							username: req.session.username,
+							twitterWidget1: req.session.twitterWidget1,
+							twitterWidget2: req.session.twitterWidget2
+						});	
+				})
+
+			});
+		} else res.redirect('/');
 	});
 };
 

@@ -15,7 +15,9 @@ var route = function(app){
 				name : req.body.name,
 				lastname : req.body.lastname,
 				avatarURL : req.files.avatarURL ? req.body.email+req.body.name+req.body.lastname + 'Avatar' : '',
-				lastLogin :new Date()
+				lastLogin :new Date(),
+				twitterWidget1: 'forbes',
+				twitterWidget2: 'IBEX35news'
 			};
 
 			var newUser = new UserSchema(userData);

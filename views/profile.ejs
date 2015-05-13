@@ -3,7 +3,7 @@
 	<%- include templates/partialNav.ejs %>
 	<main>
 		<div class="container-fluid">
-			<form action="/profile" method="POST">
+			<form action="/profileBasic" method="POST">
 				<div class="row">
 					<div class="well col-lg-8 col-lg-offset-2" >
 						<h1>Basic information</h1>
@@ -66,14 +66,14 @@
 				<div class="row">
 					<div class="well col-lg-8 col-lg-offset-2" >
 						<h1> Twitter preferences </h1>
-						<form action="/profile" method="POST">
+						<form action="/profileTwitterWidget" method="POST">
 							<div class="row">
 								<div class="col-lg-6">
 									<div class="form-group">
 										<label for="defaultTwitterWidget1">Default Twitter Widget 1</label>
 										<select class="form-control" name="defaultTwitterWidget1">
 											<% for (var i=0; i<twitterWidgets.length; i++) { %>
-												<option value="<%= twitterWidgets[i].dataWidgetId %>"> <%= twitterWidgets[i].dataWidgetId %> </option>
+												<option value="<%= twitterWidgets[i].account %>"> @<%= twitterWidgets[i].account %> </option>
 											<%}%>
 										</select>
 									</div>
@@ -84,7 +84,7 @@
 										<label for="defaultTwitterWidget2">Default Twitter Widget 2</label>
 										<select class="form-control" name="defaultTwitterWidget2">
 											<% for (var i=0; i<twitterWidgets.length; i++) { %>
-												<option value="<%= twitterWidgets[i].dataWidgetId %>"> <%= twitterWidgets[i].dataWidgetId %> </option>
+												<option value="<%= twitterWidgets[i].account %>"> @<%= twitterWidgets[i].account %> </option>
 											<%}%>
 										</select>
 									</div>

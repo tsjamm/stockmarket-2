@@ -4,7 +4,12 @@ var route = function(app) {
 	
 	app.get('/explore',function(req,res) {
 		if(req.session && req.session.email)
-			res.render(__dirname + './../views/explore', {username: req.session.username,data:null});
+			res.render(__dirname + './../views/explore', {
+				data:null,
+				username: req.session.username,
+				twitterWidget1: user.session.twitterWidget1,
+				twitterWidget2: user.twitterWidget2
+			});
 		else
 			res.redirect('/');
 	});
@@ -36,7 +41,12 @@ var route = function(app) {
 			var data = {result: ''};
 			
 			dataManager.getTableData(db,filters,function(data) {
-				res.render(__dirname + './../views/explore' , { data : data, username: req.session.username});
+				res.render(__dirname + './../views/explore' , { 
+					data : data, 
+					username: req.session.username,
+					twitterWidget1: user.session.twitterWidget1,
+					twitterWidget2: user.twitterWidget2
+				});
 			});
 		}
 		else

@@ -2,18 +2,34 @@
 	<div class="list-group">
 
 		<div class="list-group-item">
-			<h4 class="list-group-item-heading">@IBEX35News</h4>
+			<h4 class="list-group-item-heading">
+				<% if (typeof twitterWidget1==='undefined') {%>
+					@IBEX35News POR DEFECTO
+				<%}%>
+			</h4>
 			<p class="list-group-item-text">
-				<a class="twitter-timeline" data-dnt="true" href="https://twitter.com/IBEX35news" data-theme="light" data-chrome="noheader nofooter noborders transparent"  data-widget-id="594282321508958209">
-					Tweets by @IBEX35news
-				</a>
+				<% if (typeof twitterWidget1==='undefined') {%>
+					<a class="twitter-timeline" data-dnt="true" href="https://twitter.com/IBEX35news" data-theme="light" data-chrome="noheader nofooter noborders transparent"  data-widget-id="594282321508958209">
+						Tweets by @IBEX35news
+					</a>
+				<%}else {%>
+					<%- twitterWidget1 %>
+				<%}%>
 			</p>
 		</div>
 
 		<div class="list-group-item">
-			<h4 class="list-group-item-heading">@Forbes</h4>
+			<h4 class="list-group-item-heading">
+				<% if (typeof twitterWidget2==='undefined') {%>
+					@Forbes POR DEFECTO
+				<%}%>
+			</h4>
 			<p class="list-group-item-text">
-				<a class="twitter-timeline" data-dnt="true" href="https://twitter.com/Forbes" data-theme="light" data-chrome="noheader nofooter noborders transparent" data-widget-id="594285839959642112">Tweets by @Forbes</a>
+				<% if (typeof twitterWidget2==='undefined') {%>
+					<a class="twitter-timeline" data-dnt="true" href="https://twitter.com/Forbes" data-theme="light" data-chrome="noheader nofooter noborders transparent" data-widget-id="594285839959642112">Tweets by @Forbes</a>
+				<%} else {%>
+					<%- twitterWidget2 %>
+				<%}%>
 			</p>
 		</div>
 
