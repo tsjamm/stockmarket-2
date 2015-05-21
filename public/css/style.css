@@ -22,13 +22,25 @@ body {
 }
 
 
-#pageFooter {
-	background: #f0ad3f;
-	padding-top:1em;
+footer.pageFooter {
+	display:inline-block;
+	width:99.9%;
+	padding:1%;
+	background:#f0ad3f;
 }
 
-#pageFooter ul {
+.pageFooter ul {
 	list-style: none;
+}
+
+.pageFooter ul li a {
+	color:#272522;
+	font-weight: 700;
+	text-decoration: none;
+}
+
+.pageFooter ul li a:hover {
+	color:black;
 }
 
 .horizontal-list li{
