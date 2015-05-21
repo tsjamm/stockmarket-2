@@ -31,7 +31,7 @@ function drawChart(info) {
  */
 function drawTable(info) {
 
-	var html = '<table> <thead> <tr>';
+	var html = '<table class="table table-hover"> <thead> <tr>';
 	
 	for(var i=0; i<info.column_names.length; i++)
 		html += '<th>' + info.column_names[i] + '</th>';

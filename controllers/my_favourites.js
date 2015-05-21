@@ -4,8 +4,8 @@ var route = function(app) {
 		if(req.session && req.session.email)
 			res.render(__dirname + './../views/my_favourites', {
 				username: req.session.username,
-				twitterWidget1: user.session.twitterWidget1,
-				twitterWidget2: user.twitterWidget2
+				twitterWidget1: req.session.twitterWidget1,
+				twitterWidget2: req.session.twitterWidget2
 			});
 		else
 			res.redirect('/');

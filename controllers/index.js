@@ -40,8 +40,8 @@ var route = function(app) {
 					TwitterWidgetSchema.find( {account:user.twitterWidget1}, function(err,tws1){
 						TwitterWidgetSchema.find({account:user.twitterWidget2}, function(err,tws2){
 							req.session.email = email;
-							req.session.twitterWidget1 = tws1[0].getLink();
-							req.session.twitterWidget2 = tws2[0].getLink();
+							req.session.twitterWidget1 = tws1[0] ? tws1[0].getLink() : '';
+							req.session.twitterWidget2 = tws2[0] ? tws2[0].getLink() : '';
 							req.session.username = user.name;
 							
 							res.render(__dirname + './../views/home',{

@@ -7,8 +7,8 @@ var route = function(app) {
 			res.render(__dirname + './../views/explore', {
 				data:null,
 				username: req.session.username,
-				twitterWidget1: user.session.twitterWidget1,
-				twitterWidget2: user.twitterWidget2
+				twitterWidget1: req.session.twitterWidget1,
+				twitterWidget2: req.session.twitterWidget2
 			});
 		else
 			res.redirect('/');
@@ -44,8 +44,8 @@ var route = function(app) {
 				res.render(__dirname + './../views/explore' , { 
 					data : data, 
 					username: req.session.username,
-					twitterWidget1: user.session.twitterWidget1,
-					twitterWidget2: user.twitterWidget2
+					twitterWidget1: req.session.twitterWidget1,
+					twitterWidget2: req.twitterWidget2
 				});
 			});
 		}

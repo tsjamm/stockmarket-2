@@ -54,8 +54,8 @@ var route = function(app){
 						}
 						else res.render(__dirname + './../views/home', {
 							username: req.session.username,
-							twitterWidget1: user.session.twitterWidget1,
-							twitterWidget2: user.twitterWidget2
+							twitterWidget1: req.session.twitterWidget1,
+							twitterWidget2: req.session.twitterWidget2
 						});	
 					});
 				}
@@ -67,20 +67,30 @@ var route = function(app){
 		if(req.session && req.session.email) {
 			User.findByEmail(req.session.email,function(err,user) {
 				user.twitterWidget1= req.body.defaultTwitterWidget1,
-				user.twitterWidget2= req.body.defaultTwitterWidget2
-				
+				user.twitterWidget2= req.body.defaultTwitterWidget2,
 				user.save(function(err) {
 					if(err) {
 							console.log('Error while saving updated profile');
 							return res.render(__dirname + './../views/message', {username: req.session.username, message: 'Your profile could not be updated'});
-						}
-						else res.render(__dirname + './../views/home', {
-							username: req.session.username,
-							twitterWidget1: req.session.twitterWidget1,
-							twitterWidget2: req.session.twitterWidget2
-						});	
-				})
+						} else {
 
+							TwitterWidget.findOne({account: user.twitterWidget1}, function(err,tw1) {
+								if (err) console.log('ERROR : ' + err);
+								TwitterWidget.findOne({account: user.twitterWidget2}, function(err,tw2) {
+									if (err) console.log('ERROR : ' + err);
+
+									req.session.twitterWidget1= tw1!==null ? tw1.getLink() : req.session.twitterWidget1;
+									req.session.twitterWidget2=  tw2!==null ? tw2.getLink() : req.session.twitterWidget2;
+									
+									res.render(__dirname + './../views/home', {
+										username: req.session.username,
+										twitterWidget1: req.session.twitterWidget1,
+										twitterWidget2: req.session.twitterWidget2
+									});
+								});
+							});
+						}	
+				});
 			});
 		} else res.redirect('/');
 	});

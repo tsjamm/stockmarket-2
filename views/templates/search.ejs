@@ -69,10 +69,20 @@
 						<option value="asc">Ascendent</option>
 						<option value="desc">Descendent</option>
 					</select>
+					<% 
+						var twoDaysAgo = new Date(Date.now()-1000*3600*24*2);
+						var twoDaysAgoDay = twoDaysAgo.getDate()>9 ? twoDaysAgo.getDate() : '0'+twoDaysAgo.getDate();
+						var twoDaysAgoMonth = (twoDaysAgo.getMonth()+1)> 9 ? (twoDaysAgo.getMonth()+1) : '0'+(twoDaysAgo.getMonth()+1);
+						var dateMaxStart = twoDaysAgo.getFullYear() + '-' + twoDaysAgoMonth + '-' + twoDaysAgoDay;
+
+						var today = new Date();
+						var todayDay = today.getDate()>9 ? today.getDate() : '0'+today.getDate();
+						var todayMonth = (today.getMonth()+1)> 9 ? (today.getMonth()+1) : '0'+(today.getMonth()+1);
+						var dateMaxEnd = today.getFullYear() + '-' + todayMonth + '-' + todayDay;
+					%>
+					<input type="date" name="trim_startSearch" max="<%= dateMaxStart %>"/>
 					
-					<input type="date" name="trim_startSearch"/>
-					
-					<input type="date" name="trim_endSearch"/>
+					<input type="date" name="trim_endSearch" max="<%= dateMaxEnd %>"/>
 				
 					<select name="collapseSearch">
 						<option value="none">None </option>

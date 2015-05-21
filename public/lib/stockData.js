@@ -60,7 +60,7 @@ exports.getDailyCurrencyExchange = function(from,to,cb) {
 		default: return;
 	}
 
-	var url = 'http://www.quandl.com/api/v1/datasets/'+ db + '/' + searchFilters.table + '.json?&trim_start='+searchFilters.trim_start+'&auth_token=rgC48yaay4DWshssN2Yp';
+	var url = 'https://www.quandl.com/api/v1/datasets/'+ db + '/' + searchFilters.table + '.json?&trim_start='+searchFilters.trim_start+'&auth_token=rgC48yaay4DWshssN2Yp';
 	request({url: url, json: true}, function(err,response,body) {
 		console.log('Retrieving data from : ' + url);
 		if(err)
@@ -77,7 +77,7 @@ exports.getEuroIncrement = function(cb) {
 
 	var db='ECB';
 
-	var url = 'http://www.quandl.com/api/v1/datasets/'+ db + '/' + searchFilters.table + '.json?&trim_start='+searchFilters.trim_start+'&auth_token=rgC48yaay4DWshssN2Yp';
+	var url = 'https://www.quandl.com/api/v1/datasets/'+ db + '/' + searchFilters.table + '.json?&trim_start='+searchFilters.trim_start+'&auth_token=rgC48yaay4DWshssN2Yp';
 	request({url: url, json: true}, function(err,response,body) {
 		if(err)
 			return console.log('Error while using getDailyCurrencyExchange function. Error: ' + err);
@@ -101,7 +101,7 @@ exports.getUSDIncrement = function(cb) {
 
 	var db='FRED';
 
-	var url = 'http://www.quandl.com/api/v1/datasets/'+ db + '/' + searchFilters.table + '.json?&trim_start='+searchFilters.trim_start+'&auth_token=rgC48yaay4DWshssN2Yp';
+	var url = 'https://www.quandl.com/api/v1/datasets/'+ db + '/' + searchFilters.table + '.json?&trim_start='+searchFilters.trim_start+'&auth_token=rgC48yaay4DWshssN2Yp';
 	request({url: url, json: true}, function(err,response,body) {
 		if(err)
 			return console.log('Error while using getDailyCurrencyExchange function. Error: ' + err);
@@ -126,7 +126,7 @@ exports.getGBPIncrement = function(cb) {
 
 	var db='FRED';
 
-	var url = 'http://www.quandl.com/api/v1/datasets/'+ db + '/' + searchFilters.table + '.json?&trim_start='+searchFilters.trim_start+'&auth_token=rgC48yaay4DWshssN2Yp';
+	var url = 'https://www.quandl.com/api/v1/datasets/'+ db + '/' + searchFilters.table + '.json?&trim_start='+searchFilters.trim_start+'&auth_token=rgC48yaay4DWshssN2Yp';
 	request({url: url, json: true}, function(err,response,body) {
 		if(err)
 			return console.log('Error while using getDailyCurrencyExchange function. Error: ' + err);
@@ -151,7 +151,7 @@ exports.getYenIncrement = function(cb) {
 
 	var db='FRED';
 
-	var url = 'http://www.quandl.com/api/v1/datasets/'+ db + '/' + searchFilters.table + '.json?&trim_start='+searchFilters.trim_start+'&auth_token=rgC48yaay4DWshssN2Yp';
+	var url = 'https://www.quandl.com/api/v1/datasets/'+ db + '/' + searchFilters.table + '.json?&trim_start='+searchFilters.trim_start+'&auth_token=rgC48yaay4DWshssN2Yp';
 	request({url: url, json: true}, function(err,response,body) {
 		if(err)
 			return console.log('Error while using getDailyCurrencyExchange function. Error: ' + err);
@@ -171,7 +171,7 @@ exports.getYenIncrement = function(cb) {
 
 
 exports.getTableData = function(db,searchFilters,cb) {
-	var url = 'http://www.quandl.com/api/v1/datasets/'+ db + '/' + searchFilters.table + '.json?sort_order='+searchFilters.sort_order+'&trim_start='+searchFilters.trim_start+'&trim_end='+searchFilters.trim_end+'&collapse='+searchFilters.collapse + '&auth_token=rgC48yaay4DWshssN2Yp';
+	var url = 'https://www.quandl.com/api/v1/datasets/'+ db + '/' + searchFilters.table + '.json?sort_order='+searchFilters.sort_order+'&trim_start='+searchFilters.trim_start+'&trim_end='+searchFilters.trim_end+'&collapse='+searchFilters.collapse + '&auth_token=rgC48yaay4DWshssN2Yp';
 	
 	console.log('Retrieving data from : ' + url);
 	request({url: url, json: true}, function(err,response,body) {

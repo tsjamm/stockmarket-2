@@ -2,12 +2,10 @@
 aside {
 	display:inline-block;
 	vertical-align: top;
-	width:20%;
 }
 
 body {
 	margin: 0 auto;
-
 }
 
 .background {
@@ -23,6 +21,15 @@ body {
 	font-weight: 700;
 }
 
+
+#pageFooter {
+	background: #f0ad3f;
+	padding-top:1em;
+}
+
+#pageFooter ul {
+	list-style: none;
+}
 
 .horizontal-list li{
 	display:inline;
@@ -58,6 +65,10 @@ nav .fa  {
 
 #profile-menu { position:absolute; right:4em;}
 
+
+/************** SEARCH **************/
+
+
 #searchForm { display:none;}
 
 #searchForm > div { display:none;}
@@ -71,13 +82,47 @@ nav .fa  {
 	font-size:3em;
 }
 
+#currencypanelsset .panel-body .panel .panel-body, #nationalpanelset .panel-body .panel .panel-body {
+	background:white;
+}
+
+#currencypanelsset .panel-body, #nationalspanelsset .panel-body {
+	background: #f0ad3f;
+}
+
 .panel-currency {
+	height:21em;
+}
+
+.panel-currency, .panel-market {
 	display:inline-block;
-	height:19em;
 	margin-left:4%;
 	width:20%;
 }
 
+.panel-market img {
+	width:50%;
+	height: 4em;
+}
 .panel-default {
 	border: solid 1px #f0ad3f;;
+}
+
+/************* MY FINANCES ************/
+#addUserStock {
+	font-size:2em;
+}
+
+
+#saveNewUserStock {
+	background: #f0ad3f;
+	border: solid 1px #272522;
+	border-radius:10px;
+	display:none;
+	margin-bottom:1%;
+	padding:1em;
+}
+
+#saveNewUserStock .form-group {
+	padding:0.5%;
 }
