@@ -68,49 +68,49 @@ var route = function(app) {
 	/**	DAILY MARKETS */
 
 	app.get('/cac_40_today', function(req,res) {
-		dataManager.getDailyStock('cac_40', function(result) {
+		dataManager.getDailyMarket('cac_40', function(result) {
 			res.end(JSON.stringify(result));
 		});
 	});
 
 	app.get('/dax_today', function(req,res) {
-		dataManager.getDailyStock('dax', function(result) {
+		dataManager.getDailyMarket('dax', function(result) {
 			res.end(JSON.stringify(result));
 		});
 	});
 
 	app.get('/ftse_100_today', function(req,res) {
-		dataManager.getDailyStock('ftse_100', function(result) {
+		dataManager.getDailyMarket('ftse_100', function(result) {
 			res.end(JSON.stringify(result));
 		});
 	});
 
 	app.get('/ibex_35_today', function(req,res) {
-		dataManager.getDailyStock('ibex_35', function(result) {
+		dataManager.getDailyMarket('ibex_35', function(result) {
 			res.end(JSON.stringify(result));
 		});
 	});
 
 	app.get('/nikkei_225_today', function(req,res) {
-		dataManager.getDailyStock('nikkei_225', function(result) {
+		dataManager.getDailyMarket('nikkei_225', function(result) {
 			res.end(JSON.stringify(result));
 		});
 	});
 
 	app.get('/shangai_composite_today', function(req,res) {
-		dataManager.getDailyStock('shangai_composite', function(result) {
+		dataManager.getDailyMarket('shangai_composite', function(result) {
 			res.end(JSON.stringify(result));
 		});
 	});
 
 	app.get('/sp_500_today', function(req,res) {
-		dataManager.getDailyStock('sp_500', function(result) {
+		dataManager.getDailyMarket('sp_500', function(result) {
 			res.end(JSON.stringify(result));
 		});
 	});
 
 	app.get('/tsx_composite_today', function(req,res) {
-		dataManager.getDailyStock('tsx_composite', function(result) {
+		dataManager.getDailyMarket('tsx_composite', function(result) {
 			res.end(JSON.stringify(result));
 		});
 	});

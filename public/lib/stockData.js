@@ -45,6 +45,22 @@ var request = require('request');
 		euroExchangeTable['THB']= 'EURTHB'; //Thai baht
 		euroExchangeTable['USD']= 'EURUSD'; //USD dollar
 
+	var marketTable = [];
+		marketTable['cac_40']='INDEX_FCHI';
+		marketTable['dax']='INDEX_GDAXI';
+		marketTable['sp_500']='INDEX_GSPC';
+		marketTable['russell_1000']='INDEX_RUI';
+		marketTable['ftse_100']='INDEX_FTSE';
+		marketTable['ftse_mib']='INDEX_FTSEMIB_MI';
+		marketTable['ibex_35']='INDEX_IBEX';
+		marketTable['jakarta_composite']='INDEX_JKSE';
+		marketTable['kospi_composite']='INDEX_KS11';
+		marketTable['merval']='INDEX_MERV';
+		marketTable['mexbol_ipc']='INDEX_MXX';
+		marketTable['nikkei_225']='INDEX_N225';
+		marketTable['rtsi']='INDEX_RTS_RS';
+		marketTable['tsx_composite']='INDEX_GSPTSE';
+		marketTable['shangai_composite']='INDEX_SSEC';
 
 exports.getDailyCurrencyExchange = function(from,to,cb) {
 	var searchFilters = {
@@ -168,8 +184,6 @@ exports.getYenIncrement = function(cb) {
 	});
 };
 
-
-
 exports.getTableData = function(db,searchFilters,cb) {
 	var url = 'https://www.quandl.com/api/v1/datasets/'+ db + '/' + searchFilters.table + '.json?sort_order='+searchFilters.sort_order+'&trim_start='+searchFilters.trim_start+'&trim_end='+searchFilters.trim_end+'&collapse='+searchFilters.collapse + '&auth_token=rgC48yaay4DWshssN2Yp';
 	
@@ -180,3 +194,15 @@ exports.getTableData = function(db,searchFilters,cb) {
 		cb(body);
 	});
 };	
+
+exports.getDailyMarket = function(market,cb) {
+	var url = 'https://www.quandl.com/api/v1/datasets/YAHOO/' + marketTable[market] + '.json?&trim_start='+new Date('2015-02-03').toISOString()+'&trim_end='+new Date().toISOString()+ '&auth_token=rgC48yaay4DWshssN2Yp';
+	console.log('Retrieving data from : ' + url);
+	request({url: url, json: true}, function(err,response,body) {
+		if(err)
+			return console.log('Error while using getData function. Error: ' + err);
+
+		body.data[body.data.length-1].push(body.data[body.data.length-2][4]);
+		cb(body.data[body.data.length-1]);
+	});
+};
