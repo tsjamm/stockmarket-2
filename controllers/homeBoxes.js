@@ -1,6 +1,9 @@
 var dataManager = require('./../public/lib/stockData');
 
 var route = function(app) {
+
+	/**	DAILY CURRENCIES */
+
 	app.get('/euroincrement', function(req,res) {
 		dataManager.getEuroIncrement(function(result) {
 			res.end(result);
@@ -58,6 +61,56 @@ var route = function(app) {
 
 	app.get('/eurotoyen', function(req,res) {
 		dataManager.getDailyCurrencyExchange('EUR','JPY', function(result) {
+			res.end(JSON.stringify(result));
+		});
+	});
+
+	/**	DAILY MARKETS */
+
+	app.get('/cac_40_today', function(req,res) {
+		dataManager.getDailyStock('cac_40', function(result) {
+			res.end(JSON.stringify(result));
+		});
+	});
+
+	app.get('/dax_today', function(req,res) {
+		dataManager.getDailyStock('dax', function(result) {
+			res.end(JSON.stringify(result));
+		});
+	});
+
+	app.get('/ftse_100_today', function(req,res) {
+		dataManager.getDailyStock('ftse_100', function(result) {
+			res.end(JSON.stringify(result));
+		});
+	});
+
+	app.get('/ibex_35_today', function(req,res) {
+		dataManager.getDailyStock('ibex_35', function(result) {
+			res.end(JSON.stringify(result));
+		});
+	});
+
+	app.get('/nikkei_225_today', function(req,res) {
+		dataManager.getDailyStock('nikkei_225', function(result) {
+			res.end(JSON.stringify(result));
+		});
+	});
+
+	app.get('/shangai_composite_today', function(req,res) {
+		dataManager.getDailyStock('shangai_composite', function(result) {
+			res.end(JSON.stringify(result));
+		});
+	});
+
+	app.get('/sp_500_today', function(req,res) {
+		dataManager.getDailyStock('sp_500', function(result) {
+			res.end(JSON.stringify(result));
+		});
+	});
+
+	app.get('/tsx_composite_today', function(req,res) {
+		dataManager.getDailyStock('tsx_composite', function(result) {
 			res.end(JSON.stringify(result));
 		});
 	});
