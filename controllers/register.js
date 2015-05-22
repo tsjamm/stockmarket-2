@@ -1,4 +1,3 @@
-
 var UserSchema = require('./../models/UserSchema');
 var User = new UserSchema();
 
@@ -17,7 +16,8 @@ var route = function(app){
 				avatarURL : req.files.avatarURL ? req.body.email+req.body.name+req.body.lastname + 'Avatar' : '',
 				lastLogin :new Date(),
 				twitterWidget1: 'forbes',
-				twitterWidget2: 'IBEX35news'
+				twitterWidget2: 'TheEconomist',
+				favourites: []
 			};
 
 			var newUser = new UserSchema(userData);

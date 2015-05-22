@@ -1,4 +1,7 @@
+
 var dataManager = require('./../public/lib/stockData');
+var UserSchema = require('./../models/UserSchema');
+var User = new UserSchema();
 
 var route = function(app) {
 	
@@ -15,10 +18,10 @@ var route = function(app) {
 	});
 
 	app.post('/explore', function(req,res) {
+
 		if(req.session && req.session.email) {
 			var table;
 			var db;
-
 
 			switch(req.body.target) {
 				case 'companies': 
@@ -41,6 +44,23 @@ var route = function(app) {
 			var data = {result: ''};
 			
 			dataManager.getTableData(db,filters,function(data) {
+
+				if(req.body.addFavourite) {
+					UserSchema.findOne({email: req.session.email}, function(err,user) { 
+						if(err) return console.log('Error getting user: ' + err);
+
+						var favourite = 'https://www.quandl.com/api/v1/datasets/'+ db + '/' + filters.table + '.json?sort_order='+filters.sort_order+
+							'&trim_start='+filters.trim_start+'&trim_end='+filters.trim_end+'&collapse='+filters.collapse + '&auth_token=rgC48yaay4DWshssN2Yp';
+						user.favourites.push(favourite);
+
+						user.save(function(err){
+							if(err)
+								return console.log('Error saving favourite : ' + err);
+							console.log('Favourite saved');
+						});
+					});
+				}
+
 				res.render(__dirname + './../views/explore' , { 
 					data : data, 
 					username: req.session.username,

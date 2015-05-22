@@ -10,7 +10,8 @@ var UserSchema = new Schema({
 	avatarURL : {type: String},
 	lastLogin: { type: Date},
 	twitterWidget1: { type: String, required: true},
-	twitterWidget2: {type: String, required: true}
+	twitterWidget2: {type: String, required: true},
+	favourites: {type: []}
 });
 
 //Añadiendo un método al esquema mediante nombreEsquema.method('nombreMetodo',metodo);
