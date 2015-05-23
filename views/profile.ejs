@@ -73,7 +73,7 @@
 										<label for="defaultTwitterWidget1">Default Twitter Widget 1</label>
 										<select class="form-control" name="defaultTwitterWidget1">
 											<% for (var i=0; i<twitterWidgets.length; i++) { %>
-												<option value="<%= twitterWidgets[i].account %>"> @<%= twitterWidgets[i].account %> </option>
+												<option value="<%= twitterWidgets[i].account %>" <% if(user.twitterWidget1==twitterWidgets[i].account) { %> selected <% } %> > @<%= twitterWidgets[i].account %> </option>
 											<%}%>
 										</select>
 									</div>
@@ -84,7 +84,7 @@
 										<label for="defaultTwitterWidget2">Default Twitter Widget 2</label>
 										<select class="form-control" name="defaultTwitterWidget2">
 											<% for (var i=0; i<twitterWidgets.length; i++) { %>
-												<option value="<%= twitterWidgets[i].account %>"> @<%= twitterWidgets[i].account %> </option>
+												<option value="<%= twitterWidgets[i].account %>"  <% if(user.twitterWidget2==twitterWidgets[i].account) { %> selected <% } %> > @<%= twitterWidgets[i].account %> </option>
 											<%}%>
 										</select>
 									</div>
