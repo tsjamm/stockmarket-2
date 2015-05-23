@@ -16,7 +16,7 @@
 				<div class="panel panel-default">
 
 					<div class="text-right">
-						<button class="btn btn-link" data-id="<%= favourites[i] %>"><i class="fa fa-trash-o"></i></button>
+						<button class="btn btn-link removeFavourite" data-id="<%= favourites[i] %>"><i class="fa fa-trash-o"></i></button>
 					</div>
 
 					<% if(favourites[i].indexOf('YAHOO') !== -1) { %>
@@ -85,4 +85,6 @@
 	
 </body>
 </html>
+
+<script type="text/javascript" src="../../../public/js/my_favourites.js"></script>
 

@@ -21,6 +21,27 @@ var route = function(app) {
 		else
 			res.redirect('/');
 	});
+
+	app.delete('/my_favourites', function(req,res) {
+		if(req.session && req.session.email) {
+			UserSchema.findOne( {email: req.session.email}, function(err,user) {
+				if(err) return res.json(err);
+				if(user===null) res.json(err);
+
+				var position = user.favourites.indexOf(req.param('url'));
+				if(position !== -1) {
+					user.favourites.splice(position,1);
+				}
+
+				user.save(function(err) {
+					if(err) return res.json(err);
+					return res.json(user, 200);
+				});
+			});
+		}
+		else
+			res.redirect('/');
+	});
 	
 };
 
