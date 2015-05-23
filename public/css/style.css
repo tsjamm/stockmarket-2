@@ -138,3 +138,11 @@ nav .fa  {
 #saveNewUserStock .form-group {
 	padding:0.5%;
 }
+
+/*********** MY FAVOURITES *************/
+.favouriteBox .panel{
+	padding:1em;
+}
+.favouriteBox_icon {
+	font-size:3em;
+}

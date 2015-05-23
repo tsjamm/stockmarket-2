@@ -3,7 +3,81 @@
 	<%- include templates/partialNav.ejs %>
 	
 	<main class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
-		MAIN DE MY FAVOURITES
+
+		<% if(favourites.length===0) { %>
+			<div class="text-center">
+				<h2> You haven't save any favourite yet... </h2>
+			</div>
+		<% } %>
+
+		<% for(var i=0; i<favourites.length; i++) { %>
+
+			<div class="favouriteBox col-lg-3">
+				<div class="panel panel-default">
+
+					<div class="text-right">
+						<button class="btn btn-link" data-id="<%= favourites[i] %>"><i class="fa fa-trash-o"></i></button>
+					</div>
+
+					<% if(favourites[i].indexOf('YAHOO') !== -1) { %>
+						<div class="favouriteBox_icon text-center">
+							<i class="fa fa-flag"></i>
+						</div>
+						
+						<div class="favouriteBox_name">
+							National market: <%= favourites[i].slice(favourites[i].indexOf('YAHOO/')+5,favourites[i].indexOf('json')) %>
+						</div>
+					
+					<% } else { %>
+						<div class="favouriteBox_icon text-center">
+							<i class="fa fa-copyright"></i>
+						</div>
+						
+						<div class="favouriteBox_name text-center">
+							<h3>Company: <%= favourites[i].slice(favourites[i].indexOf('WIKI/')+5,favourites[i].indexOf('.json')) %></h3>
+						</div>
+					
+					<% } %> 
+
+					<table class="table">
+						<tr>
+							<th> Start date </td>
+							<td> <%= favourites[i].slice(favourites[i].indexOf('start=')+6,favourites[i].indexOf('&trim_end')) || 'Origin of times' %> </td>
+						</tr>
+
+						<tr>
+							<th> End date </td>
+							<td>  <%= favourites[i].slice(favourites[i].indexOf('end=')+4,favourites[i].indexOf('&collapse')) || 'Most recent' %> </td>
+						</tr>
+
+						<% 
+							var collapse = favourites[i].slice(favourites[i].indexOf('&collapse')+10,favourites[i].indexOf('&auth_token'));
+							if(collapse === 'undefined')
+								collapse = 'Not specified';
+						%>
+
+						<tr>
+							<th> Collapse </td>
+							<td> <%= collapse %> </td>
+						</tr>
+
+						<% 
+							var sort_order = favourites[i].slice(favourites[i].indexOf('order')+6,favourites[i].indexOf('&trim_start'));
+							if(sort_order === 'undefined')
+								sort_order = 'Not specified';
+						%>
+
+						<tr>
+							<th> Sort order </td>
+							<td> <%= sort_order %> </td>
+					</table>
+					
+					<div class="text-center">
+						<a href="<%= favourites[i] %>" class="btn btn-default">Show</a>
+					</div>
+				</div> <!-- panel -->
+			</div> <!-- .favouriteBox div -->
+		<% } %>
 	</main>
 
 	<%- include templates/partialAside.ejs %>
@@ -11,5 +85,4 @@
 	
 </body>
 </html>
-
 
