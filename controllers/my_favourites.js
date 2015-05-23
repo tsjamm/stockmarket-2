@@ -8,7 +8,13 @@ var route = function(app) {
 
 
 			UserSchema.findOne( {email: req.session.email}, function(err,user) {
-				if(err) return console.log('Error reading user data : ' + err);
+				if(err) {
+					console.log('An error ocurred while searching user. Error: ' + err);
+					return res.render(__dirname + './../views/home', {username: req.session.username, errorMessage: 'Error searching user data'});
+				} else if(!user) {
+					console.log('User not found');
+					return res.render(__dirname + './../views/home', {errorMessage: 'User not found'});
+				}
 
 				res.render(__dirname + './../views/my_favourites', {
 					username: req.session.username,

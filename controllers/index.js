@@ -34,11 +34,24 @@ var route = function(app) {
 			if(isCorrect) {
 
 				User.findByEmail(email, function(err,user){
-					if(err)
-						return res.render(__dirname + './../views/home',{username: 'Me'});
+					if(err) {
+							console.log('Error searching user : ' + err);
+							return res.render(__dirname + './../views/index', {errorMessage: 'Error searching user'});
+					} else if(!user) {
+						console.log('User not found');
+						return res.render(__dirname + './../views/index', {errorMessage: 'User not found'});
+					}
 
 					TwitterWidgetSchema.find( {account:user.twitterWidget1}, function(err,tws1){
+						if (err) {
+							console.log('Error retrieving Twitter widget : ' + err);
+							return res.render(__dirname + './../views/index', {errorMessage: 'Error retrieving Twitter widget'});
+						} 
 						TwitterWidgetSchema.find({account:user.twitterWidget2}, function(err,tws2){
+							if (err) {
+								console.log('Error retrieving Twitter widget : ' + err);
+								return res.render(__dirname + './../views/index', {errorMessage: 'Error retrieving Twitter widget'});
+							}
 							req.session.email = email;
 							req.session.twitterWidget1 = tws1[0] ? tws1[0].getLink() : '';
 							req.session.twitterWidget2 = tws2[0] ? tws2[0].getLink() : '';

@@ -47,15 +47,20 @@ var route = function(app) {
 
 				if(req.body.addFavourite) {
 					UserSchema.findOne({email: req.session.email}, function(err,user) { 
-						if(err) return console.log('Error getting user: ' + err);
+					if(err || !user) {
+						console.log('An error ocurred while searching user. Error: ' + err);
+						return res.render(__dirname + './../views/home', {username: req.session.username, errorMessage: 'Error searching user data'});
+					} 
 
 						var favourite = 'https://www.quandl.com/api/v1/datasets/'+ db + '/' + filters.table + '.json?sort_order='+filters.sort_order+
 							'&trim_start='+filters.trim_start+'&trim_end='+filters.trim_end+'&collapse='+filters.collapse + '&auth_token=rgC48yaay4DWshssN2Yp';
 						user.favourites.push(favourite);
 
 						user.save(function(err){
-							if(err)
-								return console.log('Error saving favourite : ' + err);
+							if(err) {
+								console.log('An error ocurred while saving user changes. Error: ' + err);
+								return res.render(__dirname + './../views/home', {username: req.session.username, errorMessage: 'Error saving favourite'});
+							} 
 							console.log('Favourite saved');
 						});
 					});

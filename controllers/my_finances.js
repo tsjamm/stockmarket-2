@@ -8,8 +8,10 @@ var route = function(app) {
 	app.get('/my_finances',function(req,res) {
 		if(req.session && req.session.email) {
 			StockSchema.find({},function(err,stocks) {
-				if(err) return res.render(__dirname + './../views/message', { message: 'An error ocurred while trying to retrieve your stocks'});
-
+				if(err) {
+						console.log('An error ocurred while searching stocks. Error: ' + err);
+						return res.render(__dirname + './../views/home', {username: req.session.username, errorMessage: 'Error searching stocks'});
+					} 
 				res.render(__dirname + './../views/my_finances', {
 					username: req.session.username,
 					twitterWidget1: req.session.twitterWidget1,
@@ -26,6 +28,13 @@ var route = function(app) {
 	app.post('/my_finances', function(req,res) {
 		if(req.session && req.session.email) {
 			User.findByEmail(req.session.email,function(err,doc){
+				if(err) {
+						console.log('Error searching user : ' + err);
+						return res.render(__dirname + './../views/index', {errorMessage: 'Error searching user'});
+				} else if(!doc) {
+						console.log('User not found');
+						return res.render(__dirname + './../views/index', {errorMessage: 'User not found'});
+					}
 				var data = {
 					ownerId:doc._id,
 					dateBought: new Date(req.body.dateBought),
@@ -37,9 +46,9 @@ var route = function(app) {
 
 				newStock.save(function(err) {
 					if(err) {
-						console.log('ERROR : ' + err);
-						res.render(__dirname + './../views/message',{message:'Your stock could not be saved, please try again'});
-					}
+						console.log('Error saving stock. Error: ' + err);
+						return res.render(__dirname + './../views/home', {username: req.session.username, errorMessage: 'Error saving stock'});
+					} 
 					else
 						res.redirect('/my_finances');
 				});

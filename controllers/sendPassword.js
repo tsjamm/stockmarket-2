@@ -15,6 +15,10 @@ var route = function(app) {
 	app.post('/sendPassword',function(req,res) {
 
 		User.findByEmail(req.body.email, function(err,doc){
+			if(err) return res.render(__dirname + './../views/index',{ 
+					errorMessage:'Error checking users database'
+				});
+
 			if(!doc) 
 				return res.render(__dirname + './../views/index',{ 
 					errorMessage:'The account ' + req.body.email + ' does not exist. Please, check it'
