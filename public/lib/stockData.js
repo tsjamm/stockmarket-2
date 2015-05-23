@@ -81,6 +81,8 @@ exports.getDailyCurrencyExchange = function(from,to,cb) {
 		console.log('Retrieving data from : ' + url);
 		if(err)
 			return console.log('Error while using getDailyCurrencyExchange function. Error: ' + err);
+		if(!body || !body.data || body.data.length===0)
+			return cb([]);
 		cb(body.data[body.data.length-1][1]);
 	});
 };
@@ -97,6 +99,8 @@ exports.getEuroIncrement = function(cb) {
 	request({url: url, json: true}, function(err,response,body) {
 		if(err)
 			return console.log('Error while using getDailyCurrencyExchange function. Error: ' + err);
+		if(!body || !body.data || body.data.length===0)
+			return cb('No data');
 
 		var lastday = Number(body.data[body.data.length-1][1]);
 		var daybefore = Number(body.data[body.data.length-2][1]);
@@ -121,6 +125,8 @@ exports.getUSDIncrement = function(cb) {
 	request({url: url, json: true}, function(err,response,body) {
 		if(err)
 			return console.log('Error while using getDailyCurrencyExchange function. Error: ' + err);
+		if(!body || !body.data || body.data.length===0)
+			return cb('No data');
 
 		var lastday = Number(body.data[body.data.length-1][1]);
 		var daybefore = Number(body.data[body.data.length-2][1]);
@@ -146,7 +152,8 @@ exports.getGBPIncrement = function(cb) {
 	request({url: url, json: true}, function(err,response,body) {
 		if(err)
 			return console.log('Error while using getDailyCurrencyExchange function. Error: ' + err);
-
+		if(!body || !body.data || body.data.length===0)
+			return cb('No data');
 		var lastday = 1/Number(body.data[body.data.length-1][1]);
 		var daybefore = 1/Number(body.data[body.data.length-2][1]);
 
@@ -171,6 +178,8 @@ exports.getYenIncrement = function(cb) {
 	request({url: url, json: true}, function(err,response,body) {
 		if(err)
 			return console.log('Error while using getDailyCurrencyExchange function. Error: ' + err);
+		if(!body || !body.data || body.data.length===0)
+			return cb('No data');
 
 		var lastday = 1/Number(body.data[body.data.length-1][1]);
 		var daybefore = 1/Number(body.data[body.data.length-2][1]);
@@ -201,7 +210,8 @@ exports.getDailyMarket = function(market,cb) {
 	request({url: url, json: true}, function(err,response,body) {
 		if(err)
 			return console.log('Error while using getData function. Error: ' + err);
-
+		if(!body || !body.data || body.data.length===0)
+			return cb([]);
 		body.data[body.data.length-1].push(body.data[body.data.length-2][4]);
 		cb(body.data[body.data.length-1]);
 	});
