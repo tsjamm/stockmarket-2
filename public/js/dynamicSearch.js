@@ -1,18 +1,22 @@
 $(function() {
-	$('#companiesRadio').on('click',function() { showSearchForm(); hideAll(); showOne('companies')})
-	$('#nationalMarketsRadio').on('click',function() { showSearchForm(); hideAll(); showOne('nationalMarkets')})
+	$('#companiesButton').on('click',function() {
+		showOne('companies')
+		$("#selectGraphic").hide();
+	});
+	$('#nationalMarketsButton').on('click',function() { 
+		showOne('nationalMarkets')
+		$("#selectGraphic").hide();
+	});
 });
 
-function hideAll() {
-	$('#searchForm > div').css('display','none');
-}
-
 function showOne(name) {
-	$('#'+name).css('display','block');
-	$('#target').val(name);
-}
-
-
-function showSearchForm() {
 	$("#searchForm").css('display','block');
+	$('.form-group').css('display','block');
+	if(name=='companies') {
+		$("#nationalMarkets").hide();
+	} else if(name=='nationalMarkets') {
+		$("#companies").hide();
+	}
+	
+	$('#target').val(name);
 }

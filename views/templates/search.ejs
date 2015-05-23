@@ -1,110 +1,141 @@
 
 	<div id="search">
-		<div id="selectTarget">
-			<h2>Data family</h2>
-			<input type="radio" id="nationalMarketsRadio" name="selectSearch" class="selectSearch">National Markets</input>
-			<input type="radio" id="companiesRadio" name="selectSearch" class="selectSearch">Companies</input>
+		<div id="selectTarget" class="text-center">
+			<span class="searchTitle"> Type of search </span>
+			<button id="companiesButton" class="btn btn-default"><i class="fa fa-copyright"></i> Companies</button>
+			<button id="nationalMarketsButton" class="btn btn-default"><i class="fa fa-flag"></i> National Markets</button>
 		</div>
 
 		<div id="searchForm">
-			<h2>Filters</h2>
 			<form method="POST" action="/explore">
 				<input type="text" name="target" id="target" hidden/>
-				<div id="nationalMarkets">
-					<label for="nationalMarketTable">National market</label>
-					<select name="nationalMarketTable">
-						<option value="INDEX_FCHI">CAC-40</option>
-						<option value="INDEX_GDAXI">DAX</option>
-						<option value="INDEX_GSPC">S&P 500</option>
-						<option value="INDEX_RUI">Russell 1000</option>
-						<option value="INDEX_FTSE">FTSE 100</option>
-						<option value="INDEX_FTSEMIB_MI">FTSE MIB</option>
-						<option value="INDEX_IBEX">Ibex 35</option>
-						<option value="INDEX_JKSE">Jakarta Composite</option>
-						<option value="INDEX_KS11">Kospi Composite</option>
-						<option value="INDEX_MERV">Merval</option>
-						<option value="INDEX_MXX">Mexbol IPC</option>
-						<option value="INDEX_N225">Nikkei 225</option>
-						<option value="INDEX_RTS_RS">RTSI</option>
-						<option value="INDEX_GSPTSE">TSX Composite</option>
-						<option value="INDEX_SSEC">Shangai Composite</option>
-					</select>
+
+				<div class="row">
+					<div class="col-lg-4">
+						<div id="nationalMarkets" class="form-group">
+							<label for="nationalMarketTable">National market</label>
+							<select name="nationalMarketTable" class="form-control">
+								<option value="INDEX_FCHI">CAC-40</option>
+								<option value="INDEX_GDAXI">DAX</option>
+								<option value="INDEX_GSPC">S&P 500</option>
+								<option value="INDEX_RUI">Russell 1000</option>
+								<option value="INDEX_FTSE">FTSE 100</option>
+								<option value="INDEX_FTSEMIB_MI">FTSE MIB</option>
+								<option value="INDEX_IBEX">Ibex 35</option>
+								<option value="INDEX_JKSE">Jakarta Composite</option>
+								<option value="INDEX_KS11">Kospi Composite</option>
+								<option value="INDEX_MERV">Merval</option>
+								<option value="INDEX_MXX">Mexbol IPC</option>
+								<option value="INDEX_N225">Nikkei 225</option>
+								<option value="INDEX_RTS_RS">RTSI</option>
+								<option value="INDEX_GSPTSE">TSX Composite</option>
+								<option value="INDEX_SSEC">Shangai Composite</option>
+							</select>
+						</div>
+
+						<div id="companies" class="form-group">
+							<label for="companyTable"> Company</label>
+							<select name="companyTable" class="form-control">
+								<option value="AAPL">Apple</option>
+								<option value="AMZN">Amazon.com, Inc.</option>
+								<option value="APA">Apache Corporation</option>
+								<option value="AXP">American Express Company</option>
+								<option value="CL">Colgate-Palmolive Company</option>
+								<option value="CRM">Salesforce.com Inc</option>
+								<option value="CSCO">Cisco Systems, Inc.</option>
+								<option value="DIS">Walt Disney Company</option>
+								<option value="EBAY">eBay Inc.</option>
+								<option value="HAS">Hasbro, Inc.</option>
+								<option value="FB">Facebook, Inc.</option>
+								<option value="GAS">AGL Resources, Inc.</option>
+								<option value="HOG">Harley-Davidson, Inc.</option>
+								<option value="INTC">Intel Corporation</option>
+								<option value="KO">Coca-Cola Company (The)</option>
+								<option value="RL">Ralph Lauren Corporation</option>
+								<option value="TRIP">TripAdvisor, Inc.</option>
+								<option value="MON">Monsanto Company</option>
+								<option value="MA">Mastercard Incorporated</option>
+								<option value="A">Agilent Technologies, Inc.</option>
+								<option value="MAT">Mattel, Inc.</option>
+								<option value="MSFT">Microsoft Corporation</option>
+								<option value="PFE">Pfizer, Inc.</option>
+								<option value="SBUX">Starbucks Corporation</option>
+								<option value="STX">Seagate Technology.</option>
+								<option value="V">Visa Inc.</option>
+								<option value="XRX">Xerox Corporation</option>
+								<option value="YHOO">Yahoo! Inc.</option>
+							</select>
+						</div>
+
+						<% 
+							var twoDaysAgo = new Date(Date.now()-1000*3600*24*2);
+							var twoDaysAgoDay = twoDaysAgo.getDate()>9 ? twoDaysAgo.getDate() : '0'+twoDaysAgo.getDate();
+							var twoDaysAgoMonth = (twoDaysAgo.getMonth()+1)> 9 ? (twoDaysAgo.getMonth()+1) : '0'+(twoDaysAgo.getMonth()+1);
+							var dateMaxStart = twoDaysAgo.getFullYear() + '-' + twoDaysAgoMonth + '-' + twoDaysAgoDay;
+
+							var today = new Date();
+							var todayDay = today.getDate()>9 ? today.getDate() : '0'+today.getDate();
+							var todayMonth = (today.getMonth()+1)> 9 ? (today.getMonth()+1) : '0'+(today.getMonth()+1);
+							var dateMaxEnd = today.getFullYear() + '-' + todayMonth + '-' + todayDay;
+						%>
+
+						<div class="form-group">
+							<label for="trim_startSearch">From date</label>
+							<input type="date" name="trim_startSearch" max="<%= dateMaxStart %>" class="form-control"/>
+						</div>
+
+					</div> <!-- col -->
+
+					<div class="col-lg-4">
+
+						<div class="form-group">
+							<label for="collapseSearch">Collapse</label>
+							<select name="collapseSearch" class="form-control">
+								<option value="none">None </option>
+								<option value="daily">Daily </option>
+								<option value="weekly">Weekly</option>
+								<option value="monthly">Monthly</option>
+								<option value="quarterly">Quarterly </option>
+								<option value="annual">Annual</option>
+							</select>
+						</div>
+
+						<div class="form-group">
+							<label for="trim_endSearch"> To date (at least 3 days ago)</label>
+							<input type="date" name="trim_endSearch" max="<%= dateMaxEnd %>" class="form-control"/>
+						</div>
+						
+
+					</div>
+
+					<div class="col-lg-4">
+						<div class="form-group">
+							<label for="orderSearch">Order</label>
+							<select name="orderSearch" class="form-control">
+								<option value="asc">Ascendent</option>
+								<option value="desc" selected>Descendent</option>
+							</select>
+						</div>
+
+						<div class="form-group">
+							<label for="addFavorite">Add to favourites
+							<input type="checkbox" name="addFavourite" value="addFavourite" >
+						</div>
+					</div>
+
+				</div> <!-- row -->
+
+				<div class="text-right">
+					<input type="submit" value="Search" id="sendSearch" name="sendSearch" class="btn btn-default">
 				</div>
-
-				<div id="companies">
-					<label for="companyTable"> Company</label>
-					<select name="companyTable">
-						<option value="AAPL">Apple</option>
-						<option value="AMZN">Amazon.com, Inc.</option>
-						<option value="APA">Apache Corporation</option>
-						<option value="AXP">American Express Company</option>
-						<option value="CL">Colgate-Palmolive Company</option>
-						<option value="CRM">Salesforce.com Inc</option>
-						<option value="CSCO">Cisco Systems, Inc.</option>
-						<option value="DIS">Walt Disney Company</option>
-						<option value="EBAY">eBay Inc.</option>
-						<option value="HAS">Hasbro, Inc.</option>
-						<option value="FB">Facebook, Inc.</option>
-						<option value="GAS">AGL Resources, Inc.</option>
-						<option value="HOG">Harley-Davidson, Inc.</option>
-						<option value="INTC">Intel Corporation</option>
-						<option value="KO">Coca-Cola Company (The)</option>
-						<option value="RL">Ralph Lauren Corporation</option>
-						<option value="TRIP">TripAdvisor, Inc.</option>
-						<option value="MON">Monsanto Company</option>
-						<option value="MA">Mastercard Incorporated</option>
-						<option value="A">Agilent Technologies, Inc.</option>
-						<option value="MAT">Mattel, Inc.</option>
-						<option value="MSFT">Microsoft Corporation</option>
-						<option value="PFE">Pfizer, Inc.</option>
-						<option value="SBUX">Starbucks Corporation</option>
-						<option value="STX">Seagate Technology.</option>
-						<option value="V">Visa Inc.</option>
-						<option value="XRX">Xerox Corporation</option>
-						<option value="YHOO">Yahoo! Inc.</option>
-					</select>
-				</div>
-
-				<select name="orderSearch">
-						<option value="asc">Ascendent</option>
-						<option value="desc">Descendent</option>
-					</select>
-					<% 
-						var twoDaysAgo = new Date(Date.now()-1000*3600*24*2);
-						var twoDaysAgoDay = twoDaysAgo.getDate()>9 ? twoDaysAgo.getDate() : '0'+twoDaysAgo.getDate();
-						var twoDaysAgoMonth = (twoDaysAgo.getMonth()+1)> 9 ? (twoDaysAgo.getMonth()+1) : '0'+(twoDaysAgo.getMonth()+1);
-						var dateMaxStart = twoDaysAgo.getFullYear() + '-' + twoDaysAgoMonth + '-' + twoDaysAgoDay;
-
-						var today = new Date();
-						var todayDay = today.getDate()>9 ? today.getDate() : '0'+today.getDate();
-						var todayMonth = (today.getMonth()+1)> 9 ? (today.getMonth()+1) : '0'+(today.getMonth()+1);
-						var dateMaxEnd = today.getFullYear() + '-' + todayMonth + '-' + todayDay;
-					%>
-					<input type="date" name="trim_startSearch" max="<%= dateMaxStart %>"/>
-					
-					<input type="date" name="trim_endSearch" max="<%= dateMaxEnd %>"/>
-				
-					<select name="collapseSearch">
-						<option value="none">None </option>
-						<option value="daily">Daily </option>
-						<option value="weekly">Weekly</option>
-						<option value="monthly">Monthly</option>
-						<option value="quarterly">Quarterly </option>
-						<option value="annual">Annual</option>
-					</select>
-
-					<label for="addFavorite">Add to favourites
-					<input type="checkbox" name="addFavourite" value="addFavourite">
-
-				<input type="submit" value="Search" name="sendSearch">
 			</form>
 		</div>
 
 			
-		<div id="selectGraphic">
-			<h2>Graphic type</h2>
-			<button id="chooseTable">Table</button>
-			<button id="chooseChart">Chart</button>
+		<div id="selectGraphic" class="text-center">
+			<span class="searchTitle"> Graphic type </span>
+			<button id="chooseTable" class="btn btn-default"><i class="fa fa-table"></i></button>
+			<button id="chooseChart" class="btn btn-default"><i class="fa fa-line-chart"></i></button>
 		</div>
 
 	<div id="tags">

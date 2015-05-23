@@ -23,10 +23,11 @@ body {
 
 
 footer.pageFooter {
-	display:inline-block;
-	width:99.9%;
-	padding:1%;
 	background:#f0ad3f;
+	display:inline-block;
+	margin-top:1%;
+	padding:1%;
+	width:99.9%;
 }
 
 .pageFooter ul {
@@ -80,10 +81,28 @@ nav .fa  {
 
 /************** SEARCH **************/
 
+#search {
+	background: #f0ad3f;
+	border:solid black 2px;
+	border-radius: 10px;
+	margin-bottom:2%;
+	padding:1em;
+}
 
-#searchForm { display:none;}
+#searchForm { 
+	display:none;
+}
 
 #searchForm > div { display:none;}
+
+.searchTitle {
+	font-size: 1.4em;
+}
+
+#selectGraphic { 
+	display:none;
+	margin:0.5%;
+}
 
 #userAvatar  { border: solid black 1px;}
 

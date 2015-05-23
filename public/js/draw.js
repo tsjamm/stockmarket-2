@@ -15,9 +15,9 @@ function drawChart(info) {
 		data.addRows(rows);
 
 		var options = {
-			chart: { title: 'Closing stock values', subtitle: 'Subtitulo'},
-			width: 900,
-			height: 400
+			chart: { title: info.name, subtitle: 'Closing stock values'},
+			width: window.innerWidth*0.95,
+			height: window.innerHeight*0.65
 		};
 
 		var chart = new google.charts.Line(document.getElementById('result'));
@@ -31,7 +31,7 @@ function drawChart(info) {
  */
 function drawTable(info) {
 
-	var html = '<table class="table table-hover"> <thead> <tr>';
+	var html = '<h2>' + info.name +'</h2><table class="table table-hover"> <thead> <tr>';
 	
 	for(var i=0; i<info.column_names.length; i++)
 		html += '<th>' + info.column_names[i] + '</th>';

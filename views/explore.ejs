@@ -3,7 +3,7 @@
 	<%- include templates/partialNav.ejs %>
 	<main class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 		<%- include templates/search.ejs%>
-		<div id="result"> </div>		
+		<div id="result" class="text-center"> </div>		
 	</main>
 	<%- include templates/partialFooter.ejs %>
 	
@@ -20,13 +20,16 @@
 	<script type="text/javascript">
 		<% if(data!=null) { %>
 			var info = <%- JSON.stringify(data) %>;
+
+			drawTable(info);
+			$("#selectGraphic").show();
+
 			$("#chooseTable").on('click',function() { drawTable(info); });
 
 			google.load('visualization','1.0',{'packages':['line']});
 			google.setOnLoadCallback(function() {
 				$("#chooseChart").on('click',function() { drawChart(info); });
 			});
-			$("selectSearch").on('click',function() { $("#searchForm").css('display','block'); });
 		<%}%>
 	
 	</script>
