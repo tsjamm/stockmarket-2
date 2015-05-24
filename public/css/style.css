@@ -41,7 +41,6 @@ footer.pageFooter {
 
 .pageFooter ul {
 	list-style: none;
-	text-align: center;
 }
 
 .pageFooter ul li a {
@@ -174,6 +173,10 @@ nav .fa  {
 
 #saveNewUserStock .form-group {
 	padding:0.5%;
+}
+
+#userStocks ul  {
+	text-align: center;
 }
 
 /*********** MY FAVOURITES *************/
