@@ -102,8 +102,8 @@ exports.getEuroIncrement = function(cb) {
 		if(!body || !body.data || body.data.length===0)
 			return cb('No data');
 
-		var lastday = Number(body.data[body.data.length-1][1]);
-		var daybefore = Number(body.data[body.data.length-2][1]);
+		var lastday = Number([0][1]);
+		var daybefore = Number(body.data[1][1]);
 		if(lastday>daybefore)
 			cb('<i class="fa fa-euro"> </i><i class="fa fa-arrow-up text-success"> </i> <h5><small>Last day vs USD</small></h5>');
 		else if(lastday===daybefore)
@@ -128,8 +128,8 @@ exports.getUSDIncrement = function(cb) {
 		if(!body || !body.data || body.data.length===0)
 			return cb('No data');
 
-		var lastday = Number(body.data[body.data.length-1][1]);
-		var daybefore = Number(body.data[body.data.length-2][1]);
+		var lastday = Number(body.data[0][1]);
+		var daybefore = Number(body.data[1][1]);
 		if(lastday>daybefore)
 			cb('<i class="fa fa-usd"> </i><i class="fa fa-arrow-up text-success"> </i> <h5><small>Last day vs Euro</small></h5>');
 		else if(lastday===daybefore)
@@ -154,8 +154,8 @@ exports.getGBPIncrement = function(cb) {
 			return console.log('Error while using getDailyCurrencyExchange function. Error: ' + err);
 		if(!body || !body.data || body.data.length===0)
 			return cb('No data');
-		var lastday = 1/Number(body.data[body.data.length-1][1]);
-		var daybefore = 1/Number(body.data[body.data.length-2][1]);
+		var lastday = 1/Number(body.data[0][1]);
+		var daybefore = 1/Number(body.data[1][1]);
 
 		if(lastday>daybefore)
 			cb('<i class="fa fa-gbp"> </i><i class="fa fa-arrow-up text-success"> </i> <h5><small>Last day vs USD</small></h5>');
@@ -181,8 +181,8 @@ exports.getYenIncrement = function(cb) {
 		if(!body || !body.data || body.data.length===0)
 			return cb('No data');
 
-		var lastday = 1/Number(body.data[body.data.length-1][1]);
-		var daybefore = 1/Number(body.data[body.data.length-2][1]);
+		var lastday = 1/Number(body.data[0][1]);
+		var daybefore = 1/Number(body.data[1][1]);
 
 		if(lastday>daybefore)
 			cb('<i class="fa fa-jpy"> </i><i class="fa fa-arrow-up text-success"> </i> <h5><small>Last day vs USD</small></h5>');
@@ -221,7 +221,7 @@ exports.getDailyMarket = function(market,cb) {
 			return console.log('Error while using getData function. Error: ' + err);
 		if(!body || !body.data || body.data.length===0)
 			return cb([]);
-		body.data[body.data.length-1].push(body.data[body.data.length-2][4]);
-		cb(body.data[body.data.length-1]);
+		body.data[0].push(body.data[1][4]);
+		cb(body.data[0]);
 	});
 };

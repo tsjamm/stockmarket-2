@@ -43,8 +43,8 @@ $(function() {
 	$.ajax({
 		url:'/usdtogbp',
 		success: function(result) {
-			$("#usdtogbp").text(Number(result).toFixed(3));
-			$("#gbptousd").text(Number(1/+result).toFixed(3));
+			$("#gbptousd").text(Number(result).toFixed(3));
+			$("#usdtogbp").text(Number(1/+result).toFixed(3));
 		}
 	});
 
