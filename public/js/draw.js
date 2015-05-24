@@ -9,7 +9,7 @@ function drawChart(info) {
 		data.addColumn('number','Closing value');
 		var rows = [];
 
-		for(var i=0; i<info.data.length; i++)
+		for(var i=info.data.length-1; i>=0; i--)
 			rows.push([info.data[i][0],info.data[i][4]]);
 
 		data.addRows(rows);
