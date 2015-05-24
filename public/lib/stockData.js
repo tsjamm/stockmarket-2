@@ -204,6 +204,15 @@ exports.getTableData = function(db,searchFilters,cb) {
 	});
 };	
 
+exports.getTableDataFromURL = function(url,cb) {
+	console.log('Retrieving data from url: ' + url);
+	request({url: url, json: true}, function(err,response,body) {
+		if(err)
+			return console.log('Error while using getData function. Error: ' + err);
+		cb(body);
+	});
+};	
+
 exports.getDailyMarket = function(market,cb) {
 	var url = 'https://www.quandl.com/api/v1/datasets/YAHOO/' + marketTable[market] + '.json?&trim_start='+new Date('2015-02-03').toISOString()+'&trim_end='+new Date().toISOString()+ '&auth_token=rgC48yaay4DWshssN2Yp';
 	console.log('Retrieving data from : ' + url);

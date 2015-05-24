@@ -6,19 +6,20 @@
 		<div id="result" class="text-center"> </div>		
 	</main>
 	<%- include templates/partialFooter.ejs %>
-	
+
 </body>
 </html>
 
 
-	<script type="text/javascript" src="./public/js/dynamicSearch.js"></script>
+	<script type="text/javascript" src="./../public/js/dynamicSearch.js"></script>
 
 	<script type="text/javascript" src="https://www.google.com/jsapi"></script>
 
-	<script type="text/javascript" src="./public/js/draw.js"></script>
+	<script type="text/javascript" src="./../public/js/draw.js"></script>
 
 	<script type="text/javascript">
-		<% if(data!=null) { %>
+		
+			<% if(data!=null) { %>
 			var info = <%- JSON.stringify(data) %>;
 
 			drawTable(info);

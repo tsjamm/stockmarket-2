@@ -198,7 +198,7 @@ $(function() {
 function setMarketArrow(yesterdayClose, todayClose, div) {
 	if(yesterdayClose>todayClose) {
 				div.html(div.text() + ' <i class="fa fa-arrow-up text-success"> </i>');
-			} else if(yesterdayClose==todayClose) {alert('entra');
+			} else if(yesterdayClose==todayClose) {
 				div.html(div.text() + ' <i class="fa fa-minus text-muted"> </i>');
 			} else {
 				div.html(div.text() + ' <i class="fa fa-arrow-down text-danger"> </i>');

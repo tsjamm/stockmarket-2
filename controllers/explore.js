@@ -6,15 +6,29 @@ var User = new UserSchema();
 var route = function(app) {
 	
 	app.get('/explore',function(req,res) {
-		if(req.session && req.session.email)
+		if(req.session && req.session.email) {
 			res.render(__dirname + './../views/explore', {
 				data:null,
 				username: req.session.username,
 				twitterWidget1: req.session.twitterWidget1,
 				twitterWidget2: req.session.twitterWidget2
 			});
-		else
+		} else {
 			res.redirect('/');
+		}
+	});
+
+	app.get('/showfavourite/:url', function(req,res) {
+		if(req.session && req.session.email) {
+			dataManager.getTableDataFromURL(decodeURIComponent(req.param('url')), function(data) {
+				res.render(__dirname + './../views/explore' , { 
+						data : data, 
+						username: req.session.username,
+						twitterWidget1: req.session.twitterWidget1,
+						twitterWidget2: req.twitterWidget2
+					});
+			});
+		} else { res.redirect('/'); }
 	});
 
 	app.post('/explore', function(req,res) {
@@ -22,7 +36,7 @@ var route = function(app) {
 		if(req.session && req.session.email) {
 			var table;
 			var db;
-
+			
 			switch(req.body.target) {
 				case 'companies': 
 					table=req.body.companyTable; 
@@ -32,7 +46,7 @@ var route = function(app) {
 					table=req.body.nationalMarketTable;
 					db='YAHOO';
 			}
-
+			
 			var filters = {
 				table: table,
 				order: req.body.orderSearch,
@@ -44,14 +58,13 @@ var route = function(app) {
 			var data = {result: ''};
 			
 			dataManager.getTableData(db,filters,function(data) {
-
+				
 				if(req.body.addFavourite) {
 					UserSchema.findOne({email: req.session.email}, function(err,user) { 
 					if(err || !user) {
 						console.log('An error ocurred while searching user. Error: ' + err);
 						return res.render(__dirname + './../views/home', {username: req.session.username, errorMessage: 'Error searching user data'});
 					} 
-
 						var favourite = 'https://www.quandl.com/api/v1/datasets/'+ db + '/' + filters.table + '.json?sort_order='+filters.sort_order+
 							'&trim_start='+filters.trim_start+'&trim_end='+filters.trim_end+'&collapse='+filters.collapse + '&auth_token=rgC48yaay4DWshssN2Yp';
 						user.favourites.push(favourite);
@@ -66,7 +79,8 @@ var route = function(app) {
 					});
 				}
 
-				res.render(__dirname + './../views/explore' , { 
+
+				return res.render(__dirname + './../views/explore' , { 
 					data : data, 
 					username: req.session.username,
 					twitterWidget1: req.session.twitterWidget1,
