@@ -85,8 +85,18 @@ nav .fa  {
 
 .navbar-default .navbar-nav>li>a:hover { color: #f0ad3f;}
 
-#profile-menu { position:absolute; right:4em;}
+#profile-menu { 
+	position:absolute;
+	left:90%;
+}
 
+@media screen and (max-width: 768px) {
+	#profile-menu {
+		position:static;
+		left:0;
+	
+	}
+}
 
 /************** SEARCH **************/
 
