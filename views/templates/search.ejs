@@ -1,7 +1,7 @@
 
-	<div id="search">
+	<div id="search" col-lg-10 col-md-10 col-sm-10 col-xs-10>
 		<div id="selectTarget" class="text-center">
-			<span class="searchTitle"> Type of search </span>
+			<span class="searchTitle col-xs-12 col-md text-center"> Type of search </span>
 			<button id="companiesButton" class="btn btn-default"><i class="fa fa-copyright"></i> Companies</button>
 			<button id="nationalMarketsButton" class="btn btn-default"><i class="fa fa-flag"></i> National Markets</button>
 		</div>
@@ -11,7 +11,7 @@
 				<input type="text" name="target" id="target" hidden/>
 
 				<div class="row">
-					<div class="col-lg-4">
+					<div class="col-lg-4 col-md-3 col-sm-6 col-xs-6">
 						<div id="nationalMarkets" class="form-group">
 							<label for="nationalMarketTable">National market</label>
 							<select name="nationalMarketTable" class="form-control">
@@ -80,13 +80,13 @@
 						%>
 
 						<div class="form-group">
-							<label for="trim_startSearch">From date</label>
+							<label for="trim_startSearch">From <small>(min 3 days ago)</small></label>
 							<input type="date" name="trim_startSearch" max="<%= dateMaxStart %>" class="form-control"/>
 						</div>
 
 					</div> <!-- col -->
 
-					<div class="col-lg-4">
+					<div class="col-lg-4 col-md-3 col-sm-6 col-xs-6">
 
 						<div class="form-group">
 							<label for="collapseSearch">Collapse</label>
@@ -101,14 +101,14 @@
 						</div>
 
 						<div class="form-group">
-							<label for="trim_endSearch"> To date (at least 3 days ago)</label>
+							<label for="trim_endSearch"> To</label>
 							<input type="date" name="trim_endSearch" max="<%= dateMaxEnd %>" class="form-control"/>
 						</div>
 						
 
 					</div>
 
-					<div class="col-lg-4">
+					<div class="col-lg-4 col-md-3 col-sm-6 col-xs-6">
 						<div class="form-group">
 							<label for="orderSearch">Order</label>
 							<select name="orderSearch" class="form-control">
