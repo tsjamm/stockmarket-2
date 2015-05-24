@@ -33,13 +33,13 @@ function drawTable(info) {
 
 	var html = '<h2>' + info.name +'</h2><table class="table table-hover"> <thead> <tr>';
 	
-	for(var i=0; i<info.column_names.length; i++)
+	for(var i=0; i<5; i++)
 		html += '<th>' + info.column_names[i] + '</th>';
 	
 	html +='</tr></thead><tbody>';
 	for(var i=0; i<info.data.length; i++){
 		html +='<tr>';
-		for(var j=0; j<info.data[i].length; j++)
+		for(var j=0; j<5; j++)
 			html += '<td>' + info.data[i][j] + '</td>';	
 		html +='</tr>';
 	}
