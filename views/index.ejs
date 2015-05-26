@@ -6,7 +6,7 @@
 		<div class="container-fluid">
 	
 			<div class="row-fluid">
-				<div class="loginForm panel panel-default col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2">
+				<div class="loginForm panel panel-default col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-12 ">
 					<div class="panel-body">
 						<form method="POST" action="/index">
 						 <div class="form-group">
@@ -14,7 +14,7 @@
 								<span class="input-group-addon" id="mailLabel">
 									<i class="fa fa-envelope"></i>
 								</span>
-								<input type="mail" class="form-control" name="email" placeholder="email@example.com" aria-describedby="mailLabel" autofocus required/>
+								<input type="email" class="form-control" name="email" placeholder="email@example.com" aria-describedby="mailLabel" autofocus required/>
 							</div>
 						</div>
 						<div class="form-group">			
@@ -42,7 +42,7 @@
 
 		<div class="row-fluid">
 			<% if(typeof errorMessage!='undefined') { %>
-				<span class="errorMessage panel panel-default col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4 col-xs-8 col-xs-offset-4">
+				<span class="errorMessage panel panel-default col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4 col-xs-10 col-xs-offset-1">
 					<%= errorMessage %>
 				</span>
 			<% } %>
@@ -50,7 +50,7 @@
 
 		<div class="row-fluid">
 			<% if(typeof infoMessage!='undefined') { %>
-				<span class="infoMessage panel panel-default col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4 col-xs-8 col-xs-offset-4">
+				<span class="infoMessage panel panel-default col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4 col-xs-8 col-xs-offset-2">
 					<%= infoMessage %>
 				</span>
 			<% } %>

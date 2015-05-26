@@ -18,7 +18,8 @@
 	<script type="text/javascript" src="./../public/js/draw.js"></script>
 
 	<script type="text/javascript">
-		
+			$("#result").html('<i class="fa fa-spinner fa-spin"> </i>');
+
 			<% if(data!=null) { %>
 			var info = <%- JSON.stringify(data) %>;
 
@@ -29,7 +30,9 @@
 
 			google.load('visualization','1.0',{'packages':['line']});
 			google.setOnLoadCallback(function() {
-				$("#chooseChart").on('click',function() { drawChart(info); });
+				$("#chooseChart").on('click',function() { 
+				$("#result").html('<i class="fa fa-spinner fa-spin"> </i>');
+				drawChart(info); });
 			});
 		<%}%>
 	

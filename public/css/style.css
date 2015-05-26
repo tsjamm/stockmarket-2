@@ -8,17 +8,13 @@ aside {
 	vertical-align: top;
 }
 
-aside a {
-	width:100%;
-}
-
 body {
 	margin: 0 auto;
 	height: 100%;
 }
 
 .background {
-	background: url('../img/city.jpg') no-repeat;
+	background: url('../img/city.jpg') no-repeat center center fixed;
 	background-size: cover;
 }
 

@@ -8,7 +8,7 @@
 					<div class="well col-lg-8 col-lg-offset-2" >
 						<h1>Basic information</h1>
 						<div class="row">
-							<div class="col-lg-2 col-lg-offset-5">
+							<div class="col-lg-2 col-lg-offset-5 col-md-2 col-md-offset-5 col-sm-2 col-sm-offset-5 col-xs-2 col-xs-offset-4">
 								<img src=<% if (user.avatarURL)  { %>
 									"<%= 'users/avatars/'.concat(user.avatarURL) %>.png"
 									<% } else { %>
@@ -19,7 +19,7 @@
 						</div>
 
 							<div class="row">
-								<div class="col-lg-6">
+								<div class="col-lg-6 col-md-6 col-sm-6">
 
 									<div class="form-group">
 										<label for="email">Email</label>
@@ -38,7 +38,7 @@
 									
 								</div>
 
-								<div class="col-lg-6">
+								<div class="col-lg-6 col-md-6 col-sm-6">
 									<div class="form-group">
 										<label for="name">Name</label>
 										<input type="text" class="form-control" name="name" value="<%= user.name %>" required tabindex="2"/>

@@ -17,7 +17,8 @@ function drawChart(info) {
 		var options = {
 			chart: { title: info.name, subtitle: 'Closing stock values'},
 			width: window.innerWidth*0.95,
-			height: window.innerHeight*0.65
+			height: window.innerHeight*0.65,
+			legend: { position: 'none',textStyle: {color: 'red', fontSize: 16} }
 		};
 
 		var chart = new google.charts.Line(document.getElementById('result'));
