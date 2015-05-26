@@ -1,10 +1,14 @@
 $(function() {
+	$("#sendSearch").on('click',function() {
+		$("#result").html('<i class="fa fa-spinner fa-spin"></i>');
+	});
+
 	$('#companiesButton').on('click',function() {
-		showOne('companies')
+		showOne('companies');
 		$("#selectGraphic").hide();
 	});
 	$('#nationalMarketsButton').on('click',function() { 
-		showOne('nationalMarkets')
+		showOne('nationalMarkets');
 		$("#selectGraphic").hide();
 	});
 });
