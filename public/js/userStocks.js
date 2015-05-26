@@ -36,7 +36,7 @@ $(".deleteStock").on('click', function() {
 
 $(".showMyStockChart").on('click',function(evt) {
 	evt.preventDefault();
-	url = 'https://www.quandl.com/api/v1/datasets/WIKI/' + $(this).attr('data-company') + '.json?&trim_start=2015-02-03T00:00:00.000Z&trim_end=2015-05-26T09:41:42.657Z&auth_token=rgC48yaay4DWshssN2Yp';
+	url = 'https://www.quandl.com/api/v1/datasets/WIKI/' + $(this).attr('data-company') + '.json?&trim_start=' + new Date(Date.now() - 1000*3600*24*30).toISOString() + '&trim_end='+ new Date().toISOString() + '&auth_token=rgC48yaay4DWshssN2Yp';
 
 	window.location.replace('/showfavourite/'+ encodeURIComponent(url));
 });

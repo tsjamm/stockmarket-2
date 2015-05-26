@@ -19,8 +19,6 @@ var route = function(app) {
 	});
 
 	app.get('/showfavourite/:url', function(req,res) {
-		console.log(' TEST : ' + decodeURIComponent(req.param('url')));
-
 		if(req.session && req.session.email) {
 			dataManager.getTableDataFromURL(decodeURIComponent(req.param('url')), function(data) {
 				res.render(__dirname + './../views/explore' , { 
