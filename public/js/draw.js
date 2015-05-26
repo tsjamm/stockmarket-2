@@ -35,7 +35,7 @@ function drawTable(info) {
 	var html = '<h2>' + info.name +'</h2><table class="table table-hover"> <thead> <tr>';
 	
 	for(var i=0; i<5; i++)
-		html += '<th>' + info.column_names[i] + '</th>';
+		html += '<th class="text-center">' + info.column_names[i] + '</th>';
 	
 	html +='</tr></thead><tbody>';
 	for(var i=0; i<info.data.length; i++){
