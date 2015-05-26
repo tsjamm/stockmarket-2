@@ -1,5 +1,8 @@
 var route = function(app) {
 
+	/**
+		Cleans session data and redirect to login page when the user log out
+	*/
 	app.get('/logout', function(req,res) {
 		if(req.session && req.session.email)
 			req.session.destroy(function(err) {

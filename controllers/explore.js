@@ -5,6 +5,9 @@ var User = new UserSchema();
 
 var route = function(app) {
 	
+	/**
+		Displays explore page
+	*/
 	app.get('/explore',function(req,res) {
 		if(req.session && req.session.email) {
 			res.render(__dirname + './../views/explore', {
@@ -18,6 +21,9 @@ var route = function(app) {
 		}
 	});
 
+	/**
+		Show graphic data for the selected favourite
+	*/
 	app.get('/showfavourite/:url', function(req,res) {
 		if(req.session && req.session.email) {
 			dataManager.getTableDataFromURL(decodeURIComponent(req.param('url')), function(data) {
@@ -31,6 +37,9 @@ var route = function(app) {
 		} else { res.redirect('/'); }
 	});
 
+	/**
+		Searchs and save favourite if it is checked
+	*/
 	app.post('/explore', function(req,res) {
 
 		if(req.session && req.session.email) {

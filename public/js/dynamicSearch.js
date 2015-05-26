@@ -9,6 +9,10 @@ $(function() {
 	});
 });
 
+/**
+	Shows all the search form inputs and exclude companies or national markets depending on the option selected
+	@param {String}  name Option selected
+*/
 function showOne(name) {
 	$("#searchForm").css('display','block');
 	$('.form-group').css('display','block');

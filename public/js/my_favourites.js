@@ -20,6 +20,5 @@ $( function() {
 $(".showFavouriteChart").on('click',function(evt) {
 	evt.preventDefault();
 	var favouriteUrl = encodeURIComponent($(this).attr('data-id'));
-
 	window.location.replace('/showfavourite/'+favouriteUrl);
 });

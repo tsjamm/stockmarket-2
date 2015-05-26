@@ -4,6 +4,9 @@ var User = new UserSchema();
 
 var route = function(app){
 
+	/**
+		Displays user profile
+	*/
 	app.get('/profile',function(req,res) {
 		if(req.session && req.session.email) {
 
@@ -38,6 +41,9 @@ var route = function(app){
 		else res.redirect('/');
 	});
 
+	/**
+		Saves basic profile data changes
+	*/
 	app.post('/profileBasic',function(req,res) {
 
 		if(req.session && req.session.email) {
@@ -76,6 +82,9 @@ var route = function(app){
 		} else res.redirect('/');
 	});
 
+	/**
+		Saves user's twitter widget new preferences
+	*/
 	app.post('/profileTwitterWidget', function(req,res) {
 		if(req.session && req.session.email) {
 			User.findByEmail(req.session.email,function(err,user) {

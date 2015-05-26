@@ -2,7 +2,7 @@ var dataManager = require('./../public/lib/stockData');
 
 var route = function(app) {
 
-	/**	DAILY CURRENCIES */
+	/**	DAILY CURRENCIES BOXES IN HOME PAGE*/
 
 	app.get('/euroincrement', function(req,res) {
 		dataManager.getEuroIncrement(function(result) {
@@ -65,7 +65,7 @@ var route = function(app) {
 		});
 	});
 
-	/**	DAILY MARKETS */
+	/**	DAILY MARKETS BOXES IN HOME PAGE*/
 
 	app.get('/cac_40_today', function(req,res) {
 		dataManager.getDailyMarket('cac_40', function(result) {

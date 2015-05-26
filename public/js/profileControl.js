@@ -4,16 +4,19 @@ $(function() {
 });
 
 
+/**
+	Checks if both of the new password inserted are equals
+*/
 function checkNewPassword() {
 	var newPassword2 = $("#newPassword2");
-		var newPassword1 = $("#newPassword1");
+	var newPassword1 = $("#newPassword1");
 
-		if(newPassword1.val()!=newPassword2.val()) {
-			newPassword2.css('border','solid red 1px');
-			$("input[name='updateProfile']").attr('disabled',true);
-		}
-		else{
-			$("input[name='updateProfile']").attr('disabled',false);
-			newPassword2.css('border','solid #ccc 1px');
-		}
-	};
+	if(newPassword1.val()!=newPassword2.val()) {
+		newPassword2.css('border','solid red 1px');
+		$("input[name='updateProfile']").attr('disabled',true);
+	}
+	else{
+		$("input[name='updateProfile']").attr('disabled',false);
+		newPassword2.css('border','solid #ccc 1px');
+	}
+};

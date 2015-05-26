@@ -195,12 +195,18 @@ $(function() {
 
 });
 
+/**
+	Sets arrow and color for each market depending on its current value and the day before value
+	@param {Number} yesterdayClose Day before value
+	@param {Number} todayClose Today value
+	@param {String} div Div where the arrow is going to be set
+*/
 function setMarketArrow(yesterdayClose, todayClose, div) {
 	if(yesterdayClose>todayClose) {
-				div.html(div.text() + ' <i class="fa fa-arrow-up text-success"> </i>');
-			} else if(yesterdayClose==todayClose) {
-				div.html(div.text() + ' <i class="fa fa-minus text-muted"> </i>');
-			} else {
-				div.html(div.text() + ' <i class="fa fa-arrow-down text-danger"> </i>');
-			}
+		div.html(div.text() + ' <i class="fa fa-arrow-up text-success"> </i>');
+	} else if(yesterdayClose==todayClose) {
+		div.html(div.text() + ' <i class="fa fa-minus text-muted"> </i>');
+	} else {
+		div.html(div.text() + ' <i class="fa fa-arrow-down text-danger"> </i>');
+	}
 }

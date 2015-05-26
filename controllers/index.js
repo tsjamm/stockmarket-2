@@ -4,6 +4,9 @@ var User = new UserSchema();
 
 var route = function(app) {
 
+	/**
+		Displays login page or home page if the user is logged
+	*/
 	app.get('/',function(req,res) {
 		if(req.session && req.session.email)
 			res.render(__dirname + './../views/home', {
@@ -15,6 +18,9 @@ var route = function(app) {
 			res.render(__dirname + './../views/index');
 	});	
 
+	/**
+		Displays login page
+	*/
 	app.get('/index',function(req,res) {
 		if(req.session && req.session.email)
 			res.render(__dirname + './../views/home', {
@@ -26,6 +32,9 @@ var route = function(app) {
 			res.render(__dirname + './../views/index');
 	});
 
+	/**
+		Process login data and render home if email and password are corrects
+	*/
 	app.post('/index',function(req,res) {
 		var email = req.body.email;
 		var password = req.body.password;
@@ -56,6 +65,7 @@ var route = function(app) {
 							req.session.twitterWidget1 = tws1[0] ? tws1[0].getLink() : '';
 							req.session.twitterWidget2 = tws2[0] ? tws2[0].getLink() : '';
 							req.session.username = user.name;
+							req.session.userId = user._id;
 							
 							res.render(__dirname + './../views/home',{
 								username: req.session.username,

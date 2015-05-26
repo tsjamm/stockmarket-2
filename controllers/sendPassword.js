@@ -12,6 +12,9 @@ var smtpTransport = nodemailer.createTransport('SMTP',{
 
 var route = function(app) {
 
+	/** 
+		Sends email to recover password
+	*/
 	app.post('/sendPassword',function(req,res) {
 
 		User.findByEmail(req.body.email, function(err,doc){

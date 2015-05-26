@@ -3,6 +3,9 @@ var User = new UserSchema();
 
 var route = function(app) {
 
+	/**
+		Displays user's favourite searches
+	*/
 	app.get('/my_favourites',function(req,res) {
 		if(req.session && req.session.email) {
 
@@ -28,6 +31,9 @@ var route = function(app) {
 			res.redirect('/');
 	});
 
+	/**
+		Deletes selected favourite
+	*/
 	app.delete('/my_favourites', function(req,res) {
 		if(req.session && req.session.email) {
 			UserSchema.findOne( {email: req.session.email}, function(err,user) {

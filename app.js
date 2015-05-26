@@ -4,7 +4,8 @@ var
 	consolidate = require('consolidate'),
 	routes = require('./controllers/routes'),
 	bodyParser = require('body-parser'),
-	expressSession = require('express-session');
+	expressSession = require('express-session'),
+	favicon = require('serve-favicon');
 
 	app.set('view engine', 'ejs');
 	app.set('views', __dirname + '/views');
@@ -16,6 +17,7 @@ var
 		resave: false,
 		saveUninitialized:false
 	}));
+	app.use(favicon(__dirname + '/public/img/favicon.png'));
 	app.listen(3000);
 
 	routes(app);

@@ -3,6 +3,9 @@ var User = new UserSchema();
 
 var route = function(app){
 
+	/**
+		Creates a new user
+	*/
 	app.post('/register', function(req,res) {
 		User.findByEmail(req.body.email, function(err,user) {
 			if(err) {

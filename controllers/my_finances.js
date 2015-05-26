@@ -5,9 +5,12 @@ var User = new UserSchema();
 
 var route = function(app) {
 
+	/**
+		Retrieves and displays user finances
+	*/
 	app.get('/my_finances',function(req,res) {
 		if(req.session && req.session.email) {
-			StockSchema.find({},function(err,stocks) {
+			StockSchema.find({ownerId : req.session.userId},function(err,stocks) {
 				if(err) {
 						console.log('An error ocurred while searching stocks. Error: ' + err);
 						return res.render(__dirname + './../views/home', {username: req.session.username, errorMessage: 'Error searching stocks'});
@@ -25,6 +28,9 @@ var route = function(app) {
 			res.redirect('/');
 	});
 
+	/**
+		Adds a new stock data to the user finances
+	*/
 	app.post('/my_finances', function(req,res) {
 		if(req.session && req.session.email) {
 			User.findByEmail(req.session.email,function(err,doc){
@@ -57,6 +63,9 @@ var route = function(app) {
 	});
 
 
+	/**
+		Returns json containing last data of the selected company
+	*/
 	app.post('/getLastOfCompany', function(req,res) {
 		var db='WIKI';
 
@@ -75,6 +84,9 @@ var route = function(app) {
 			});
 	});
 
+	/**
+		Delete the selected user stock data
+	*/
 	app.delete('/my_finances/:idStock', function(req,res) {
 		StockSchema.remove({_id : req.param('idStock')}, function(err) {
 			if(err)
