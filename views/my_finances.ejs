@@ -92,7 +92,7 @@
 						<% for(var i=0; i<stocks.length; i++) { %>
 							<tr>
 								<td class="text-center"> <%= stocks[i].dateBought.getDate()+'/'+ (stocks[i].dateBought.getMonth()+1) + '/' + stocks[i].dateBought.getFullYear()%> </td>
-								<td> <%= stocks[i].amount %> </td>
+								<td class="text-center"> <%= stocks[i].amount %> </td>
 								<td class="acquisitionValueTd text-center"> <%= stocks[i].acquisitionValue %> </td>
 								<td class="companyTd text-center"> <%= stocks[i].company %> </td>
 								<td class="lastValueTd text-center"><i class="fa fa-spinner fa-spin"> </i>  </td>

@@ -62,12 +62,24 @@ footer.pageFooter {
 	font-weight: 700;
 }
 
+#loginTitle {
+	color: #f0ad3f;
+	font-size:8em;
+	padding-left:2%;
+	text-shadow: 0px 0px 8px black;
+}
+
+@media screen and (max-width: 768px) {
+	#loginTitle {
+		font-size:3em;
+	}
+}
 
 .loginForm {
 	border: solid orange 1px;
 	box-shadow:0px 0px 10px grey;
 	opacity:0.9;
-	margin-top:30%;
+	margin-top:20%;
 }
 
 nav .fa  {
