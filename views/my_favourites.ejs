@@ -20,13 +20,13 @@
 						<button class="btn btn-link removeFavourite" data-id="<%= favourites[i] %>"><i class="fa fa-trash-o"></i></button>
 					</div>
 
-					<% if(favourites[i].indexOf('YAHOO') !== -1) { %>
+					<% if(favourites[i].favourite.indexOf('YAHOO') !== -1) { %>
 						<div class="favouriteBox_icon text-center">
-							<i class="fa fa-flag"></i>
+							<img class="myStockFlag" src="../public/img/<%= favourites[i].country %>_flag.svg"/>
 						</div>
 						
 						<div class="favouriteBox_name">
-							National market: <%= favourites[i].slice(favourites[i].indexOf('YAHOO/')+5,favourites[i].indexOf('json')) %>
+							National market: <%= favourites[i].favourite.slice(favourites[i].favourite.indexOf('YAHOO/')+6,favourites[i].favourite.indexOf('json')-1) %>
 						</div>
 					
 					<% } else { %>
@@ -35,7 +35,7 @@
 						</div>
 						
 						<div class="favouriteBox_name text-center">
-							<h3>Company: <%= favourites[i].slice(favourites[i].indexOf('WIKI/')+5,favourites[i].indexOf('.json')) %></h3>
+							<h3>Company: <%= favourites[i].favourite.slice(favourites[i].favourite.indexOf('WIKI/')+5,favourites[i].favourite.indexOf('.json')) %></h3>
 						</div>
 					
 					<% } %> 
@@ -43,16 +43,16 @@
 					<table class="table">
 						<tr>
 							<th> Start date </td>
-							<td> <%= favourites[i].slice(favourites[i].indexOf('start=')+6,favourites[i].indexOf('&trim_end')) || 'Origin of times' %> </td>
+							<td> <%= favourites[i].favourite.slice(favourites[i].favourite.indexOf('start=')+6,favourites[i].favourite.indexOf('&trim_end')) || 'Origin of times' %> </td>
 						</tr>
 
 						<tr>
 							<th> End date </td>
-							<td>  <%= favourites[i].slice(favourites[i].indexOf('end=')+4,favourites[i].indexOf('&collapse')) || 'Most recent' %> </td>
+							<td>  <%= favourites[i].favourite.slice(favourites[i].favourite.indexOf('end=')+4,favourites[i].favourite.indexOf('&collapse')) || 'Most recent' %> </td>
 						</tr>
 
 						<% 
-							var collapse = favourites[i].slice(favourites[i].indexOf('&collapse')+10,favourites[i].indexOf('&auth_token'));
+							var collapse = favourites[i].favourite.slice(favourites[i].favourite.indexOf('&collapse')+10,favourites[i].favourite.indexOf('&auth_token'));
 							if(collapse === 'undefined')
 								collapse = 'Not specified';
 						%>
@@ -63,7 +63,7 @@
 						</tr>
 
 						<% 
-							var sort_order = favourites[i].slice(favourites[i].indexOf('order')+6,favourites[i].indexOf('&trim_start'));
+							var sort_order = favourites[i].favourite.slice(favourites[i].favourite.indexOf('order')+6,favourites[i].favourite.indexOf('&trim_start'));
 							if(sort_order === 'undefined')
 								sort_order = 'Not specified';
 						%>
@@ -74,7 +74,7 @@
 					</table>
 					
 					<div class="text-center">
-						<a href="#" data-id="<%= favourites[i] %>" class="btn btn-default showFavouriteChart">Show</a>
+						<a href="#" data-id="<%= favourites[i].favourite %>" class="btn btn-default showFavouriteChart">Show</a>
 					</div>
 				</div> <!-- panel -->
 			</div> <!-- .favouriteBox div -->

@@ -62,6 +62,27 @@ var request = require('request');
 		marketTable['tsx_composite']='INDEX_GSPTSE';
 		marketTable['shangai_composite']='INDEX_SSEC';
 
+	var marketCountries = [];
+		marketCountries['INDEX_FCHI'] = 'france';
+		marketCountries['INDEX_GDAXI'] = 'germany';
+		marketCountries['INDEX_GSPC'] = 'us';
+		marketCountries['INDEX_RUI'] = 'us';
+		marketCountries['INDEX_FTSE'] = 'gbp';
+		marketCountries['INDEX_FTSEMIB_MI'] = 'italia';
+		marketCountries['INDEX_IBEX'] = 'spain';
+		marketCountries['INDEX_JKSE'] = 'indonesia';
+		marketCountries['INDEX_KS11'] = 'korea';
+		marketCountries['INDEX_MERV'] = 'argentina';
+		marketCountries['INDEX_MXX'] = 'mexico';
+		marketCountries['INDEX_N225'] = 'japan';
+		marketCountries['INDEX_RTS_RS'] = 'russia';
+		marketCountries['INDEX_GSPTSE'] = 'canada';
+		marketCountries['INDEX_SSEC'] = 'china';
+
+exports.getMarketCountry = function(market) {
+	return marketCountries[market];
+}
+
 exports.getDailyCurrencyExchange = function(from,to,cb) {
 	var searchFilters = {
 		table:'',

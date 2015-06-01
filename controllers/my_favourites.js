@@ -1,3 +1,5 @@
+var async = require('async');
+var dataManager = require('./../public/lib/stockData');
 var UserSchema = require('./../models/UserSchema');
 var User = new UserSchema();
 
@@ -8,7 +10,7 @@ var route = function(app) {
 	*/
 	app.get('/my_favourites',function(req,res) {
 		if(req.session && req.session.email) {
-
+			var favourites = [];
 
 			UserSchema.findOne( {email: req.session.email}, function(err,user) {
 				if(err) {
@@ -19,12 +21,22 @@ var route = function(app) {
 					return res.render(__dirname + './../views/home', {errorMessage: 'User not found'});
 				}
 
-				res.render(__dirname + './../views/my_favourites', {
-					username: req.session.username,
-					twitterWidget1: req.session.twitterWidget1,
-					twitterWidget2: req.session.twitterWidget2,
-					favourites: user.favourites
+				async.forEach(user.favourites, function(favourite,next) {
+					if(favourite.indexOf('YAHOO') !== -1) {
+						favourites.push({favourite: favourite, country: dataManager.getMarketCountry(favourite.slice(favourite.indexOf('YAHOO/')+6,favourite.indexOf('json')-1))});
+					} else {
+						favourites.push({favourite: favourite});
+					}
+					next();
+				}, function() {
+					res.render(__dirname + './../views/my_favourites', {
+						username: req.session.username,
+						twitterWidget1: req.session.twitterWidget1,
+						twitterWidget2: req.session.twitterWidget2,
+						favourites: favourites
+					});
 				});
+
 			});
 		}
 		else
