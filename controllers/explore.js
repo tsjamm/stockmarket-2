@@ -58,11 +58,13 @@ var route = function(app) {
 			
 			var filters = {
 				table: table,
-				order: req.body.orderSearch,
+				sort_order: req.body.orderSearch,
 				trim_start: req.body.trim_startSearch,
 				trim_end: req.body.trim_endSearch,
-				colapse: req.body.collapseSearch
+				collapse: req.body.collapseSearch
 			};
+
+			console.log(req.body);
 
 			var data = {result: ''};
 			
