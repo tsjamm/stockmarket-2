@@ -11,7 +11,9 @@ $( function() {
 				location.reload();
 			}
 		}).error(function(err) {
-			alert('ERROR REMOVING FAVOURITE : ' + err.responseText);
+			$("#message").html('<div class="alert alert-success alert-dismissible" role="alert"><button type="button" class="close"' +
+				' data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><span><strong>Error removing favourite' +
+				'</div>');
 		});
 	});
 });

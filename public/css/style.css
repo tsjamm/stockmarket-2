@@ -78,7 +78,7 @@ footer.pageFooter {
 	border: solid orange 1px;
 	box-shadow:0px 0px 10px grey;
 	opacity:0.9;
-	margin-top:20%;
+	margin-top:10%;
 }
 
 nav .fa  {
@@ -89,7 +89,12 @@ nav .fa  {
 	background:#272522;
 }
 
-.navbar-default .navbar-nav>li>a:hover { color: #f0ad3f;}
+.navbar-default .navbar-nav>li>a { color: #f0ad3f;}
+
+.navbar-default .navbar-nav>li>a:hover {
+	color: #f0ad3f;
+	text-shadow: 0px 0px 2px;
+}
 
 #profile-menu { 
 	position:absolute;
@@ -161,7 +166,7 @@ nav .fa  {
 }
 
 .panel-default {
-	border: solid 1px #f0ad3f;;
+	box-shadow: 0px 0px 2px black;
 }
 
 /************* MY FINANCES ************/

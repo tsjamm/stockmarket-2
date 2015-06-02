@@ -53,14 +53,17 @@ var route = function(app) {
 				if(user===null) res.json(err);
 
 				var position = user.favourites.indexOf(req.param('url'));
+				
 				if(position !== -1) {
 					user.favourites.splice(position,1);
+					user.save(function(err) {
+						if(err) return res.json(err);
+						return res.json(user, 200);
+					});
+				} else {
+					return res.json({message: 'Not found'},404);
 				}
 
-				user.save(function(err) {
-					if(err) return res.json(err);
-					return res.json(user, 200);
-				});
 			});
 		}
 		else

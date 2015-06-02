@@ -17,7 +17,7 @@
 				<div class="panel panel-default">
 
 					<div class="text-right">
-						<button class="btn btn-link removeFavourite" data-id="<%= favourites[i] %>"><i class="fa fa-trash-o"></i></button>
+						<button class="btn btn-link removeFavourite" data-id="<%= favourites[i].favourite %>"><i class="fa fa-trash-o"></i></button>
 					</div>
 
 					<% if(favourites[i].favourite.indexOf('YAHOO') !== -1) { %>
@@ -25,8 +25,8 @@
 							<img class="myStockFlag" src="../public/img/<%= favourites[i].country %>_flag.svg"/>
 						</div>
 						
-						<div class="favouriteBox_name">
-							National market: <%= favourites[i].favourite.slice(favourites[i].favourite.indexOf('YAHOO/')+6,favourites[i].favourite.indexOf('json')-1) %>
+						<div class="favouriteBox_name text-center">
+							<%= favourites[i].favourite.slice(favourites[i].favourite.indexOf('YAHOO/')+12,favourites[i].favourite.indexOf('json')-1) %>
 						</div>
 					
 					<% } else { %>
@@ -72,7 +72,7 @@
 							<th> Sort order </td>
 							<td> <%= sort_order %> </td>
 					</table>
-					
+
 					<div class="text-center">
 						<a href="#" data-id="<%= favourites[i].favourite %>" class="btn btn-default showFavouriteChart">Show</a>
 					</div>
