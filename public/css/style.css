@@ -169,6 +169,12 @@ nav .fa  {
 	box-shadow: 0px 0px 2px black;
 }
 
+.panel-default .panel-heading {
+	background: #f0ad3f;
+	box-shadow: 0px -1px 3px 1px #f0ad3f;
+	color:#272522;
+}
+
 /************* MY FINANCES ************/
 #addUserStock {
 	font-size:2em;
@@ -179,6 +185,7 @@ nav .fa  {
 	background: #f0ad3f;
 	border: solid 1px #272522;
 	border-radius:10px;
+	box-shadow: 0px 0px 1px black;
 	display:none;
 	margin-bottom:1%;
 	padding:1em;
