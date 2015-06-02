@@ -155,10 +155,11 @@ nav .fa  {
 	height:21em;
 }
 
-.panel-market img, {
+.panel-market img {
 	width:50%;
 	height: 4em;
 }
+
 .panel-default {
 	border: solid 1px #f0ad3f;;
 }
