@@ -139,7 +139,10 @@ nav .fa  {
 	margin-top:1%;
 }
 
-#userAvatar  { border: solid black 1px;}
+#userAvatar  { 
+	border: solid black 1px;
+	max-width:100%;
+}
 
 
 /*********** HOME *********/
