@@ -9,11 +9,11 @@ var route = function(app){
 	app.post('/register', function(req,res) {
 		User.findByEmail(req.body.email, function(err,user) {
 			if(err) {
-						console.log('Error checking users database ' + err);
-						return res.render(__dirname + './../views/index', {errorMessage: 'Error checking user database'});
-					}
-			if(user)
-				return res.render(__dirname + './../views/index',  { errorMessage: 'This email has been used before'});
+					console.log('Error checking users database ' + err);
+					return res.render(__dirname + './../views/index', {errorMessage: 'Error checking user database'});
+			}
+			
+			if(user) return res.render(__dirname + './../views/index',  { errorMessage: 'This email has been used before'});
 
 			var userData = {
 				email :req.body.email,

@@ -4,7 +4,7 @@ var route = function(app){
 	app.use( multer( {
 		dest : './users/avatars',
 		rename : function(fieldname,filename,req) {
-			return req.body.email+req.body.name+req.body.lastname+'Avatar';
+			return req.body.email+req.body.name+req.body.lastname + 'Avatar';
 		},
 		onFileUploadStart : function(file) {
 			if(file.extension!='png')

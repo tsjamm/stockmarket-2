@@ -61,7 +61,7 @@ var route = function(app){
 					user.email = req.body.email;
 					user.name = req.body.name;
 					user.lastname = req.body.lastname;
-
+					user.avatarURL = req.files.avatarURL ? req.body.email.concat(req.body.name).concat(req.body.lastname).concat('Avatar') : user.avatarURL;
 					if(req.body.newPassword1)
 						if(req.body.newPassword1===req.body.newPassword2)
 							user.password = req.body.newPassword1;

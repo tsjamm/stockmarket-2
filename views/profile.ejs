@@ -3,7 +3,7 @@
 	<%- include templates/partialNav.ejs %>
 	<main>
 		<div class="container-fluid">
-			<form action="/profileBasic" method="POST">
+			<form method="POST" action="/profileBasic" enctype="multipart/form-data">
 				<div class="row">
 					<div class="well col-lg-8 col-lg-offset-2" >
 						<h1>Basic information</h1>
@@ -21,10 +21,7 @@
 							<div class="row">
 								<div class="col-lg-6 col-md-6 col-sm-6">
 
-									<div class="form-group">
-										<label for="avatarURL">Avatar</label>
-										<input type="file" class="form-control" name="avatarURL" accept=".png" placeholder="avatarURL"/>
-									</div>
+									
 
 									<div class="form-group">
 										<label for="email">Email</label>
@@ -39,6 +36,11 @@
 									<div class="form-group">
 										<label for="lastname">Lastname</label>
 										<input type="text" class="form-control" name="lastname" value="<%= user.lastname %>" required tabindex="3"/>
+									</div>
+
+									<div class="form-group">
+										<label for="avatarURL">Avatar</label>
+										<input type="file" class="form-control" name="avatarURL" placeholder="avatarURL"/>
 									</div>
 	
 								</div>
@@ -59,6 +61,7 @@
 										<label for="newPassword2">Repeat the new password</label>
 										<input type="password" class="form-control" name="newPassword2" id="newPassword2" tabindex="5"/>
 									</div>
+
 
 									<div class="text-right">
 										<input type="submit" class="btn btn-info" value="Update" name="updateProfile"/>
