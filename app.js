@@ -1,7 +1,6 @@
 var
 	express = require('express'),
 	app = express(),
-	consolidate = require('consolidate'),
 	routes = require('./controllers/routes'),
 	bodyParser = require('body-parser'),
 	expressSession = require('express-session'),
