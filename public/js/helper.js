@@ -12,7 +12,7 @@ function pushFooterDown() {
 				footer.css('display','inline-block');
 			}
 			
-			footer.css('top',$(window).height()-footer.outerHeight());
+			footer.css('top',$(window).height()-footer.outerHeight()+80);
 		});
 	
 }
