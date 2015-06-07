@@ -11,7 +11,6 @@ var twitterWidget = new TwitterWidget({
 	dataWidgetId: dataWidgetId
 });
 
-
 twitterWidget.save(function(err) {
 	if(err) {
 		console.log('Twitter widget could not be saved. Error : ' + err)
