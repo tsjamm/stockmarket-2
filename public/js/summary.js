@@ -35,8 +35,8 @@ $(function() {
 	$.ajax({
 		url:'/usdtoeuro',
 		success: function(result) {
-			$("#usdtoeuro").text(Number(result).toFixed(3));
-			$("#eurotousd").text(Number(1/+result).toFixed(3));
+			$("#eurotousd").text(Number(result).toFixed(3));
+			$("#usdtoeuro").text(Number(1/+result).toFixed(3));
 		}
 	});
 
