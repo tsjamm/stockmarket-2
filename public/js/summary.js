@@ -5,35 +5,35 @@ $(function() {
 	/** CURRENCIES */
 
 	$.ajax({
-		url:'/euroincrement',
+		url:'/increment/euro',
 		success: function(result) {
 			$("#euroincrement").html(result);
 		}
 	});
 
 	$.ajax({
-		url:'/gbpincrement',
+		url:'/increment/gbp',
 		success: function(result) {
 			$("#gbpincrement").html(result);
 		}
 	});
 
 	$.ajax({
-		url:'/usdincrement',
+		url:'/increment/usd',
 		success: function(result) {
 			$("#usdincrement").html(result);
 		}
 	});
 
 	$.ajax({
-		url:'/yenincrement',
+		url:'/increment/yen',
 		success: function(result) {
 			$("#yenincrement").html(result);
 		}
 	});
 
 	$.ajax({
-		url:'/usdtoeuro',
+		url:'/currency-from-to/usd/eur',
 		success: function(result) {
 			$("#eurotousd").text(Number(result).toFixed(3));
 			$("#usdtoeuro").text(Number(1/+result).toFixed(3));
@@ -41,7 +41,7 @@ $(function() {
 	});
 
 	$.ajax({
-		url:'/usdtogbp',
+		url:'/currency-from-to/usd/gbp',
 		success: function(result) {
 			$("#gbptousd").text(Number(result).toFixed(3));
 			$("#usdtogbp").text(Number(1/+result).toFixed(3));
@@ -49,7 +49,7 @@ $(function() {
 	});
 
 	$.ajax({
-		url:'/usdtoyen',
+		url:'/currency-from-to/usd/jpy',
 		success: function(result) {
 			$("#usdtoyen").text(Number(result).toFixed(1));
 			$("#yentousd").text(Number(1/+result).toFixed(3));
@@ -57,7 +57,7 @@ $(function() {
 	});
 
 	$.ajax({
-		url:'/eurotogbp',
+		url:'/currency-from-to/eur/gbp',
 		success: function(result) {
 			$("#eurotogbp").text(Number(result).toFixed(3));
 			$("#gbptoeuro").text(Number(1/+result).toFixed(3));
@@ -65,7 +65,7 @@ $(function() {
 	});
 
 	$.ajax({
-		url:'/eurotoyen',
+		url:'/currency-from-to/eur/jpy',
 		success: function(result) {
 			$("#eurotoyen").text(Number(result).toFixed(1));
 			$("#yentoeuro").text(Number(1/+result).toFixed(3));
@@ -73,124 +73,108 @@ $(function() {
 	});
 
 	/** MARKETS */
-
 	$.ajax( {
-		url:'/tsx_composite_today',
+		url:'/daily_stock/shangai_composite',
 		success: function(result) {
-			var resultJson = JSON.parse(result);
-			
-			$("#panel_market_tsx_composite .dateMarketValue").text(resultJson[0]);
-			$("#panel_market_tsx_composite .openMarketValue").text(resultJson[1]);
-			$("#panel_market_tsx_composite .highMarketValue").text(resultJson[2]);
-			$("#panel_market_tsx_composite .lowMarketValue").text(resultJson[3]);
-			$("#panel_market_tsx_composite .closeMarketValue").text(resultJson[4]);
+			$("#panel_market_shangai_composite .dateMarketValue").text(result[0]);
+			$("#panel_market_shangai_composite .openMarketValue").text(result[1]);
+			$("#panel_market_shangai_composite .highMarketValue").text(result[2]);
+			$("#panel_market_shangai_composite .lowMarketValue").text(result[3]);
+			$("#panel_market_shangai_composite .closeMarketValue").text(result[4]);
 
-			setMarketArrow(resultJson[7],resultJson[4],$("#panel_market_tsx_composite .market_name"));
+			setMarketArrow(result[7],result[4],$("#panel_market_shangai_composite .market_name"));
 		}
 	});
 
 	$.ajax( {
-		url:'/shangai_composite_today',
+		url:'/daily_stock/tsx_composite',
 		success: function(result) {
-			var resultJson = JSON.parse(result);
+			$("#panel_market_tsx_composite .dateMarketValue").text(result[0]);
+			$("#panel_market_tsx_composite .openMarketValue").text(result[1]);
+			$("#panel_market_tsx_composite .highMarketValue").text(result[2]);
+			$("#panel_market_tsx_composite .lowMarketValue").text(result[3]);
+			$("#panel_market_tsx_composite .closeMarketValue").text(result[4]);
 
-			$("#panel_market_shangai_composite .dateMarketValue").text(resultJson[0]);
-			$("#panel_market_shangai_composite .openMarketValue").text(resultJson[1]);
-			$("#panel_market_shangai_composite .highMarketValue").text(resultJson[2]);
-			$("#panel_market_shangai_composite .lowMarketValue").text(resultJson[3]);
-			$("#panel_market_shangai_composite .closeMarketValue").text(resultJson[4]);
-
-			setMarketArrow(resultJson[7],resultJson[4],$("#panel_market_shangai_composite .market_name"));
+			setMarketArrow(result[7],result[4],$("#panel_market_shangai_composite .market_name"));
 		}
 	});
 
 	$.ajax( {
-		url:'/cac_40_today',
+		url:'/daily_stock/cac_40',
 		success: function(result) {
-			var resultJson = JSON.parse(result);
+			$("#panel_market_cac_40 .dateMarketValue").text(result[0]);
+			$("#panel_market_cac_40 .openMarketValue").text(result[1]);
+			$("#panel_market_cac_40 .highMarketValue").text(result[2]);
+			$("#panel_market_cac_40 .lowMarketValue").text(result[3]);
+			$("#panel_market_cac_40 .closeMarketValue").text(result[4]);
 
-			$("#panel_market_cac_40 .dateMarketValue").text(resultJson[0]);
-			$("#panel_market_cac_40 .openMarketValue").text(resultJson[1]);
-			$("#panel_market_cac_40 .highMarketValue").text(resultJson[2]);
-			$("#panel_market_cac_40 .lowMarketValue").text(resultJson[3]);
-			$("#panel_market_cac_40 .closeMarketValue").text(resultJson[4]);
-
-			setMarketArrow(resultJson[7],resultJson[4],$("#panel_market_cac_40 .market_name"));
+			setMarketArrow(result[7],result[4],$("#panel_market_cac_40 .market_name"));
 		}
 	});
 
 	$.ajax( {
-		url:'/dax_today',
+		url:'/daily_stock/dax',
 		success: function(result) {
-			var resultJson = JSON.parse(result);
+			$("#panel_market_dax .dateMarketValue").text(result[0]);
+			$("#panel_market_dax .openMarketValue").text(result[1]);
+			$("#panel_market_dax .highMarketValue").text(result[2]);
+			$("#panel_market_dax .lowMarketValue").text(result[3]);
+			$("#panel_market_dax .closeMarketValue").text(result[4]);
 
-			$("#panel_market_dax .dateMarketValue").text(resultJson[0]);
-			$("#panel_market_dax .openMarketValue").text(resultJson[1]);
-			$("#panel_market_dax .highMarketValue").text(resultJson[2]);
-			$("#panel_market_dax .lowMarketValue").text(resultJson[3]);
-			$("#panel_market_dax .closeMarketValue").text(resultJson[4]);
-
-			setMarketArrow(resultJson[7],resultJson[4],$("#panel_market_dax .market_name"));
+			setMarketArrow(result[7],result[4],$("#panel_market_dax .market_name"));
 		}
 	});
 
 	$.ajax( {
-		url:'/ftse_100_today',
+		url:'/daily_stock/ftse_100',
 		success: function(result) {
-			var resultJson = JSON.parse(result);
+			$("#panel_market_ftse_100 .dateMarketValue").text(result[0]);
+			$("#panel_market_ftse_100 .openMarketValue").text(result[1]);
+			$("#panel_market_ftse_100 .highMarketValue").text(result[2]);
+			$("#panel_market_ftse_100 .lowMarketValue").text(result[3]);
+			$("#panel_market_ftse_100 .closeMarketValue").text(result[4]);
 
-			$("#panel_market_ftse_100 .dateMarketValue").text(resultJson[0]);
-			$("#panel_market_ftse_100 .openMarketValue").text(resultJson[1]);
-			$("#panel_market_ftse_100 .highMarketValue").text(resultJson[2]);
-			$("#panel_market_ftse_100 .lowMarketValue").text(resultJson[3]);
-			$("#panel_market_ftse_100 .closeMarketValue").text(resultJson[4]);
-
-			setMarketArrow(resultJson[7],resultJson[4],$("#panel_market_ftse_100 .market_name"));
+			setMarketArrow(result[7],result[4],$("#panel_market_ftse_100 .market_name"));
 		}
 	});
 
 	$.ajax( {
-		url:'/nikkei_225_today',
+		url:'/daily_stock/nikkei_225',
 		success: function(result) {
-			var resultJson = JSON.parse(result);
-			$("#panel_market_nikkei_225 .dateMarketValue").text(resultJson[0]);
-			$("#panel_market_nikkei_225 .openMarketValue").text(resultJson[1]);
-			$("#panel_market_nikkei_225 .highMarketValue").text(resultJson[2]);
-			$("#panel_market_nikkei_225 .lowMarketValue").text(resultJson[3]);
-			$("#panel_market_nikkei_225 .closeMarketValue").text(resultJson[4]);
+			$("#panel_market_nikkei_225 .dateMarketValue").text(result[0]);
+			$("#panel_market_nikkei_225 .openMarketValue").text(result[1]);
+			$("#panel_market_nikkei_225 .highMarketValue").text(result[2]);
+			$("#panel_market_nikkei_225 .lowMarketValue").text(result[3]);
+			$("#panel_market_nikkei_225 .closeMarketValue").text(result[4]);
 
-			setMarketArrow(resultJson[7],resultJson[4],$("#panel_market_nikkei_225 .market_name"));
+			setMarketArrow(result[7],result[4],$("#panel_market_nikkei_225 .market_name"));
 		}
 	});
 
 	$.ajax( {
-		url:'/ibex_35_today',
+		url:'/daily_stock/ibex_35',
 		success: function(result) {
-			var resultJson = JSON.parse(result);
+			$("#panel_market_ibex_35 .dateMarketValue").text(result[0]);
+			$("#panel_market_ibex_35 .openMarketValue").text(result[1]);
+			$("#panel_market_ibex_35 .highMarketValue").text(result[2]);
+			$("#panel_market_ibex_35 .lowMarketValue").text(result[3]);
+			$("#panel_market_ibex_35 .closeMarketValue").text(result[4]);
 
-			$("#panel_market_ibex_35 .dateMarketValue").text(resultJson[0]);
-			$("#panel_market_ibex_35 .openMarketValue").text(resultJson[1]);
-			$("#panel_market_ibex_35 .highMarketValue").text(resultJson[2]);
-			$("#panel_market_ibex_35 .lowMarketValue").text(resultJson[3]);
-			$("#panel_market_ibex_35 .closeMarketValue").text(resultJson[4]);
-
-			setMarketArrow(resultJson[7],resultJson[4],$("#panel_market_ibex_35 .market_name"));
+			setMarketArrow(result[7],result[4],$("#panel_market_ibex_35 .market_name"));
 		}
 	});
 
 	$.ajax( {
-		url:'/sp_500_today',
+		url:'/daily_stock/sp_500',
 		success: function(result) {
-			var resultJson = JSON.parse(result);
+			$("#panel_market_sp_500 .dateMarketValue").text(result[0]);
+			$("#panel_market_sp_500 .openMarketValue").text(result[1]);
+			$("#panel_market_sp_500 .highMarketValue").text(result[2]);
+			$("#panel_market_sp_500 .lowMarketValue").text(result[3]);
+			$("#panel_market_sp_500 .closeMarketValue").text(result[4]);
 
-			$("#panel_market_sp_500 .dateMarketValue").text(resultJson[0]);
-			$("#panel_market_sp_500 .openMarketValue").text(resultJson[1]);
-			$("#panel_market_sp_500 .highMarketValue").text(resultJson[2]);
-			$("#panel_market_sp_500 .lowMarketValue").text(resultJson[3]);
-			$("#panel_market_sp_500 .closeMarketValue").text(resultJson[4]);
-
-			setMarketArrow(resultJson[7],resultJson[4],$("#panel_market_sp_500 .market_name"));
-		}
+			setMarketArrow(result[7],result[4],$("#panel_market_sp_500 .market_name"));
+		},
 	});
 
 });

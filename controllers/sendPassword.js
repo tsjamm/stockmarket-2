@@ -5,8 +5,8 @@ var nodemailer = require('nodemailer');
 var smtpTransport = nodemailer.createTransport('SMTP',{
 		service: 'Gmail',
 		auth: {
-			user: 'easyfinancesproject@gmail.com',
-			pass: 'passeasyfinancesproject'
+			user: '', //Fill
+			pass: '' // Fill
 		}
 });
 
@@ -28,7 +28,7 @@ var route = function(app) {
 				});
 
 			var mailInfo = {
-				from:'quickeconomy@gmail.com',
+				from:'', //Fill
 				to: req.body.email,
 				subject: 'QuickEconomy. Your account password',
 				html: 'Hi, your account password is: ' + doc.password,

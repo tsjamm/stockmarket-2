@@ -4,115 +4,62 @@ var route = function(app) {
 
 	/**	DAILY CURRENCIES BOXES IN HOME PAGE*/
 
-	app.get('/euroincrement', function(req,res) {
-		dataManager.getEuroIncrement(function(result) {
-			res.end(result);
-		});
+	app.get('/increment/:currency', function(req, res) {
+		switch(req.param('currency')) {
+			case 'euro' : 
+				dataManager.getEuroIncrement(function(result) {
+					res.json(result, 200);
+				});
+				break;
+
+			case 'gbp' :
+				dataManager.getGBPIncrement(function(result) {
+					res.json(result, 200);
+				});
+				break;
+
+			case 'usd':
+				dataManager.getUSDIncrement(function(result) {
+					res.json(result, 200);
+				});
+				break;
+
+			case 'yen': 
+				dataManager.getYenIncrement(function(result) {
+					res.json(result, 200);
+				});
+				break;
+			default: res.json({message: 'Increment not found'},404);
+		}
 	});
 
-	app.get('/gbpincrement', function(req,res) {
-		dataManager.getGBPIncrement(function(result) {
-			res.end(result);
-		});
-	});
+	/** DAILY EXCHANGES IN HOME PAGE */
 
-	app.get('/usdincrement', function(req,res) {
-		dataManager.getUSDIncrement(function(result) {
-			res.end(result);
-		});
-	});
+	app.get('/currency-from-to/:currencyFrom/:currencyTo', function(req, res) {
+		var from = req.param('currencyFrom') !== '' ? req.param('currencyFrom').toUpperCase() : '';
+		var to = req.param('currencyTo') !== '' ? req.param('currencyTo').toUpperCase() : '';
+		var availableFrom = ['USD','EUR'];
+		var availableTo = ['USD','EUR','GBP','JPY'];
 
-	app.get('/yenincrement', function(req,res) {
-		dataManager.getYenIncrement(function(result) {
-			res.end(result);
-		});
-	});
+		if ( availableFrom.indexOf(from) === -1 || availableTo.indexOf(to) === -1 )
+			return res.json({message: 'Data not found'}, 404);
 
-	app.get('/usdtoeuro', function(req,res) {
-		dataManager.getDailyCurrencyExchange('USD','EUR', function(result) {
-			res.end(JSON.stringify(result));
-		});
-	});
-
-	app.get('/usdtogbp', function(req,res) {
-		dataManager.getDailyCurrencyExchange('USD','GBP', function(result) {
-			res.end(JSON.stringify(result));
-		});
-	});
-
-	app.get('/usdtoyen', function(req,res) {
-		dataManager.getDailyCurrencyExchange('USD','JPY', function(result) {
-			res.end(JSON.stringify(result));
-		});
-	});
-
-
-	app.get('/eurotodollar', function(req,res) {
-		dataManager.getDailyCurrencyExchange('EUR','USD', function(result) {
-			res.end(JSON.stringify(result));
-		});
-	});
-
-	app.get('/eurotogbp', function(req,res) {
-		dataManager.getDailyCurrencyExchange('EUR','GBP', function(result) {
-			res.end(JSON.stringify(result));
-		});
-	});
-
-	app.get('/eurotoyen', function(req,res) {
-		dataManager.getDailyCurrencyExchange('EUR','JPY', function(result) {
-			res.end(JSON.stringify(result));
+		dataManager.getDailyCurrencyExchange(from, to, function(result) {
+			res.json(result,200);
 		});
 	});
 
 	/**	DAILY MARKETS BOXES IN HOME PAGE*/
 
-	app.get('/cac_40_today', function(req,res) {
-		dataManager.getDailyMarket('cac_40', function(result) {
-			res.end(JSON.stringify(result));
-		});
-	});
-
-	app.get('/dax_today', function(req,res) {
-		dataManager.getDailyMarket('dax', function(result) {
-			res.end(JSON.stringify(result));
-		});
-	});
-
-	app.get('/ftse_100_today', function(req,res) {
-		dataManager.getDailyMarket('ftse_100', function(result) {
-			res.end(JSON.stringify(result));
-		});
-	});
-
-	app.get('/ibex_35_today', function(req,res) {
-		dataManager.getDailyMarket('ibex_35', function(result) {
-			res.end(JSON.stringify(result));
-		});
-	});
-
-	app.get('/nikkei_225_today', function(req,res) {
-		dataManager.getDailyMarket('nikkei_225', function(result) {
-			res.end(JSON.stringify(result));
-		});
-	});
-
-	app.get('/shangai_composite_today', function(req,res) {
-		dataManager.getDailyMarket('shangai_composite', function(result) {
-			res.end(JSON.stringify(result));
-		});
-	});
-
-	app.get('/sp_500_today', function(req,res) {
-		dataManager.getDailyMarket('sp_500', function(result) {
-			res.end(JSON.stringify(result));
-		});
-	});
-
-	app.get('/tsx_composite_today', function(req,res) {
-		dataManager.getDailyMarket('tsx_composite', function(result) {
-			res.end(JSON.stringify(result));
-		});
+	app.get('/daily_stock/:stock', function(req, res) {
+		var availableDailyStocks = ['cac_40','dax','ftse_100','ibex_35','nikkei_225','shangai_composite', 'sp_500', 'tsx_composite'];	
+		if(availableDailyStocks.indexOf(req.param('stock')) !== -1) {
+			dataManager.getDailyMarket(req.param('stock'), function(result) {
+				return res.json(result,200);
+			});
+		} else {
+			return res.json({message:'Daily stock not found'},404);
+		}
 	});
 
 };
